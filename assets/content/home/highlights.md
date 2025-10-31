@@ -1,0 +1,5 @@
+- 6+ years in Applied AI, speech recognition, image processing, and automation.:contentReference[oaicite:1]{index=1}
+- Delivered AI features to production including AI Sketch (IDECS 2024).:contentReference[oaicite:2]{index=2}
+- Experience with LangChain, LLMs, Docker, and GPU orchestration.:contentReference[oaicite:3]{index=3}
+- Calm, async-first collaboration style that values clarity over noise.:contentReference[oaicite:4]{index=4}
+- Technology that respects people: simple, privacy-aware, low stress.:contentReference[oaicite:5]{index=5}
