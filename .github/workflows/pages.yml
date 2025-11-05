@@ -28,6 +28,11 @@ jobs:
             - name: Install dependencies
               run: flutter pub get
 
+            - name: (Optional) Generate sitemap & RSS
+              run: |
+                  dart run lib/tools/gen_sitemap.dart || true
+                  dart run lib/tools/gen_rss.dart || true
+
             - name: Setup Pages
               id: pages
               uses: actions/configure-pages@v5
@@ -35,6 +40,7 @@ jobs:
             - name: Build web (correct base path)
               run: |
                   flutter build web --release --base-href "${{ steps.pages.outputs.base_path }}/"
+                  # 404 fallback for client-side routing
                   cp build/web/index.html build/web/404.html
 
             - name: Upload artifact

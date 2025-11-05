@@ -1,0 +1,25 @@
+name: "Bug report"
+description: "Something not working as expected? Tell me here."
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the issue and expected behavior.
+      placeholder: A clear and concise description...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      placeholder: v1.0.0
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide steps or a minimal repro.
+      placeholder: 1) ... 2) ... 3) ...
