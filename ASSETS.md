@@ -1,157 +1,254 @@
-# ✅ Final `assets/` layout (clean + future-proof)
+# Assets — Desmond Liew Portfolio
 
-```
-assets/
-├─ images/                     # site-wide images (logos, avatars, covers, diagrams)
-│  ├─ brand/
-│  │  ├─ logo.svg
-│  │  └─ favicon.png
-│  ├─ headshots/
-│  │  └─ desmond.jpg
-│  ├─ covers/
-│  │  ├─ default-post.webp
-│  │  └─ default-project.webp
-│  └─ diagrams/
-│     ├─ system-architecture.png
-│     └─ encryption-model.png
-│
-├─ files/                      # downloadable files
-│  ├─ resume.pdf
-│  ├─ proposal-template.pdf
-│  └─ whitepaper-v1.pdf
-│
-└─ contents/                   # ALL markdown content (public + private together)
-   ├─ pages/
-   │  ├─ home.md
-   │  ├─ about.md
-   │  ├─ services.md
-   │  ├─ contact.md
-   │  └─ resume.md
-   ├─ projects/
-   │  ├─ judicial-v2t.md            # visibility: private (encrypted body)
-   │  ├─ wood-identification.md     # visibility: public
-   │  └─ ai-automation-suite.md
-   ├─ blog/
-   │  ├─ decision-log-001.md
-   │  ├─ ethics-llm-evals.md
-   │  └─ system-note-private.md     # visibility: private (encrypted body)
-   ├─ labs/
-   │  ├─ whisper-optimization.md
-   │  └─ cv-detection-lab.md
-   ├─ library/
-   │  ├─ reading-list.md
-   │  └─ tools-and-frameworks.md
-   ├─ meta/
-   │  ├─ personality.md
-   │  ├─ philosophy-of-work.md
-   │  └─ justice-manifesto.md
-   └─ foundation/
-      ├─ features.md
-      ├─ privacy.md
-      ├─ terms.md
-      ├─ cookies.md
-      └─ accessibility.md
-```
-
-- Keep **all** `.md`’s together here.
-- Private content uses `visibility: private` and **client-side encrypted body** (the `:::cipher` block).
-- Images/files referenced in Markdown should use stable absolute paths like `/assets/images/...` and `/assets/files/...`.
+This document defines the structure, conventions, and purpose of all files under `/assets/`.  
+These assets serve as the **data layer** for the entire portfolio — powering all pages, projects, and content in a *local-first* architecture.
 
 ---
 
-# 📦 `pubspec.yaml` (assets section)
+## 📁 Directory Overview
 
-No manifest file needed—just ensure Flutter bundles your content and media:
+```
+
+assets/
+├─ contents/
+│   ├─ blog/          → Articles, essays, and posts
+│   ├─ foundation/    → Philosophy, ethics, and personal systems
+│   ├─ labs/          → Experiments, prototypes, research tools
+│   ├─ library/       → Influences, readings, and frameworks
+│   ├─ meta/          → Policies, accessibility, credits, legal
+│   ├─ pages/         → Static pages (`home.md`, `about.md`, etc.)
+│   ├─ projects/      → Portfolio projects, case studies
+│   └─ index.json     → (optional future manifest)
+│
+├─ files/             → Downloadable PDFs, resumes, data files
+│
+└─ images/
+├─ brand/         → Logos, brand marks, favicons
+├─ covers/        → Project and post header images
+├─ diagrams/      → Visual systems and architecture maps
+└─ headshots/     → Portraits and personal photos
+
+````
+
+---
+
+## 🧩 Content Model
+
+Each Markdown (`.md`) file uses **YAML front-matter** followed by body content in Markdown.  
+Example template:
 
 ```yaml
-flutter:
-  uses-material-design: true
-  assets:
-    - assets/contents/
-    - assets/contents/pages/
-    - assets/contents/projects/
-    - assets/contents/blog/
-    - assets/contents/labs/
-    - assets/contents/library/
-    - assets/contents/meta/
-    - assets/contents/foundation/
-    - assets/images/
-    - assets/images/brand/
-    - assets/images/headshots/
-    - assets/images/covers/
-    - assets/images/diagrams/
-    - assets/files/
+---
+title: "System Monitor"
+slug: "system-monitor"
+type: "project"
+visibility: "private"
+date: 2024-08-10
+description: "Privacy-first monitoring system prototype."
+tags: [systems, flutter, privacy]
+cover: "assets/images/covers/system-monitor.jpg"
+lang: "en"
+---
+## Overview
+
+System Monitor is an experiment in self-hosted system visibility, designed to align with Desmond’s principles of ethical transparency.
+````
+
+### Front-matter keys
+
+| Key           | Type   | Required | Description                                                       |
+| ------------- | ------ | -------- | ----------------------------------------------------------------- |
+| `title`       | String | ✅        | Human-readable title                                              |
+| `slug`        | String | ✅        | Unique identifier used in routing                                 |
+| `type`        | String | ✅        | One of: `page`, `blog`, `project`, `lab`, `foundation`, `library` |
+| `visibility`  | String | ✅        | `public` or `private`                                             |
+| `date`        | String | ✅        | ISO date (`YYYY-MM-DD`) for sorting                               |
+| `description` | String | ✅        | Short summary for previews and cards                              |
+| `tags`        | List   | optional | Keywords for filtering                                            |
+| `cover`       | String | optional | Relative path to image                                            |
+| `lang`        | String | optional | Content language (`en`, `zh`, `ms`)                               |
+
+---
+
+## 📝 Content Folders
+
+### `/assets/contents/pages/`
+
+Static pages rendered via routes:
+
+* `home.md` → `/`
+* `about.md` → `/about`
+* `contact.md` → `/contact`
+* `services.md` → `/services`
+* `resume.md` → `/resume`
+
+These pages define the main structure of your site.
+All use front-matter `type: "page"`.
+
+---
+
+### `/assets/contents/projects/`
+
+Case studies, technical write-ups, and long-form portfolio entries.
+
+Example:
+
+```
+projects/
+ ├─ ai-automation-suite.md
+ ├─ wood-identification.md
+ └─ system-monitor.md
 ```
 
-> This makes the markdown/media available via `rootBundle` on **all** platforms (Web/Android/Windows/Linux).
+Used under `/projects/:slug`.
+Each item becomes a project card with title, description, and cover.
 
 ---
 
-# 🧠 How auto-discovery works (no custom manifest)
+### `/assets/contents/blog/`
 
-- Flutter emits `AssetManifest.json` at build time (Web & native).
-- On app startup, read `AssetManifest.json` → filter keys matching `assets/contents/**.md`.
-- For each `.md`:
+Essays, reflections, and personal thoughts.
+Use `type: "blog"` and `visibility: public` unless encrypted.
 
-  - Load only the **first few KB** to parse front-matter (fast).
-  - Build in-memory index: `type`, `slug`, `visibility`, `title`, `date`, `tags`, etc.
-
-- Your list pages (Projects/Blog/Labs/Library/Pages) filter this index by `type`; detail routes load the full file on demand.
-- **No code edits** when you add new markdown—just push.
+Supports multilingual posts via `lang` key and language detection.
 
 ---
 
-# 🔐 Encryption flow (unchanged)
+### `/assets/contents/labs/`
 
-- Author private content with `visibility: private`.
-- Run your CLI (`dart run lib/tools/encrypt_markdown.dart`) locally:
+Experimental ideas, prototypes, and “sandbox” works.
 
-  - Argon2id derive → AES-GCM encrypt → replace body with `:::cipher ... :::` fenced block.
+Examples:
 
-- Commit ciphertext; the app will prompt for passphrase to decrypt **in memory**.
+* `creative-experiments.md`
+* `automation-tools.md`
+* `prototypes.md`
+* `code-snippets.md`
 
----
-
-# 🧭 Markdown link conventions (works everywhere)
-
-- Images: `![alt](/assets/images/diagrams/system-architecture.png)`
-- Files: `[Download resume](/assets/files/resume.pdf)`
-
-Since assets are bundled, these paths resolve on all targets. (If you ever use relative paths inside `.md`, implement a small resolver to normalize them against the MD file’s directory.)
+These render in `/labs`, each tagged by domain (design, research, systems).
 
 ---
 
-# 🛠 CI (what to change)
+### `/assets/contents/library/`
 
-Because we’re **not** generating a custom manifest anymore:
+Influences, reference texts, and frameworks used across Desmond’s work.
 
-- **Remove** any step that created `assets/contents/manifest.json`.
-- **Keep** (optional) your `sitemap.xml` / `rss.xml` generation—those can be produced by a CI script that simply scans the repo directories (`assets/contents/**`) and parses front-matter, then writes the XML files to `web/` (or directly into `build/web/`) before deploying to GitHub Pages.
+Example entries:
 
-**Deploy flow stays simple:**
-
-1. `flutter pub get`
-2. _(optional)_ run your sitemap/rss generator (reads files from repo)
-3. `flutter build web --release --base-href "/<repo_name>/"`
-4. Publish `/build/web` to `gh-pages`
-
-> No need to copy the assets manually for web—they’re already bundled by Flutter and referenced in `AssetManifest.json`.
+* `influences.md`
+* `reading-list.md`
+* `tools-and-frameworks.md`
+* `research-notes.md`
 
 ---
 
-# 🧩 Minimal code pointers (so it “just works”)
+### `/assets/contents/foundation/`
 
-- **Discovery:**
+Conceptual and ethical underpinnings — the “why” behind the portfolio.
 
-  ```dart
-  final manifestJson = await rootBundle.loadString('AssetManifest.json');
-  final Map<String, dynamic> manifest = jsonDecode(manifestJson);
-  final mdPaths = manifest.keys
-      .where((k) => k.startsWith('assets/contents/') && k.endsWith('.md'))
-      .toList()..sort();
-  ```
+Files include:
 
-- **Front-matter parse:** read first chunk of the file, split on initial `--- ... ---`, parse with `yaml`.
-- **Public vs private:** check `visibility` in front-matter; if private, expect a `:::cipher` block in body and gate behind a passphrase dialog.
-- **Routing:** one generic detail route per type (e.g., `/projects/:slug`), no page registration.
+* `philosophy-of-work.md`
+* `justice-manifesto.md`
+* `ethics-llm-evals.md`
+* `system-design-notes.md`
+* `decision-log-001.md`
+* `calm-technology.md`
+* `eval-principles.md`
 
+These form `/foundation` — readable sections of Desmond’s worldview and practice.
+
+---
+
+### `/assets/contents/meta/`
+
+Site meta content — rendered as standalone pages or linked from footer.
+
+Includes:
+
+* `privacy-policy.md`
+* `terms-of-service.md`
+* `cookie-policy.md`
+* `accessibility.md`
+* `credits.md`
+* `features.md`
+
+Each file defines `type: meta` and is linked in the footer navigation.
+
+---
+
+## 🖼️ Image Assets
+
+| Folder               | Purpose                     | Recommended Format | Notes                             |
+| -------------------- | --------------------------- | ------------------ | --------------------------------- |
+| `/images/brand/`     | Logos, favicon, icons       | `.svg`, `.png`     | Used by app bar, footer, metadata |
+| `/images/covers/`    | Page and project covers     | `.jpg`, `.webp`    | Landscape, ~1600x900, < 500KB     |
+| `/images/diagrams/`  | Schematics, system diagrams | `.svg`             | Vector preferred                  |
+| `/images/headshots/` | Portraits                   | `.jpg`, `.png`     | For `about` and resume pages      |
+
+---
+
+## 📄 File Assets
+
+| File Type        | Use                          |
+| ---------------- | ---------------------------- |
+| `.pdf`           | Resume, reports, whitepapers |
+| `.zip`           | Source archives (optional)   |
+| `.json` / `.csv` | Data exports or lab inputs   |
+
+---
+
+## 🔐 Private Content
+
+Private `.md` files include `visibility: private`.
+Their content is **AES-GCM encrypted** and decrypted client-side when the correct passphrase is provided via login.
+
+When locked, the Markdown body shows an encrypted envelope header instead of readable content.
+
+Example (encrypted file):
+
+```
+visibility: private
+encrypted: true
+cipher: <base64 text>
+```
+
+---
+
+## 🧠 Conventions
+
+* Filenames use **kebab-case** (`philosophy-of-work.md`)
+* Front-matter always separated by `---` lines
+* Image paths use **relative URIs** (`assets/images/...`)
+* All timestamps use ISO 8601
+* Non-English content has `lang: zh` or `lang: ms`
+
+---
+
+## 🧩 Best Practices
+
+1. **Keep content version-controlled** — edit Markdown, commit, deploy.
+2. **Avoid inline HTML** unless absolutely needed.
+3. **Use semantic headings** (`##`, `###`) for accessibility.
+4. **Compress images** for fast GitHub Pages delivery.
+5. **Use front-matter consistently** to allow automated indexing.
+6. **Encrypt** only when privacy truly matters — public content improves SEO.
+
+---
+
+## 🚀 Future Plans
+
+* Generate an `index.json` manifest for faster client-side indexing.
+* Implement local fuzzy search across Markdown files.
+* Add thumbnail generation for covers.
+* Store pre-rendered excerpts for list pages.
+* Include auto-generated RSS/Atom feeds from `/blog`.
+
+---
+
+## 🧾 License
+
+All assets © Desmond Liew
+Software licensed under MIT unless otherwise specified.
+
+---

@@ -1,5 +1,5 @@
-name: PersonalPortfolio
-description: "A new Flutter project."
+name: personal_portfolio
+description: "Desmond Liew’s portfolio — local-first, Markdown-driven, privacy-first."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -30,19 +30,46 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  go_router: ^16.3.0
-  url_launcher: ^6.3.2
-  responsive_framework: ^1.5.1
-  google_fonts: ^6.3.2
+  flutter_localizations:
+    sdk: flutter
+
+  # --- Routing / Navigation ---
+  go_router: ^16.3.0 # modern router w/ deep links + wev
+
+  # --- UI / UX ---
+  google_fonts: ^6.3.2 # typography from fonts.google.com (official)
+  responsive_framework: ^1.5.1 # responsive breakpoints and layout helpers
+  url_launcher: ^6.3.2 # open mailto:, https, etc. across platforms
+  animations: ^2.1.0 # subtle page/element transitions
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
-  intl: ^0.20.2
-  shared_preferences: ^2.5.3
+  # --- State (keep Provider for now; Riverpod migration optional) ---
   provider: ^6.1.5
-  flutter_markdown_plus: ^1.0.5
+  # flutter_riverpod: ^3.0.3    # optional future migration
+
+  # --- Markdown content pipeline ---
+  flutter_markdown_plus: ^1.0.5 # maintained fork of flutter_markdown
+  yaml: ^3.1.3 # parse front-matter
+  http: ^1.5.0 # web fetch (if you ever host raw md separately)
+  path: ^1.9.1
+  collection: ^1.19.1
+  intl: ^0.20.2 # dates & formatting
+  flutter_svg: ^2.2.1 # render SVG logos, icons in markdown
+
+  # --- Local storage / prefs ---
+  shared_preferences: ^2.5.3 # use new Async/WithCache APIs per package guidance
+
+  # --- Client-side encryption for private markdown ---
+  cryptography: ^2.7.0 # AES-GCM, HKDF, etc.
+
+  flutter_dotenv: ^6.0.0
+
+  # NEW: needed to use url strategy on web
+  flutter_web_plugins:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +81,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+
+  build_runner: ^2.4.10 # if you generate any code (e.g., JSON models)
+  json_serializable: ^6.9.2 # for any generated models used by tools/CI
 
 # flutter_launcher_icons:
 #   android: "launcher_icon"
@@ -72,44 +102,59 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
+  
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-    # - assets/images/
-    # - assets/resume/resume.pdf
-    # - assets/content/
+  assets:
+    # Centralized, no public/private split; discovery via AssetManifest.json
+    - assets/contents/
+    - assets/contents/pages/
+    - assets/contents/projects/
+    - assets/contents/blog/
+    - assets/contents/labs/
+    - assets/contents/library/
+    - assets/contents/meta/
+    - assets/contents/foundation/
+    - assets/images/
+    - assets/images/brand/
+    - assets/images/headshots/
+    - assets/images/covers/
+    - assets/images/diagrams/
+    - assets/files/
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/to/resolution-aware-images
+    # An image asset can refer to one or more resolution-specific "variants", see
+    # https://flutter.dev/to/resolution-aware-images
 
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/to/asset-from-package
+    # For details regarding adding assets from package dependencies, see
+    # https://flutter.dev/to/asset-from-package
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package
+    # To add custom fonts to your application, add a fonts section here,
+    # in this "flutter" section. Each entry in this list should have a
+    # "family" key with the font family name, and a "fonts" key with a
+    # list giving the asset and other descriptors for the font. For
+    # example:
+    # fonts:
+    #   - family: Schyler
+    #     fonts:
+    #       - asset: fonts/Schyler-Regular.ttf
+    #       - asset: fonts/Schyler-Italic.ttf
+    #         style: italic
+    #   - family: Trajan Pro
+    #     fonts:
+    #       - asset: fonts/TrajanPro.ttf
+    #       - asset: fonts/TrajanPro_Bold.ttf
+    #         weight: 700
+    #
+    # For details regarding fonts from package dependencies,
+    # see https://flutter.dev/to/font-from-package
 
-  # assets:
-  #   - .env.development
-  #   - .env.staging
-  #   - .env.production
+    # assets:
+    #   - .env.development
+    #   - .env.staging
+    #   - .env.production
+    - .env
