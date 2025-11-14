@@ -8,6 +8,7 @@ import '../../core/services/crypto_service.dart';
 import '../../core/utils/responsive.dart';
 import '../../widgets/detail_header.dart';
 import '../../core/utils/l10n.dart';
+import '../../core/services/content_localized.dart';
 
 class BlogDetailPage extends StatelessWidget {
   final String slug;
@@ -27,15 +28,20 @@ class BlogDetailPage extends StatelessWidget {
           return Center(child: Text(context.l10n.notFoundGeneric));
         }
         return FutureBuilder(
-          future: svc.loadBodyByPath(meta.path),
+          future: svc.loadBodyLocalized(
+            meta.path,
+            Localizations.localeOf(context),
+          ),
           builder: (context, snap) {
             if (!snap.hasData) {
               return const Center(child: CircularProgressIndicator());
             }
             final body = snap.data!;
+
             if (crypto.isCiphertext(body) && (auth.passphrase == null)) {
               return LockBanner(slug: slug, type: 'blog');
             }
+
             return FutureBuilder(
               future: crypto.isCiphertext(body) && auth.passphrase != null
                   ? crypto.decryptMarkdown(body, auth.passphrase!)

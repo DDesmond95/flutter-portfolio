@@ -9,6 +9,7 @@ import '../../core/utils/visibility.dart';
 import '../../core/services/auth_service.dart';
 import '../../widgets/lock_banner.dart';
 import '../../core/utils/l10n.dart';
+import '../../core/services/content_localized.dart';
 
 class TimelineDetailPage extends StatelessWidget {
   final String slug;
@@ -47,7 +48,10 @@ class TimelineDetailPage extends StatelessWidget {
         }
 
         return FutureBuilder<String>(
-          future: svc.loadBodyByPath(meta.path),
+          future: svc.loadBodyLocalized(
+            meta.path,
+            Localizations.localeOf(context),
+          ),
           builder: (context, bodySnap) {
             if (!bodySnap.hasData) {
               return const Center(child: CircularProgressIndicator());

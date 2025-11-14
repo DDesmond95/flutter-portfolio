@@ -5,6 +5,7 @@ import '../../core/markdown/markdown_renderer.dart';
 import '../../core/utils/responsive.dart';
 import '../../core/utils/l10n.dart';
 import '../../widgets/detail_header.dart';
+import '../../core/services/content_localized.dart';
 
 class PageViewer extends StatelessWidget {
   final String slug;
@@ -22,7 +23,10 @@ class PageViewer extends StatelessWidget {
         }
 
         return FutureBuilder(
-          future: svc.loadBodyByPath(meta.path),
+          future: svc.loadBodyLocalized(
+            meta.path,
+            Localizations.localeOf(context),
+          ),
           builder: (context, snap) {
             if (!snap.hasData) {
               return const Center(child: CircularProgressIndicator());

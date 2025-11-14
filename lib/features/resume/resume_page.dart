@@ -4,6 +4,7 @@ import '../../core/services/content_service.dart';
 import '../../core/markdown/markdown_renderer.dart';
 import '../../core/utils/responsive.dart';
 import '../../core/utils/l10n.dart';
+import '../../core/services/content_localized.dart';
 
 class ResumePage extends StatelessWidget {
   const ResumePage({super.key});
@@ -19,7 +20,10 @@ class ResumePage extends StatelessWidget {
           return Center(child: Text(context.l10n.notFoundGeneric));
         }
         return FutureBuilder(
-          future: svc.loadBodyByPath(meta.path),
+          future: svc.loadBodyLocalized(
+            meta.path,
+            Localizations.localeOf(context),
+          ),
           builder: (context, snap) {
             if (!snap.hasData) {
               return const Center(child: CircularProgressIndicator());

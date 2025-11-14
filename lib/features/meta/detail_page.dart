@@ -8,6 +8,7 @@ import '../../core/services/crypto_service.dart';
 import '../../core/utils/responsive.dart';
 import '../../widgets/detail_header.dart';
 import '../../core/utils/l10n.dart';
+import '../../core/services/content_localized.dart';
 
 class MetaDetailPage extends StatelessWidget {
   final String slug;
@@ -27,7 +28,10 @@ class MetaDetailPage extends StatelessWidget {
           return Center(child: Text(context.l10n.notFoundGeneric));
         }
         return FutureBuilder(
-          future: svc.loadBodyByPath(meta.path),
+          future: svc.loadBodyLocalized(
+            meta.path,
+            Localizations.localeOf(context),
+          ),
           builder: (context, snap) {
             if (!snap.hasData) {
               return const Center(child: CircularProgressIndicator());
