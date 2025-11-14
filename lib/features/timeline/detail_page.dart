@@ -1,9 +1,14 @@
+// features/timeline/detail_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../core/services/content_service.dart';
 import '../../core/markdown/markdown_renderer.dart';
 import '../../core/utils/responsive.dart';
-import '../../widgets/detail_header.dart';
+import '../../core/utils/visibility.dart';
+import '../../core/services/auth_service.dart';
+import '../../widgets/lock_banner.dart';
+import '../../core/utils/l10n.dart';
 
 class TimelineDetailPage extends StatelessWidget {
   final String slug;
@@ -12,50 +17,63 @@ class TimelineDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final svc = context.watch<ContentService>();
-    return FutureBuilder(
+    final auth = context.watch<AuthService>();
+
+    return FutureBuilder<void>(
       future: svc.ensureLoaded(),
       builder: (context, snap) {
-        // Defensive: sometimes a path may be passed as the slug (e.g. 'assets/contents/.../file.md')
-        // Normalize: if the slug looks like a path, extract the basename without extension.
-        String normalized = slug;
-        if (normalized.startsWith('assets/') ||
-            normalized.contains('/contents/')) {
-          final parts = normalized.split('/');
-          final last = parts.isNotEmpty ? parts.last : normalized;
-          if (last.endsWith('.md')) {
-            normalized = last.substring(0, last.length - 3);
-          }
+        if (snap.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
         }
 
+        final normalized = _normalizeSlug(slug);
         final meta = svc.findByTypeAndSlug('timeline', normalized);
-        assert(() {
-          // debug print helpful during development
-          // ignore: avoid_print
-          print(
-            '[TimelineDetailPage] slug(original)=$slug normalized=$normalized meta=${meta?.path}',
+
+        if (meta == null) {
+          return Center(
+            child: Padding(
+              padding: EdgeInsets.all(context.pagePadding),
+              child: Text(context.l10n.notFoundGeneric),
+            ),
           );
-          return true;
-        }());
-        if (meta == null) return const Center(child: Text('Not found'));
-        return FutureBuilder(
+        }
+
+        final isPrivate = metaIsPrivate(meta);
+        if (isPrivate && !auth.isLoggedIn) {
+          return Padding(
+            padding: EdgeInsets.all(context.pagePadding),
+            child: LockBanner(type: 'timeline', slug: normalized),
+          );
+        }
+
+        return FutureBuilder<String>(
           future: svc.loadBodyByPath(meta.path),
-          builder: (context, snap) {
-            if (!snap.hasData) {
+          builder: (context, bodySnap) {
+            if (!bodySnap.hasData) {
               return const Center(child: CircularProgressIndicator());
             }
-            return SingleChildScrollView(
-              padding: EdgeInsets.all(context.pagePadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  DetailHeader(meta: meta),
-                  MarkdownView(data: snap.data!),
-                ],
+            return AnimatedSwitcher(
+              duration: const Duration(milliseconds: 250),
+              child: SingleChildScrollView(
+                key: ValueKey(meta.slug),
+                padding: EdgeInsets.all(context.pagePadding),
+                child: MarkdownView(data: bodySnap.data!),
               ),
             );
           },
         );
       },
     );
+  }
+
+  String _normalizeSlug(String raw) {
+    var s = raw.trim();
+    final looksLikePath = s.contains('/contents/') || s.startsWith('assets/');
+    if (looksLikePath) {
+      final parts = s.split('/');
+      s = parts.isNotEmpty ? parts.last : s;
+    }
+    if (s.endsWith('.md')) s = s.substring(0, s.length - 3);
+    return s;
   }
 }

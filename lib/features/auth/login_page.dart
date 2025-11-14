@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/services/auth_service.dart';
+import '../../core/utils/l10n.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Wrong passphrase')));
+      ).showSnackBar(SnackBar(content: Text(context.l10n.authWrongPassphrase)));
       return;
     }
 
@@ -42,17 +43,14 @@ class _LoginPageState extends State<LoginPage> {
     setState(() => _busy = false);
 
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Unlocked — private content will be shown.'),
-      ),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(context.l10n.authUnlockSuccess)));
   }
 
   @override
   Widget build(BuildContext context) {
     final auth = context.watch<AuthService>();
-
     if (auth.isLoggedIn) {
       return Center(
         child: ConstrainedBox(
@@ -65,16 +63,21 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   const Icon(Icons.lock_open, size: 48),
                   const SizedBox(height: 8),
-                  const Text(
-                    'You are logged in. Private items are visible.\n'
-                    'This passphrase is stored locally until you log out.',
+                  Text(
+                    context.l10n.authAlreadyLoggedInTitle,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    context.l10n.authAlreadyLoggedInBody,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 12),
                   FilledButton.icon(
                     onPressed: () => auth.logout(),
                     icon: const Icon(Icons.logout),
-                    label: const Text('Log out'),
+                    label: Text(context.l10n.navLogout),
                   ),
                 ],
               ),
@@ -93,13 +96,13 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('Enter passphrase to unlock private content'),
+                Text(context.l10n.authUnlockTitle),
                 const SizedBox(height: 12),
                 TextField(
                   controller: _ctrl,
                   obscureText: _obscure,
                   decoration: InputDecoration(
-                    labelText: 'Passphrase',
+                    labelText: context.l10n.authPassphraseLabel,
                     prefixIcon: const Icon(Icons.vpn_key_outlined),
                     suffixIcon: IconButton(
                       onPressed: () => setState(() => _obscure = !_obscure),
@@ -123,8 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                   label: const Text('Unlock'),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Tip: You can add an optional canary in .env to validate the passphrase immediately.',
+                Text(
+                  context.l10n.authCanaryTip,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 12),
                 ),

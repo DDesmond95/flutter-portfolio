@@ -5,6 +5,7 @@ import '../../core/services/content_service.dart';
 import '../../core/models/content_meta.dart';
 import '../../widgets/content_card.dart';
 import '../../widgets/section_header.dart';
+import '../../core/utils/l10n.dart';
 
 enum WorkFilter { all, projects, labs }
 
@@ -73,8 +74,8 @@ class _WorkIndexPageState extends State<WorkIndexPage> {
     return Column(
       children: [
         SectionHeader(
-          title: 'Work',
-          subtitle: 'Projects and Lab Experiments',
+          title: context.l10n.workSectionTitle,
+          subtitle: context.l10n.workSectionSubtitle,
           trailing: _FilterDropdown(
             value: _filter,
             onChanged: (v) => _setFilter(v ?? WorkFilter.all),
@@ -91,10 +92,10 @@ class _WorkIndexPageState extends State<WorkIndexPage> {
             ),
           )
         else if (_items.isEmpty)
-          const Expanded(
+          Expanded(
             child: Padding(
-              padding: EdgeInsets.all(24),
-              child: Center(child: Text('No items yet.')),
+              padding: const EdgeInsets.all(24),
+              child: Center(child: Text(context.l10n.workEmpty)),
             ),
           )
         else
@@ -114,10 +115,19 @@ class _FilterDropdown extends StatelessWidget {
     return DropdownButton<WorkFilter>(
       value: value,
       onChanged: onChanged,
-      items: const [
-        DropdownMenuItem(value: WorkFilter.all, child: Text('All')),
-        DropdownMenuItem(value: WorkFilter.projects, child: Text('Projects')),
-        DropdownMenuItem(value: WorkFilter.labs, child: Text('Labs')),
+      items: [
+        DropdownMenuItem(
+          value: WorkFilter.all,
+          child: Text(context.l10n.workFilterAll),
+        ),
+        DropdownMenuItem(
+          value: WorkFilter.projects,
+          child: Text(context.l10n.workFilterProjects),
+        ),
+        DropdownMenuItem(
+          value: WorkFilter.labs,
+          child: Text(context.l10n.workFilterLabs),
+        ),
       ],
     );
   }

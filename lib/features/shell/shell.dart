@@ -20,7 +20,7 @@ class Shell extends StatelessWidget {
     final auth = context.watch<AuthService>();
 
     final width = MediaQuery.of(context).size.width;
-    final isCompact = width < 900;
+    final isCompact = width < 1100;
 
     return Scaffold(
       appBar: AppBar(
@@ -44,12 +44,12 @@ class Shell extends StatelessWidget {
 
                 // Work (All, Projects, Labs)
                 _MenuButton(
-                  label: 'Work',
+                  label: context.l10n.navWork,
                   entries: [
-                    const MenuEntry(
+                    MenuEntry(
                       value: 'all',
                       icon: Icons.view_list,
-                      label: 'All',
+                      label: context.l10n.workFilterAll,
                     ),
                     MenuEntry(
                       value: 'projects',
@@ -85,10 +85,10 @@ class Shell extends StatelessWidget {
                       icon: Icons.menu_book_outlined,
                       label: context.l10n.navLibrary,
                     ),
-                    const MenuEntry(
+                    MenuEntry(
                       value: 'people',
                       icon: Icons.people_outline,
-                      label: 'People',
+                      label: context.l10n.navPeople,
                     ),
                   ],
                   onSelected: (v) {
@@ -116,22 +116,22 @@ class Shell extends StatelessWidget {
 
                 // About (About page, Foundation, Credits)
                 _MenuButton(
-                  label: 'About',
+                  label: context.l10n.navAbout,
                   entries: [
-                    const MenuEntry(
+                    MenuEntry(
                       value: 'about',
                       icon: Icons.info_outline,
-                      label: 'About',
+                      label: context.l10n.navAbout,
                     ),
                     MenuEntry(
                       value: 'foundation',
                       icon: Icons.layers_outlined,
                       label: context.l10n.navFoundation,
                     ),
-                    const MenuEntry(
+                    MenuEntry(
                       value: 'credits',
                       icon: Icons.star_outline,
-                      label: 'Credits',
+                      label: context.l10n.navCredits,
                     ),
                   ],
                   onSelected: (v) {
@@ -160,7 +160,7 @@ class Shell extends StatelessWidget {
                 auth.isLoggedIn
                     ? TextButton(
                         onPressed: () => context.read<AuthService>().logout(),
-                        child: const Text('Logout'),
+                        child: Text(context.l10n.navLogout),
                       )
                     : _nav(context, '/login', context.l10n.navLogin),
                 const SizedBox(width: 8),
@@ -216,8 +216,13 @@ class _MobileDrawer extends StatelessWidget {
             const Divider(height: 16),
 
             // Work
-            _header(context, 'Work'),
-            _tile(context, '/work', 'All', Icons.view_list),
+            _header(context, context.l10n.navWork),
+            _tile(
+              context,
+              '/work',
+              context.l10n.workFilterAll,
+              Icons.view_list,
+            ),
             _tile(
               context,
               '/work?f=projects',
@@ -247,7 +252,12 @@ class _MobileDrawer extends StatelessWidget {
               context.l10n.navLibrary,
               Icons.menu_book_outlined,
             ),
-            _tile(context, '/people', 'People', Icons.people_outline),
+            _tile(
+              context,
+              '/people',
+              context.l10n.navPeople,
+              Icons.people_outline,
+            ),
             if (showMeta)
               _tile(
                 context,
@@ -287,8 +297,13 @@ class _MobileDrawer extends StatelessWidget {
             const Divider(height: 16),
 
             // About
-            _header(context, 'About'),
-            _tile(context, '/pages/about', 'About', Icons.info_outline),
+            _header(context, context.l10n.navAbout),
+            _tile(
+              context,
+              '/pages/about',
+              context.l10n.navAbout,
+              Icons.info_outline,
+            ),
             _tile(
               context,
               '/foundation',
@@ -298,7 +313,7 @@ class _MobileDrawer extends StatelessWidget {
             _tile(
               context,
               '/foundation/foundation-credits',
-              'Credits',
+              context.l10n.navCredits,
               Icons.star_outline,
             ),
 
@@ -316,7 +331,11 @@ class _MobileDrawer extends StatelessWidget {
 
             ListTile(
               leading: Icon(auth.isLoggedIn ? Icons.logout : Icons.lock_open),
-              title: Text(auth.isLoggedIn ? 'Logout' : context.l10n.navLogin),
+              title: Text(
+                auth.isLoggedIn
+                    ? context.l10n.navLogout
+                    : context.l10n.navLogin,
+              ),
               onTap: () {
                 Navigator.of(context).pop();
                 if (auth.isLoggedIn) {

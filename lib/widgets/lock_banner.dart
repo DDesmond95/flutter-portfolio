@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../core/utils/l10n.dart';
 
 class LockBanner extends StatelessWidget {
   final String type;
@@ -18,16 +19,16 @@ class LockBanner extends StatelessWidget {
               const Icon(Icons.lock_outline, size: 48),
               const SizedBox(height: 12),
               Text(
-                'This $type is private.',
+                context.l10n.lockPrivateTitle,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 8),
-              const Text('Log in with passphrase to view the content.'),
+              Text(context.l10n.lockPrivateSubtitle),
               const SizedBox(height: 12),
               FilledButton.icon(
                 onPressed: () => context.go('/login'),
                 icon: const Icon(Icons.lock_open),
-                label: const Text('Go to Login'),
+                label: Text(context.l10n.lockGoToLogin),
               ),
             ],
           ),

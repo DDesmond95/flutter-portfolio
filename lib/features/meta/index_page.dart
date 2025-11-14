@@ -5,6 +5,7 @@ import '../../widgets/content_card.dart';
 import '../../app/config.dart';
 import '../../core/utils/responsive.dart';
 import '../../core/services/auth_service.dart';
+import '../../core/utils/l10n.dart';
 
 class MetaIndexPage extends StatelessWidget {
   const MetaIndexPage({super.key});
@@ -12,7 +13,7 @@ class MetaIndexPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final cfg = context.read<AppConfig>();
     if (!cfg.showMeta) {
-      return const Center(child: Text('Meta realm is disabled.'));
+      return Center(child: Text(context.l10n.metaDisabled));
     }
     final svc = context.watch<ContentService>();
     final auth = context.watch<AuthService>();

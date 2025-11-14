@@ -97,4 +97,97 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeTagline => 'Applied AI Engineer · System Architect';
+
+  @override
+  String get navWork => 'Work';
+
+  @override
+  String get navAbout => 'About';
+
+  @override
+  String get navPeople => 'People';
+
+  @override
+  String get navCredits => 'Credits';
+
+  @override
+  String get navLogout => 'Logout';
+
+  @override
+  String get authUnlockTitle => 'Enter passphrase to unlock private content';
+
+  @override
+  String get authPassphraseLabel => 'Passphrase';
+
+  @override
+  String get authUnlockButton => 'Unlock';
+
+  @override
+  String get authAlreadyLoggedInTitle => 'You are logged in.';
+
+  @override
+  String get authAlreadyLoggedInBody =>
+      'Private items are visible.\nThis passphrase is stored locally until you log out.';
+
+  @override
+  String get authWrongPassphrase => 'Wrong passphrase';
+
+  @override
+  String get authUnlockSuccess => 'Unlocked — private content will be shown.';
+
+  @override
+  String get authCanaryTip =>
+      'Tip: You can add an optional canary in .env to validate the passphrase immediately.';
+
+  @override
+  String get lockPrivateTitle => 'This content is private.';
+
+  @override
+  String get lockPrivateSubtitle =>
+      'Log in with passphrase to view the content.';
+
+  @override
+  String get lockGoToLogin => 'Go to Login';
+
+  @override
+  String get visibilityPrivate => 'Private';
+
+  @override
+  String get visibilityPublic => 'Public';
+
+  @override
+  String get notFound404 => '404 — Not Found';
+
+  @override
+  String get notFoundGeneric => 'Not found';
+
+  @override
+  String get notFoundPage => 'Page not found';
+
+  @override
+  String get metaDisabled => 'Meta realm is disabled.';
+
+  @override
+  String get timelineSubtitle => 'Milestones & significant updates';
+
+  @override
+  String get timelineEmpty => 'No timeline entries yet.';
+
+  @override
+  String get workSectionTitle => 'Work';
+
+  @override
+  String get workSectionSubtitle => 'Projects and Lab Experiments';
+
+  @override
+  String get workFilterAll => 'All';
+
+  @override
+  String get workFilterProjects => 'Projects';
+
+  @override
+  String get workFilterLabs => 'Labs';
+
+  @override
+  String get workEmpty => 'No items yet.';
 }

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../core/services/content_service.dart';
 import '../../core/markdown/markdown_renderer.dart';
 import '../../core/utils/responsive.dart';
+import '../../core/utils/l10n.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
@@ -14,7 +15,9 @@ class ContactPage extends StatelessWidget {
       future: svc.ensureLoaded(),
       builder: (context, snap) {
         final meta = svc.findByTypeAndSlug('page', 'contact');
-        if (meta == null) return const Center(child: Text('Not found'));
+        if (meta == null) {
+          return Center(child: Text(context.l10n.notFoundGeneric));
+        }
         return FutureBuilder(
           future: svc.loadBodyByPath(meta.path),
           builder: (context, snap) {

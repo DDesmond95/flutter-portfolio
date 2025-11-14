@@ -29,5 +29,42 @@
   "langEnglish": "English",
   "langChinese": "中文",
   "langMalay": "Bahasa Melayu",
-  "homeTagline": "Jurutera AI Gunaan · Arkitek Sistem"
+  "homeTagline": "Jurutera AI Gunaan · Arkitek Sistem",
+  "navWork": "Kerja",
+  "navAbout": "Tentang",
+  "navPeople": "Individu",
+  "navCredits": "Kredit",
+  "navLogout": "Log Keluar",
+
+  "authUnlockTitle": "Masukkan frasa laluan untuk membuka kandungan peribadi",
+  "authPassphraseLabel": "Frasa laluan",
+  "authUnlockButton": "Buka kunci",
+  "authAlreadyLoggedInTitle": "Anda telah log masuk.",
+  "authAlreadyLoggedInBody": "Item peribadi kini kelihatan.\nFrasa laluan ini disimpan secara tempatan sehingga anda log keluar.",
+  "authWrongPassphrase": "Frasa laluan salah",
+  "authUnlockSuccess": "Dibuka — kandungan peribadi kini boleh dilihat.",
+  "authCanaryTip": "Tip: Anda boleh menambah canary pilihan dalam .env untuk mengesahkan frasa laluan serta-merta.",
+
+  "lockPrivateTitle": "Kandungan ini adalah peribadi.",
+  "lockPrivateSubtitle": "Log masuk dengan frasa laluan untuk melihat kandungan.",
+  "lockGoToLogin": "Pergi ke Log Masuk",
+
+  "visibilityPrivate": "Peribadi",
+  "visibilityPublic": "Umum",
+
+  "notFound404": "404 — Tidak Dijumpai",
+  "notFoundGeneric": "Tidak dijumpai",
+  "notFoundPage": "Halaman tidak dijumpai",
+  "metaDisabled": "Ruang meta dinyahaktifkan.",
+
+  "timelineSubtitle": "Pencapaian & kemas kini penting",
+  "timelineEmpty": "Belum ada entri garis masa.",
+
+  "workSectionTitle": "Kerja",
+  "workSectionSubtitle": "Projek dan eksperimen makmal",
+  "workFilterAll": "Semua",
+  "workFilterProjects": "Projek",
+  "workFilterLabs": "Makmal",
+  "workEmpty": "Belum ada item."
+
 }

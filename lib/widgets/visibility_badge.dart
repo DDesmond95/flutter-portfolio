@@ -1,5 +1,5 @@
-// lib/widgets/visibility_badge.dart
 import 'package:flutter/material.dart';
+import '../core/utils/l10n.dart';
 
 class VisibilityBadge extends StatelessWidget {
   final bool isPrivate;
@@ -14,7 +14,9 @@ class VisibilityBadge extends StatelessWidget {
     final bg = base.withValues(alpha: 0.10);
     final border = base.withValues(alpha: 0.40);
 
-    final label = isPrivate ? 'Private' : 'Public';
+    final label = isPrivate
+        ? context.l10n.visibilityPrivate
+        : context.l10n.visibilityPublic;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),

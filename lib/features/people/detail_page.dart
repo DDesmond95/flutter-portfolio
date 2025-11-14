@@ -4,6 +4,7 @@ import '../../core/services/content_service.dart';
 import '../../core/markdown/markdown_renderer.dart';
 import '../../core/utils/responsive.dart';
 import '../../widgets/detail_header.dart';
+import '../../core/utils/l10n.dart';
 
 class PersonDetailPage extends StatelessWidget {
   final String slug;
@@ -16,7 +17,9 @@ class PersonDetailPage extends StatelessWidget {
       future: svc.ensureLoaded(),
       builder: (context, snap) {
         final meta = svc.findByTypeAndSlug('people', slug);
-        if (meta == null) return const Center(child: Text('Not found'));
+        if (meta == null) {
+          return Center(child: Text(context.l10n.notFoundGeneric));
+        }
         return FutureBuilder(
           future: svc.loadBodyByPath(meta.path),
           builder: (context, snap) {

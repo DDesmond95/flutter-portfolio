@@ -29,5 +29,42 @@
   "langEnglish": "English",
   "langChinese": "中文",
   "langMalay": "Bahasa Melayu",
-  "homeTagline": "应用型 AI 工程师 · 系统架构师"
+  "homeTagline": "应用型 AI 工程师 · 系统架构师",
+  "navWork": "作品",
+  "navAbout": "关于",
+  "navPeople": "人物",
+  "navCredits": "致谢",
+  "navLogout": "退出登录",
+
+  "authUnlockTitle": "输入通行短语以解锁私密内容",
+  "authPassphraseLabel": "通行短语",
+  "authUnlockButton": "解锁",
+  "authAlreadyLoggedInTitle": "你已登录。",
+  "authAlreadyLoggedInBody": "私密条目现在可见。\n通行短语会本地保存，直到你登出为止。",
+  "authWrongPassphrase": "通行短语错误",
+  "authUnlockSuccess": "已解锁 —— 私密内容将会显示。",
+  "authCanaryTip": "提示：你可以在 .env 中添加可选的 canary 来立即验证通行短语。",
+
+  "lockPrivateTitle": "此内容为私密。",
+  "lockPrivateSubtitle": "请登录并输入通行短语以查看内容。",
+  "lockGoToLogin": "前往登录",
+
+  "visibilityPrivate": "私密",
+  "visibilityPublic": "公开",
+
+  "notFound404": "404 — 未找到",
+  "notFoundGeneric": "未找到",
+  "notFoundPage": "页面未找到",
+  "metaDisabled": "「Meta」区域已关闭。",
+
+  "timelineSubtitle": "重要里程碑与更新",
+  "timelineEmpty": "还没有时间线条目。",
+
+  "workSectionTitle": "作品",
+  "workSectionSubtitle": "项目和实验室作品",
+  "workFilterAll": "全部",
+  "workFilterProjects": "项目",
+  "workFilterLabs": "实验室",
+  "workEmpty": "目前还没有条目。"
 }
+

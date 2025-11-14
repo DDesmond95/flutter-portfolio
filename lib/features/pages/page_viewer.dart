@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../core/services/content_service.dart';
 import '../../core/markdown/markdown_renderer.dart';
 import '../../core/utils/responsive.dart';
+import '../../core/utils/l10n.dart';
 import '../../widgets/detail_header.dart';
 
 class PageViewer extends StatelessWidget {
@@ -16,7 +17,10 @@ class PageViewer extends StatelessWidget {
       future: svc.ensureLoaded(),
       builder: (context, snap) {
         final meta = svc.findByTypeAndSlug('page', slug);
-        if (meta == null) return const Center(child: Text('Page not found'));
+        if (meta == null) {
+          return Center(child: Text(context.l10n.notFoundPage));
+        }
+
         return FutureBuilder(
           future: svc.loadBodyByPath(meta.path),
           builder: (context, snap) {

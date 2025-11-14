@@ -279,6 +279,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Applied AI Engineer · System Architect'**
   String get homeTagline;
+
+  /// No description provided for @navWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Work'**
+  String get navWork;
+
+  /// No description provided for @navAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get navAbout;
+
+  /// No description provided for @navPeople.
+  ///
+  /// In en, this message translates to:
+  /// **'People'**
+  String get navPeople;
+
+  /// No description provided for @navCredits.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits'**
+  String get navCredits;
+
+  /// No description provided for @navLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get navLogout;
+
+  /// No description provided for @authUnlockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter passphrase to unlock private content'**
+  String get authUnlockTitle;
+
+  /// No description provided for @authPassphraseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Passphrase'**
+  String get authPassphraseLabel;
+
+  /// No description provided for @authUnlockButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock'**
+  String get authUnlockButton;
+
+  /// No description provided for @authAlreadyLoggedInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You are logged in.'**
+  String get authAlreadyLoggedInTitle;
+
+  /// No description provided for @authAlreadyLoggedInBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Private items are visible.\nThis passphrase is stored locally until you log out.'**
+  String get authAlreadyLoggedInBody;
+
+  /// No description provided for @authWrongPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong passphrase'**
+  String get authWrongPassphrase;
+
+  /// No description provided for @authUnlockSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked — private content will be shown.'**
+  String get authUnlockSuccess;
+
+  /// No description provided for @authCanaryTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Tip: You can add an optional canary in .env to validate the passphrase immediately.'**
+  String get authCanaryTip;
+
+  /// No description provided for @lockPrivateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This content is private.'**
+  String get lockPrivateTitle;
+
+  /// No description provided for @lockPrivateSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in with passphrase to view the content.'**
+  String get lockPrivateSubtitle;
+
+  /// No description provided for @lockGoToLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Login'**
+  String get lockGoToLogin;
+
+  /// No description provided for @visibilityPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Private'**
+  String get visibilityPrivate;
+
+  /// No description provided for @visibilityPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get visibilityPublic;
+
+  /// No description provided for @notFound404.
+  ///
+  /// In en, this message translates to:
+  /// **'404 — Not Found'**
+  String get notFound404;
+
+  /// No description provided for @notFoundGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Not found'**
+  String get notFoundGeneric;
+
+  /// No description provided for @notFoundPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Page not found'**
+  String get notFoundPage;
+
+  /// No description provided for @metaDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Meta realm is disabled.'**
+  String get metaDisabled;
+
+  /// No description provided for @timelineSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestones & significant updates'**
+  String get timelineSubtitle;
+
+  /// No description provided for @timelineEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No timeline entries yet.'**
+  String get timelineEmpty;
+
+  /// No description provided for @workSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Work'**
+  String get workSectionTitle;
+
+  /// No description provided for @workSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Projects and Lab Experiments'**
+  String get workSectionSubtitle;
+
+  /// No description provided for @workFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get workFilterAll;
+
+  /// No description provided for @workFilterProjects.
+  ///
+  /// In en, this message translates to:
+  /// **'Projects'**
+  String get workFilterProjects;
+
+  /// No description provided for @workFilterLabs.
+  ///
+  /// In en, this message translates to:
+  /// **'Labs'**
+  String get workFilterLabs;
+
+  /// No description provided for @workEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No items yet.'**
+  String get workEmpty;
 }
 
 class _AppLocalizationsDelegate

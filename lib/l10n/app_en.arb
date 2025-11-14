@@ -29,5 +29,42 @@
   "langEnglish": "English",
   "langChinese": "中文",
   "langMalay": "Bahasa Melayu",
-  "homeTagline": "Applied AI Engineer · System Architect"
+  "homeTagline": "Applied AI Engineer · System Architect",
+  
+  "navWork": "Work",
+  "navAbout": "About",
+  "navPeople": "People",
+  "navCredits": "Credits",
+  "navLogout": "Logout",
+  
+  "authUnlockTitle": "Enter passphrase to unlock private content",
+  "authPassphraseLabel": "Passphrase",
+  "authUnlockButton": "Unlock",
+  "authAlreadyLoggedInTitle": "You are logged in.",
+  "authAlreadyLoggedInBody": "Private items are visible.\nThis passphrase is stored locally until you log out.",
+  "authWrongPassphrase": "Wrong passphrase",
+  "authUnlockSuccess": "Unlocked — private content will be shown.",
+  "authCanaryTip": "Tip: You can add an optional canary in .env to validate the passphrase immediately.",
+
+  "lockPrivateTitle": "This content is private.",
+  "lockPrivateSubtitle": "Log in with passphrase to view the content.",
+  "lockGoToLogin": "Go to Login",
+
+  "visibilityPrivate": "Private",
+  "visibilityPublic": "Public",
+
+  "notFound404": "404 — Not Found",
+  "notFoundGeneric": "Not found",
+  "notFoundPage": "Page not found",
+  "metaDisabled": "Meta realm is disabled.",
+
+  "timelineSubtitle": "Milestones & significant updates",
+  "timelineEmpty": "No timeline entries yet.",
+
+  "workSectionTitle": "Work",
+  "workSectionSubtitle": "Projects and Lab Experiments",
+  "workFilterAll": "All",
+  "workFilterProjects": "Projects",
+  "workFilterLabs": "Labs",
+  "workEmpty": "No items yet."
 }

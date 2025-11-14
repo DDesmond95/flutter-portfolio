@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+
 import '../core/utils/responsive.dart';
 import '../core/utils/visibility.dart';
 import 'visibility_badge.dart';
@@ -20,66 +22,149 @@ class ContentCard extends StatelessWidget {
     final String title = (meta.title as String?) ?? slug;
     final String? summary = (meta.summary as String?);
     final DateTime? date = meta.date is DateTime ? meta.date as DateTime : null;
-
     final bool isPrivate = metaIsPrivate(meta);
-    final String routeBase = switch (type) {
-      'blog' => '/blog',
-      'timeline' => '/timeline',
-      'people' => '/people',
-      'project' => '/projects',
-      'lab' => '/labs',
-      'library' => '/library',
-      'meta' => '/meta',
-      'foundation' => '/foundation',
-      _ => '/pages',
-    };
+
+    final subtitlePieces = <String>[
+      if (date != null) _formatDateLocalized(context, date),
+      if (summary != null && summary.isNotEmpty) summary,
+    ];
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8),
-      child: ListTile(
-        dense: dense,
-        minLeadingWidth: 56,
-        leading: _thumb(meta),
-        title: Row(
-          children: [
-            Expanded(
-              child: Text(title, maxLines: 2, overflow: TextOverflow.ellipsis),
-            ),
-            const SizedBox(width: 8),
-            VisibilityBadge(isPrivate: isPrivate),
-          ],
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: () => context.go(_detailRouteFor(type, slug)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: dense ? 8 : 12,
+            vertical: dense ? 6 : 10,
+          ),
+          child: Row(
+            crossAxisAlignment: dense
+                ? CrossAxisAlignment.center
+                : CrossAxisAlignment.start,
+            children: [
+              _Thumb(meta: meta),
+              const SizedBox(width: 12),
+              // Texts
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Title + visibility badge
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            title,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        VisibilityBadge(isPrivate: isPrivate),
+                      ],
+                    ),
+                    if (subtitlePieces.isNotEmpty) ...[
+                      const SizedBox(height: 6),
+                      Text(
+                        subtitlePieces.join('  •  '),
+                        maxLines: dense ? 2 : 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-        subtitle: Text(
-          [
-            if (date != null) _formatDate(date),
-            if (summary != null && summary.isNotEmpty) summary,
-          ].join('  •  '),
-          maxLines: dense ? 2 : 3,
-          overflow: TextOverflow.ellipsis,
-        ),
-        onTap: () => context.go('$routeBase/$slug'),
       ),
     );
   }
 
-  Widget _thumb(dynamic meta) {
-    final String? t = (meta.thumbnail as String?);
-    if (t == null || t.isEmpty) {
-      return const SizedBox(width: 56, height: 56);
+  /// Route mapping is centralized here to avoid mismatches across the app.
+  String _detailRouteFor(String type, String slug) {
+    switch (type) {
+      case 'blog':
+        return '/blog/$slug';
+      case 'timeline':
+        return '/timeline/$slug';
+      case 'people':
+        return '/people/$slug';
+      case 'project':
+        return '/projects/$slug';
+      case 'lab':
+        return '/labs/$slug';
+      case 'library':
+        return '/library/$slug';
+      case 'meta':
+        return '/meta/$slug';
+      case 'foundation':
+        return '/foundation/$slug';
+      case 'page':
+      default:
+        switch (slug) {
+          case 'home':
+            return '/';
+          case 'about':
+            return '/pages/about';
+          case 'services':
+            return '/services';
+          case 'contact':
+            return '/contact';
+          case 'resume':
+            return '/resume';
+          default:
+            return '/pages/$slug';
+        }
     }
+  }
+
+  String _formatDateLocalized(BuildContext context, DateTime d) {
+    final locale = Localizations.localeOf(context).toString();
+    return DateFormat.yMMMd(locale).format(d);
+  }
+}
+
+class _Thumb extends StatelessWidget {
+  final dynamic meta;
+  const _Thumb({required this.meta});
+
+  @override
+  Widget build(BuildContext context) {
+    final String? t = (meta.thumbnail as String?);
+    final double size = 56;
+
+    if (t == null || t.isEmpty) {
+      return _placeholder(size);
+    }
+
     final path = t.startsWith('/assets/') ? t.substring(1) : t;
-    return Image.asset(
-      path,
-      width: 56,
-      height: 56,
-      fit: BoxFit.cover,
-      errorBuilder: (context, error, stack) =>
-          const SizedBox(width: 56, height: 56),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Image.asset(
+        path,
+        width: size,
+        height: size,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stack) => _placeholder(size),
+      ),
     );
   }
 
-  String _formatDate(DateTime d) {
-    // Keep simple; you already have intl if you want locale formatting
-    return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+  Widget _placeholder(double size) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.04),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: const Icon(Icons.insert_drive_file_outlined, size: 20),
+    );
   }
 }

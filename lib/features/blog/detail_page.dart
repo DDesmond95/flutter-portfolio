@@ -7,6 +7,7 @@ import '../../core/services/auth_service.dart';
 import '../../core/services/crypto_service.dart';
 import '../../core/utils/responsive.dart';
 import '../../widgets/detail_header.dart';
+import '../../core/utils/l10n.dart';
 
 class BlogDetailPage extends StatelessWidget {
   final String slug;
@@ -22,7 +23,9 @@ class BlogDetailPage extends StatelessWidget {
       future: svc.ensureLoaded(),
       builder: (context, snapshot) {
         final meta = svc.findByTypeAndSlug('blog', slug);
-        if (meta == null) return const Center(child: Text('Not found'));
+        if (meta == null) {
+          return Center(child: Text(context.l10n.notFoundGeneric));
+        }
         return FutureBuilder(
           future: svc.loadBodyByPath(meta.path),
           builder: (context, snap) {
