@@ -113,15 +113,36 @@ flutter:
   assets:
     # Centralized, no public/private split; discovery via AssetManifest.json
     - assets/contents/
-    - assets/contents/pages/
-    - assets/contents/projects/
-    - assets/contents/blog/
-    - assets/contents/labs/
-    - assets/contents/library/
-    - assets/contents/meta/
-    - assets/contents/foundation/
-    - assets/contents/timeline/
-    - assets/contents/people/
+    - assets/contents/en/pages/
+    - assets/contents/en/projects/
+    - assets/contents/en/blog/
+    - assets/contents/en/labs/
+    - assets/contents/en/library/
+    - assets/contents/en/meta/
+    - assets/contents/en/foundation/
+    - assets/contents/en/timeline/
+    - assets/contents/en/people/
+
+    - assets/contents/ms/pages/
+    - assets/contents/ms/projects/
+    - assets/contents/ms/blog/
+    - assets/contents/ms/labs/
+    - assets/contents/ms/library/
+    - assets/contents/ms/meta/
+    - assets/contents/ms/foundation/
+    - assets/contents/ms/timeline/
+    - assets/contents/ms/people/
+
+    - assets/contents/zh/pages/
+    - assets/contents/zh/projects/
+    - assets/contents/zh/blog/
+    - assets/contents/zh/labs/
+    - assets/contents/zh/library/
+    - assets/contents/zh/meta/
+    - assets/contents/zh/foundation/
+    - assets/contents/zh/timeline/
+    - assets/contents/zh/people/
+
     - assets/images/
     - assets/images/brand/
     - assets/images/headshots/
