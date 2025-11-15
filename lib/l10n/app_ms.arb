@@ -1,86 +1,364 @@
 {
   "@@locale": "ms",
-  "appTitle": "Desmond Liew — Portfolio",
+  "@@last_modified": "Malay localization with full metadata",
+
+  "appTitle": "Portfolio Desmond Liew",
+  "@appTitle": {
+    "description": "Application title shown in window title / browser tab."
+  },
+
   "navHome": "Laman Utama",
+  "@navHome": {
+    "description": "Top navigation: link to the home page."
+  },
+
   "navProjects": "Projek",
+  "@navProjects": {
+    "description": "Top navigation: link to the projects listing."
+  },
+
   "navBlog": "Blog",
+  "@navBlog": {
+    "description": "Top navigation: link to the blog index."
+  },
+
   "navLabs": "Makmal",
+  "@navLabs": {
+    "description": "Top navigation: link to the labs index."
+  },
+
   "navLibrary": "Perpustakaan",
+  "@navLibrary": {
+    "description": "Top navigation: link to the library / learning archive."
+  },
+
   "navDiscover": "Teroka",
+  "@navDiscover": {
+    "description": "Top navigation: label for the Discover menu (blog, library, people)."
+  },
+
   "navPhilosophy": "Falsafah",
+  "@navPhilosophy": {
+    "description": "Top navigation: link to the philosophy/meta realm."
+  },
+
   "navFoundation": "Asas",
+  "@navFoundation": {
+    "description": "Top navigation: link to the foundation section."
+  },
+
   "navTimeline": "Garis Masa",
+  "@navTimeline": {
+    "description": "Top navigation: link to the timeline page."
+  },
+
   "navServices": "Perkhidmatan",
+  "@navServices": {
+    "description": "Top navigation: link to the services page."
+  },
+
   "navContact": "Hubungi",
-  "navResume": "Resume",
+  "@navContact": {
+    "description": "Top navigation: link to the contact page."
+  },
+
+  "navResume": "Résumé",
+  "@navResume": {
+    "description": "Top navigation: link to the resume/CV page."
+  },
+
   "navLogin": "Log Masuk",
-  "menuTheme": "Tema",
-  "menuThemeMode": "Mod Tema",
-  "themeSystem": "Sistem",
-  "themeLight": "Terang",
-  "themeDark": "Gelap",
-  "menuPalette": "Palet",
-  "paletteMetal": "Logam",
-  "paletteEarth": "Bumi",
-  "paletteWood": "Kayu",
-  "paletteFire": "Api",
-  "paletteWater": "Air",
-  "menuLanguage": "Bahasa",
-  "langEnglish": "English",
-  "langChinese": "中文",
-  "langMalay": "Bahasa Melayu",
-  "homeTagline": "Jurutera AI Gunaan · Arkitek Sistem",
+  "@navLogin": {
+    "description": "Top navigation: link to the login/unlock page."
+  },
+
   "navWork": "Kerja",
+  "@navWork": {
+    "description": "Top navigation: label for the Work menu (projects, labs, products)."
+  },
+
   "navAbout": "Tentang",
-  "navPeople": "Individu",
-  "navCredits": "Kredit",
+  "@navAbout": {
+    "description": "Top navigation: label for the About menu."
+  },
+
+  "navPeople": "Tokoh",
+  "@navPeople": {
+    "description": "Top navigation: link to the people index."
+  },
+
+  "navCredits": "Penghargaan",
+  "@navCredits": {
+    "description": "Top navigation: link to the credits/thanks page."
+  },
+
   "navLogout": "Log Keluar",
+  "@navLogout": {
+    "description": "Top navigation or drawer: button to log out / clear passphrase."
+  },
 
-  "authUnlockTitle": "Masukkan frasa laluan untuk membuka kandungan peribadi",
+  "menuTheme": "Tema",
+  "@menuTheme": {
+    "description": "Tooltip/title for the theme popup menu."
+  },
+
+  "menuThemeMode": "Mod Tema",
+  "@menuThemeMode": {
+    "description": "Label inside theme popup for choosing light/dark/system."
+  },
+
+  "themeSystem": "Sistem",
+  "@themeSystem": {
+    "description": "Theme mode: follow the device/system setting."
+  },
+
+  "themeLight": "Cerah",
+  "@themeLight": {
+    "description": "Theme mode: light theme."
+  },
+
+  "themeDark": "Gelap",
+  "@themeDark": {
+    "description": "Theme mode: dark theme."
+  },
+
+  "menuPalette": "Palet",
+  "@menuPalette": {
+    "description": "Label for choosing a color palette."
+  },
+
+  "paletteMetal": "Logam",
+  "@paletteMetal": {
+    "description": "Name of the 'metal' color palette."
+  },
+
+  "paletteEarth": "Tanah",
+  "@paletteEarth": {
+    "description": "Name of the 'earth' color palette."
+  },
+
+  "paletteWood": "Kayu",
+  "@paletteWood": {
+    "description": "Name of the 'wood' color palette."
+  },
+
+  "paletteFire": "Api",
+  "@paletteFire": {
+    "description": "Name of the 'fire' color palette."
+  },
+
+  "paletteWater": "Air",
+  "@paletteWater": {
+    "description": "Name of the 'water' color palette."
+  },
+
+  "menuLanguage": "Bahasa",
+  "@menuLanguage": {
+    "description": "Tooltip/title for the language selection popup."
+  },
+
+  "langEnglish": "Inggeris",
+  "@langEnglish": {
+    "description": "Language choice: English."
+  },
+
+  "langChinese": "中文",
+  "@langChinese": {
+    "description": "Language choice: Chinese."
+  },
+
+  "langMalay": "Bahasa Melayu",
+  "@langMalay": {
+    "description": "Language choice: Malay."
+  },
+
+  "homeTagline": "Jurutera AI Gunaan · Arkitek Sistem",
+  "@homeTagline": {
+    "description": "Tagline shown on the home page hero."
+  },
+
+  "authUnlockTitle": "Masukkan frasa laluan untuk buka kandungan peribadi",
+  "@authUnlockTitle": {
+    "description": "Headline on the login/unlock page."
+  },
+
   "authPassphraseLabel": "Frasa laluan",
-  "authUnlockButton": "Buka kunci",
-  "authAlreadyLoggedInTitle": "Anda telah log masuk.",
-  "authAlreadyLoggedInBody": "Item peribadi kini kelihatan.\nFrasa laluan ini disimpan secara tempatan sehingga anda log keluar.",
-  "authWrongPassphrase": "Frasa laluan salah",
-  "authUnlockSuccess": "Dibuka — kandungan peribadi kini boleh dilihat.",
-  "authCanaryTip": "Tip: Anda boleh menambah canary pilihan dalam .env untuk mengesahkan frasa laluan serta-merta.",
+  "@authPassphraseLabel": {
+    "description": "Label for the passphrase text field."
+  },
 
-  "lockPrivateTitle": "Kandungan ini adalah peribadi.",
+  "authUnlockButton": "Buka",
+  "@authUnlockButton": {
+    "description": "Button label to unlock private content."
+  },
+
+  "authAlreadyLoggedInTitle": "Anda sudah log masuk.",
+  "@authAlreadyLoggedInTitle": {
+    "description": "Title shown when the user is already authenticated."
+  },
+
+  "authAlreadyLoggedInBody": "Item peribadi kini kelihatan.\nFrasa laluan ini disimpan secara setempat sehingga anda log keluar.",
+  "@authAlreadyLoggedInBody": {
+    "description": "Body text explaining that private items are visible and passphrase is stored locally."
+  },
+
+  "authWrongPassphrase": "Frasa laluan salah",
+  "@authWrongPassphrase": {
+    "description": "Snackbar message when passphrase validation fails."
+  },
+
+  "authUnlockSuccess": "Dibuka — kandungan peribadi akan dipaparkan.",
+  "@authUnlockSuccess": {
+    "description": "Snackbar message when unlocking succeeds."
+  },
+
+  "authCanaryTip": "Tip: Anda boleh tambah canary pilihan dalam .env untuk sahkan frasa laluan dengan segera.",
+  "@authCanaryTip": {
+    "description": "Small helper text on the login page explaining the canary mechanism."
+  },
+
+  "lockPrivateTitle": "Kandungan ini peribadi.",
+  "@lockPrivateTitle": {
+    "description": "Title on the lock banner when content is private."
+  },
+
   "lockPrivateSubtitle": "Log masuk dengan frasa laluan untuk melihat kandungan.",
+  "@lockPrivateSubtitle": {
+    "description": "Subtitle on the lock banner explaining the need to log in."
+  },
+
   "lockGoToLogin": "Pergi ke Log Masuk",
+  "@lockGoToLogin": {
+    "description": "Button label on lock banner to navigate to the login page."
+  },
 
   "visibilityPrivate": "Peribadi",
-  "visibilityPublic": "Umum",
+  "@visibilityPrivate": {
+    "description": "Badge label indicating content is private."
+  },
 
-  "notFound404": "404 — Tidak Dijumpai",
+  "visibilityPublic": "Umum",
+  "@visibilityPublic": {
+    "description": "Badge label indicating content is public."
+  },
+
+  "notFound404": "404 — Tiada",
+  "@notFound404": {
+    "description": "Main text for generic 404 page."
+  },
+
   "notFoundGeneric": "Tidak dijumpai",
+  "@notFoundGeneric": {
+    "description": "Generic 'not found' message for various detail pages."
+  },
+
   "notFoundPage": "Halaman tidak dijumpai",
-  "metaDisabled": "Ruang meta dinyahaktifkan.",
+  "@notFoundPage": {
+    "description": "Message when a page slug is not found."
+  },
+
+  "metaDisabled": "Ruang meta dimatikan.",
+  "@metaDisabled": {
+    "description": "Message shown when the meta realm/section has been disabled in config."
+  },
 
   "timelineSubtitle": "Pencapaian & kemas kini penting",
-  "timelineEmpty": "Belum ada entri garis masa.",
+  "@timelineSubtitle": {
+    "description": "Subtitle for the timeline page header."
+  },
+
+  "timelineEmpty": "Belum ada catatan garis masa.",
+  "@timelineEmpty": {
+    "description": "Message shown when there are no timeline entries."
+  },
 
   "workSectionTitle": "Kerja",
+  "@workSectionTitle": {
+    "description": "Main title for the Work index page."
+  },
+
   "workSectionSubtitle": "Projek dan eksperimen makmal",
+  "@workSectionSubtitle": {
+    "description": "Subtitle for the Work index page."
+  },
+
   "workFilterAll": "Semua",
+  "@workFilterAll": {
+    "description": "Work filter label: show all work items."
+  },
+
   "workFilterProjects": "Projek",
+  "@workFilterProjects": {
+    "description": "Work filter label: show projects only."
+  },
+
   "workFilterLabs": "Makmal",
-  "workEmpty": "Belum ada item.",
+  "@workFilterLabs": {
+    "description": "Work filter label: show lab items only."
+  },
 
   "workFilterProducts": "Produk",
-  "workProductsSectionTitle": "Produk & Templat",
-  "workProductsSectionSubtitle": "Alat boleh guna semula, kit permulaan dan templat untuk sistem anda.",
+  "@workFilterProducts": {
+    "description": "Work filter label: show product/template items only."
+  },
 
-  "blogSectionSubtitle": "Catatan terapan tentang kejuruteraan, penilaian dan sistem yang tenang.",
-  "blogEmpty": "Tiada entri blog lagi.",
+  "workEmpty": "Belum ada item.",
+  "@workEmpty": {
+    "description": "Message shown when there are no work items."
+  },
+
+  "blogSectionSubtitle": "Catatan gunaan tentang kejuruteraan, penilaian, dan sistem tenang.",
+  "@blogSectionSubtitle": {
+    "description": "Subtitle for the Blog index page."
+  },
+
+  "blogEmpty": "Belum ada entri blog.",
+  "@blogEmpty": {
+    "description": "Message shown when there are no blog posts."
+  },
+
   "blogFilterAll": "Semua entri",
+  "@blogFilterAll": {
+    "description": "Blog filter label: show all posts."
+  },
 
-  "librarySectionSubtitle": "Sumber yang membentuk pemikiran saya: bacaan, alat, press dan nota penyelidikan.",
-  "libraryEmpty": "Tiada entri perpustakaan lagi.",
+  "librarySectionSubtitle": "Input kepada pemikiran saya: bacaan, alat, liputan media, dan nota kajian.",
+  "@librarySectionSubtitle": {
+    "description": "Subtitle for the Library index page."
+  },
+
+  "libraryEmpty": "Belum ada entri perpustakaan.",
+  "@libraryEmpty": {
+    "description": "Message shown when there are no library items."
+  },
+
   "libraryFilterAll": "Semua entri",
+  "@libraryFilterAll": {
+    "description": "Library filter label: show all entries."
+  },
 
-  "peopleSectionSubtitle": "Pemikir, mentor dan pengaruh di sebalik kerja saya.",
-  "peopleEmpty": "Tiada profil orang lagi.",
-  "peopleFilterAll": "Semua profil"
+  "peopleSectionSubtitle": "Pemikir, mentor, dan pengaruh di sebalik kerja saya.",
+  "@peopleSectionSubtitle": {
+    "description": "Subtitle for the People index page."
+  },
 
+  "peopleEmpty": "Belum ada profil tokoh.",
+  "@peopleEmpty": {
+    "description": "Message shown when there are no people profiles."
+  },
+
+  "peopleFilterAll": "Semua tokoh",
+  "@peopleFilterAll": {
+    "description": "People filter label: show all profiles."
+  },
+
+  "philosophySectionSubtitle": "Sistem dalaman: minda, tubuh, etika, arketip, amalan.",
+  "@philosophySectionSubtitle": {
+    "description": "Subtitle for the philosophy/meta index page."
+  },
+
+  "philosophyEmpty": "Belum ada nota falsafah diterbitkan.",
+  "@philosophyEmpty": {
+    "description": "Message shown when there are no philosophy notes."
+  }
 }

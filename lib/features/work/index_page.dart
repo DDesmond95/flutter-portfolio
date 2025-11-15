@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/services/content_service.dart';
 import '../../core/models/content_meta.dart';
@@ -66,13 +67,28 @@ class _WorkIndexPageState extends State<WorkIndexPage> {
   void _setFilter(WorkFilter f) {
     setState(() => _filter = f);
 
-    // Re-filter using already-available content service.
+    // Update URL
+    switch (f) {
+      case WorkFilter.projects:
+        context.go('/work?f=projects');
+        break;
+      case WorkFilter.labs:
+        context.go('/work?f=labs');
+        break;
+      case WorkFilter.products:
+        context.go('/work?f=products');
+        break;
+      default:
+        context.go('/work');
+    }
+
+    // Recalculate items
     final svc = context.read<ContentService>();
     final projects = svc.listByType('project');
     final labs = svc.listByType('lab');
     final products = svc.listByType('product');
 
-    final all = <ContentMeta>[...projects, ...labs, ...products]
+    final all = [...projects, ...labs, ...products]
       ..sort((a, b) => b.date!.compareTo(a.date!));
 
     setState(() {

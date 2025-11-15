@@ -5,7 +5,7 @@ type: "meta"
 visibility: "public"
 date: "2025-07-01"
 summary: "A personal ethical charter for building fair, transparent, and humane systems."
-tags: ["ethics", "justice", "AI", "fairness"]
+tags: ["philosophy:ethics", "ethics", "justice", "AI", "fairness"]
 thumbnail: "/assets/images/covers/justice.webp"
 ---
 

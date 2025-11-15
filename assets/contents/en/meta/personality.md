@@ -5,7 +5,7 @@ type: "meta"
 visibility: "public"
 date: "2025-07-12"
 summary: "A synthesis of analytical psychology and self-observation — INTP, high openness, high reasoning, calm discipline."
-tags: ["personality", "psychology", "INTP", "big five", "self-awareness"]
+tags: ["philosophy:mind", "personality", "psychology", "INTP", "big five", "self-awareness"]
 thumbnail: "/assets/images/covers/personality.webp"
 ---
 

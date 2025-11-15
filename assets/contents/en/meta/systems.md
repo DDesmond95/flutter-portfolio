@@ -5,7 +5,7 @@ type: "meta"
 visibility: "public"
 date: "2025-04-12"
 summary: "A personal synthesis of systems thinking applied to software, ethics, and daily life."
-tags: ["systems", "thinking", "philosophy", "engineering"]
+tags: ["philosophy:practice", "systems", "thinking", "philosophy", "engineering"]
 thumbnail: "/assets/images/covers/systems.webp"
 ---
 

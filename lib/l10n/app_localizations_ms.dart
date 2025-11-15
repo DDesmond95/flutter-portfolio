@@ -9,7 +9,7 @@ class AppLocalizationsMs extends AppLocalizations {
   AppLocalizationsMs([String locale = 'ms']) : super(locale);
 
   @override
-  String get appTitle => 'Desmond Liew — Portfolio';
+  String get appTitle => 'Portfolio Desmond Liew';
 
   @override
   String get navHome => 'Laman Utama';
@@ -45,10 +45,25 @@ class AppLocalizationsMs extends AppLocalizations {
   String get navContact => 'Hubungi';
 
   @override
-  String get navResume => 'Resume';
+  String get navResume => 'Résumé';
 
   @override
   String get navLogin => 'Log Masuk';
+
+  @override
+  String get navWork => 'Kerja';
+
+  @override
+  String get navAbout => 'Tentang';
+
+  @override
+  String get navPeople => 'Tokoh';
+
+  @override
+  String get navCredits => 'Penghargaan';
+
+  @override
+  String get navLogout => 'Log Keluar';
 
   @override
   String get menuTheme => 'Tema';
@@ -60,7 +75,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get themeSystem => 'Sistem';
 
   @override
-  String get themeLight => 'Terang';
+  String get themeLight => 'Cerah';
 
   @override
   String get themeDark => 'Gelap';
@@ -72,7 +87,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get paletteMetal => 'Logam';
 
   @override
-  String get paletteEarth => 'Bumi';
+  String get paletteEarth => 'Tanah';
 
   @override
   String get paletteWood => 'Kayu';
@@ -87,7 +102,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get menuLanguage => 'Bahasa';
 
   @override
-  String get langEnglish => 'English';
+  String get langEnglish => 'Inggeris';
 
   @override
   String get langChinese => '中文';
@@ -99,50 +114,35 @@ class AppLocalizationsMs extends AppLocalizations {
   String get homeTagline => 'Jurutera AI Gunaan · Arkitek Sistem';
 
   @override
-  String get navWork => 'Kerja';
-
-  @override
-  String get navAbout => 'Tentang';
-
-  @override
-  String get navPeople => 'Individu';
-
-  @override
-  String get navCredits => 'Kredit';
-
-  @override
-  String get navLogout => 'Log Keluar';
-
-  @override
   String get authUnlockTitle =>
-      'Masukkan frasa laluan untuk membuka kandungan peribadi';
+      'Masukkan frasa laluan untuk buka kandungan peribadi';
 
   @override
   String get authPassphraseLabel => 'Frasa laluan';
 
   @override
-  String get authUnlockButton => 'Buka kunci';
+  String get authUnlockButton => 'Buka';
 
   @override
-  String get authAlreadyLoggedInTitle => 'Anda telah log masuk.';
+  String get authAlreadyLoggedInTitle => 'Anda sudah log masuk.';
 
   @override
   String get authAlreadyLoggedInBody =>
-      'Item peribadi kini kelihatan.\nFrasa laluan ini disimpan secara tempatan sehingga anda log keluar.';
+      'Item peribadi kini kelihatan.\nFrasa laluan ini disimpan secara setempat sehingga anda log keluar.';
 
   @override
   String get authWrongPassphrase => 'Frasa laluan salah';
 
   @override
   String get authUnlockSuccess =>
-      'Dibuka — kandungan peribadi kini boleh dilihat.';
+      'Dibuka — kandungan peribadi akan dipaparkan.';
 
   @override
   String get authCanaryTip =>
-      'Tip: Anda boleh menambah canary pilihan dalam .env untuk mengesahkan frasa laluan serta-merta.';
+      'Tip: Anda boleh tambah canary pilihan dalam .env untuk sahkan frasa laluan dengan segera.';
 
   @override
-  String get lockPrivateTitle => 'Kandungan ini adalah peribadi.';
+  String get lockPrivateTitle => 'Kandungan ini peribadi.';
 
   @override
   String get lockPrivateSubtitle =>
@@ -158,7 +158,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get visibilityPublic => 'Umum';
 
   @override
-  String get notFound404 => '404 — Tidak Dijumpai';
+  String get notFound404 => '404 — Tiada';
 
   @override
   String get notFoundGeneric => 'Tidak dijumpai';
@@ -167,13 +167,13 @@ class AppLocalizationsMs extends AppLocalizations {
   String get notFoundPage => 'Halaman tidak dijumpai';
 
   @override
-  String get metaDisabled => 'Ruang meta dinyahaktifkan.';
+  String get metaDisabled => 'Ruang meta dimatikan.';
 
   @override
   String get timelineSubtitle => 'Pencapaian & kemas kini penting';
 
   @override
-  String get timelineEmpty => 'Belum ada entri garis masa.';
+  String get timelineEmpty => 'Belum ada catatan garis masa.';
 
   @override
   String get workSectionTitle => 'Kerja';
@@ -191,45 +191,45 @@ class AppLocalizationsMs extends AppLocalizations {
   String get workFilterLabs => 'Makmal';
 
   @override
-  String get workEmpty => 'Belum ada item.';
-
-  @override
   String get workFilterProducts => 'Produk';
 
   @override
-  String get workProductsSectionTitle => 'Produk & Templat';
-
-  @override
-  String get workProductsSectionSubtitle =>
-      'Alat boleh guna semula, kit permulaan dan templat untuk sistem anda.';
+  String get workEmpty => 'Belum ada item.';
 
   @override
   String get blogSectionSubtitle =>
-      'Catatan terapan tentang kejuruteraan, penilaian dan sistem yang tenang.';
+      'Catatan gunaan tentang kejuruteraan, penilaian, dan sistem tenang.';
 
   @override
-  String get blogEmpty => 'Tiada entri blog lagi.';
+  String get blogEmpty => 'Belum ada entri blog.';
 
   @override
   String get blogFilterAll => 'Semua entri';
 
   @override
   String get librarySectionSubtitle =>
-      'Sumber yang membentuk pemikiran saya: bacaan, alat, press dan nota penyelidikan.';
+      'Input kepada pemikiran saya: bacaan, alat, liputan media, dan nota kajian.';
 
   @override
-  String get libraryEmpty => 'Tiada entri perpustakaan lagi.';
+  String get libraryEmpty => 'Belum ada entri perpustakaan.';
 
   @override
   String get libraryFilterAll => 'Semua entri';
 
   @override
   String get peopleSectionSubtitle =>
-      'Pemikir, mentor dan pengaruh di sebalik kerja saya.';
+      'Pemikir, mentor, dan pengaruh di sebalik kerja saya.';
 
   @override
-  String get peopleEmpty => 'Tiada profil orang lagi.';
+  String get peopleEmpty => 'Belum ada profil tokoh.';
 
   @override
-  String get peopleFilterAll => 'Semua profil';
+  String get peopleFilterAll => 'Semua tokoh';
+
+  @override
+  String get philosophySectionSubtitle =>
+      'Sistem dalaman: minda, tubuh, etika, arketip, amalan.';
+
+  @override
+  String get philosophyEmpty => 'Belum ada nota falsafah diterbitkan.';
 }

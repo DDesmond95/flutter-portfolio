@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/services/content_service.dart';
 import '../../core/services/auth_service.dart';
@@ -10,7 +11,8 @@ import '../../core/utils/responsive.dart';
 import '../../core/utils/l10n.dart';
 
 class BlogIndexPage extends StatefulWidget {
-  const BlogIndexPage({super.key});
+  final String? initialFilter;
+  const BlogIndexPage({super.key, this.initialFilter});
 
   @override
   State<BlogIndexPage> createState() => _BlogIndexPageState();
@@ -54,8 +56,12 @@ class _BlogIndexPageState extends State<BlogIndexPage> {
     setState(() {
       _all = items;
       _categoryTags = listCats;
-      _selectedCategoryTag = null; // start with "All posts"
-      _filtered = _applyFilter(items, null);
+      // Read filter from URL (if any)
+      final cat = widget.initialFilter;
+
+      _selectedCategoryTag = cat;
+      _filtered = _applyFilter(items, cat);
+
       _loading = false;
     });
   }
@@ -76,6 +82,12 @@ class _BlogIndexPageState extends State<BlogIndexPage> {
       _selectedCategoryTag = tag;
       _filtered = _applyFilter(_all, tag);
     });
+
+    if (tag == null) {
+      context.go('/blog');
+    } else {
+      context.go('/blog?cat=$tag');
+    }
   }
 
   String _labelForCategoryTag(String tag) {

@@ -1,87 +1,364 @@
 {
   "@@locale": "en",
+  "@@last_modified": "en base with full metadata",
+
   "appTitle": "Desmond Liew — Portfolio",
+  "@appTitle": {
+    "description": "Application title shown in window title / browser tab."
+  },
+
   "navHome": "Home",
+  "@navHome": {
+    "description": "Top navigation: link to the home page."
+  },
+
   "navProjects": "Projects",
+  "@navProjects": {
+    "description": "Top navigation: link to the projects listing."
+  },
+
   "navBlog": "Blog",
+  "@navBlog": {
+    "description": "Top navigation: link to the blog index."
+  },
+
   "navLabs": "Labs",
+  "@navLabs": {
+    "description": "Top navigation: link to the labs index."
+  },
+
   "navLibrary": "Library",
+  "@navLibrary": {
+    "description": "Top navigation: link to the library / learning archive."
+  },
+
   "navDiscover": "Discover",
+  "@navDiscover": {
+    "description": "Top navigation: label for the Discover menu (blog, library, people)."
+  },
+
   "navPhilosophy": "Philosophy",
+  "@navPhilosophy": {
+    "description": "Top navigation: link to the philosophy/meta realm."
+  },
+
   "navFoundation": "Foundation",
+  "@navFoundation": {
+    "description": "Top navigation: link to the foundation section."
+  },
+
   "navTimeline": "Timeline",
+  "@navTimeline": {
+    "description": "Top navigation: link to the timeline page."
+  },
+
   "navServices": "Services",
+  "@navServices": {
+    "description": "Top navigation: link to the services page."
+  },
+
   "navContact": "Contact",
+  "@navContact": {
+    "description": "Top navigation: link to the contact page."
+  },
+
   "navResume": "Résumé",
+  "@navResume": {
+    "description": "Top navigation: link to the resume/CV page."
+  },
+
   "navLogin": "Login",
-  "menuTheme": "Theme",
-  "menuThemeMode": "Theme Mode",
-  "themeSystem": "System",
-  "themeLight": "Light",
-  "themeDark": "Dark",
-  "menuPalette": "Palette",
-  "paletteMetal": "Metal",
-  "paletteEarth": "Earth",
-  "paletteWood": "Wood",
-  "paletteFire": "Fire",
-  "paletteWater": "Water",
-  "menuLanguage": "Language",
-  "langEnglish": "English",
-  "langChinese": "中文",
-  "langMalay": "Bahasa Melayu",
-  "homeTagline": "Applied AI Engineer · System Architect",
-  
+  "@navLogin": {
+    "description": "Top navigation: link to the login/unlock page."
+  },
+
   "navWork": "Work",
+  "@navWork": {
+    "description": "Top navigation: label for the Work menu (projects, labs, products)."
+  },
+
   "navAbout": "About",
+  "@navAbout": {
+    "description": "Top navigation: label for the About menu."
+  },
+
   "navPeople": "People",
+  "@navPeople": {
+    "description": "Top navigation: link to the people index."
+  },
+
   "navCredits": "Credits",
+  "@navCredits": {
+    "description": "Top navigation: link to the credits/thanks page."
+  },
+
   "navLogout": "Logout",
-  
+  "@navLogout": {
+    "description": "Top navigation or drawer: button to log out / clear passphrase."
+  },
+
+  "menuTheme": "Theme",
+  "@menuTheme": {
+    "description": "Tooltip/title for the theme popup menu."
+  },
+
+  "menuThemeMode": "Theme Mode",
+  "@menuThemeMode": {
+    "description": "Label inside theme popup for choosing light/dark/system."
+  },
+
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "Theme mode: follow the device/system setting."
+  },
+
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Theme mode: light theme."
+  },
+
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Theme mode: dark theme."
+  },
+
+  "menuPalette": "Palette",
+  "@menuPalette": {
+    "description": "Label for choosing a color palette."
+  },
+
+  "paletteMetal": "Metal",
+  "@paletteMetal": {
+    "description": "Name of the 'metal' color palette."
+  },
+
+  "paletteEarth": "Earth",
+  "@paletteEarth": {
+    "description": "Name of the 'earth' color palette."
+  },
+
+  "paletteWood": "Wood",
+  "@paletteWood": {
+    "description": "Name of the 'wood' color palette."
+  },
+
+  "paletteFire": "Fire",
+  "@paletteFire": {
+    "description": "Name of the 'fire' color palette."
+  },
+
+  "paletteWater": "Water",
+  "@paletteWater": {
+    "description": "Name of the 'water' color palette."
+  },
+
+  "menuLanguage": "Language",
+  "@menuLanguage": {
+    "description": "Tooltip/title for the language selection popup."
+  },
+
+  "langEnglish": "English",
+  "@langEnglish": {
+    "description": "Language choice: English."
+  },
+
+  "langChinese": "中文",
+  "@langChinese": {
+    "description": "Language choice: Chinese."
+  },
+
+  "langMalay": "Bahasa Melayu",
+  "@langMalay": {
+    "description": "Language choice: Malay."
+  },
+
+  "homeTagline": "Applied AI Engineer · System Architect",
+  "@homeTagline": {
+    "description": "Tagline shown on the home page hero."
+  },
+
   "authUnlockTitle": "Enter passphrase to unlock private content",
+  "@authUnlockTitle": {
+    "description": "Headline on the login/unlock page."
+  },
+
   "authPassphraseLabel": "Passphrase",
+  "@authPassphraseLabel": {
+    "description": "Label for the passphrase text field."
+  },
+
   "authUnlockButton": "Unlock",
+  "@authUnlockButton": {
+    "description": "Button label to unlock private content."
+  },
+
   "authAlreadyLoggedInTitle": "You are logged in.",
+  "@authAlreadyLoggedInTitle": {
+    "description": "Title shown when the user is already authenticated."
+  },
+
   "authAlreadyLoggedInBody": "Private items are visible.\nThis passphrase is stored locally until you log out.",
+  "@authAlreadyLoggedInBody": {
+    "description": "Body text explaining that private items are visible and passphrase is stored locally."
+  },
+
   "authWrongPassphrase": "Wrong passphrase",
+  "@authWrongPassphrase": {
+    "description": "Snackbar message when passphrase validation fails."
+  },
+
   "authUnlockSuccess": "Unlocked — private content will be shown.",
+  "@authUnlockSuccess": {
+    "description": "Snackbar message when unlocking succeeds."
+  },
+
   "authCanaryTip": "Tip: You can add an optional canary in .env to validate the passphrase immediately.",
+  "@authCanaryTip": {
+    "description": "Small helper text on the login page explaining the canary mechanism."
+  },
 
   "lockPrivateTitle": "This content is private.",
+  "@lockPrivateTitle": {
+    "description": "Title on the lock banner when content is private."
+  },
+
   "lockPrivateSubtitle": "Log in with passphrase to view the content.",
+  "@lockPrivateSubtitle": {
+    "description": "Subtitle on the lock banner explaining the need to log in."
+  },
+
   "lockGoToLogin": "Go to Login",
+  "@lockGoToLogin": {
+    "description": "Button label on lock banner to navigate to the login page."
+  },
 
   "visibilityPrivate": "Private",
+  "@visibilityPrivate": {
+    "description": "Badge label indicating content is private."
+  },
+
   "visibilityPublic": "Public",
+  "@visibilityPublic": {
+    "description": "Badge label indicating content is public."
+  },
 
   "notFound404": "404 — Not Found",
+  "@notFound404": {
+    "description": "Main text for generic 404 page."
+  },
+
   "notFoundGeneric": "Not found",
+  "@notFoundGeneric": {
+    "description": "Generic 'not found' message for various detail pages."
+  },
+
   "notFoundPage": "Page not found",
+  "@notFoundPage": {
+    "description": "Message when a page slug is not found."
+  },
+
   "metaDisabled": "Meta realm is disabled.",
+  "@metaDisabled": {
+    "description": "Message shown when the meta realm/section has been disabled in config."
+  },
 
   "timelineSubtitle": "Milestones & significant updates",
+  "@timelineSubtitle": {
+    "description": "Subtitle for the timeline page header."
+  },
+
   "timelineEmpty": "No timeline entries yet.",
+  "@timelineEmpty": {
+    "description": "Message shown when there are no timeline entries."
+  },
 
   "workSectionTitle": "Work",
+  "@workSectionTitle": {
+    "description": "Main title for the Work index page."
+  },
+
   "workSectionSubtitle": "Projects and Lab Experiments",
+  "@workSectionSubtitle": {
+    "description": "Subtitle for the Work index page."
+  },
+
   "workFilterAll": "All",
+  "@workFilterAll": {
+    "description": "Work filter label: show all work items."
+  },
+
   "workFilterProjects": "Projects",
+  "@workFilterProjects": {
+    "description": "Work filter label: show projects only."
+  },
+
   "workFilterLabs": "Labs",
-  "workEmpty": "No items yet.",
+  "@workFilterLabs": {
+    "description": "Work filter label: show lab items only."
+  },
 
   "workFilterProducts": "Products",
-  "workProductsSectionTitle": "Products & Templates",
-  "workProductsSectionSubtitle": "Reusable tools, starter kits, and templates you can adopt in your own systems.",
+  "@workFilterProducts": {
+    "description": "Work filter label: show product/template items only."
+  },
+
+  "workEmpty": "No items yet.",
+  "@workEmpty": {
+    "description": "Message shown when there are no work items."
+  },
 
   "blogSectionSubtitle": "Applied notes on engineering, evaluation, and calm systems.",
+  "@blogSectionSubtitle": {
+    "description": "Subtitle for the Blog index page."
+  },
+
   "blogEmpty": "No blog posts yet.",
+  "@blogEmpty": {
+    "description": "Message shown when there are no blog posts."
+  },
+
   "blogFilterAll": "All posts",
+  "@blogFilterAll": {
+    "description": "Blog filter label: show all posts."
+  },
 
   "librarySectionSubtitle": "Inputs to my thinking: readings, tools, press, and research notes.",
+  "@librarySectionSubtitle": {
+    "description": "Subtitle for the Library index page."
+  },
+
   "libraryEmpty": "No library entries yet.",
+  "@libraryEmpty": {
+    "description": "Message shown when there are no library items."
+  },
+
   "libraryFilterAll": "All entries",
+  "@libraryFilterAll": {
+    "description": "Library filter label: show all entries."
+  },
 
   "peopleSectionSubtitle": "The thinkers, mentors, and influences behind my work.",
-  "peopleEmpty": "No people profiles yet.",
-  "peopleFilterAll": "All people"
+  "@peopleSectionSubtitle": {
+    "description": "Subtitle for the People index page."
+  },
 
+  "peopleEmpty": "No people profiles yet.",
+  "@peopleEmpty": {
+    "description": "Message shown when there are no people profiles."
+  },
+
+  "peopleFilterAll": "All people",
+  "@peopleFilterAll": {
+    "description": "People filter label: show all profiles."
+  },
+
+  "philosophySectionSubtitle": "Inner operating system: mind, body, ethics, archetypes, practice.",
+  "@philosophySectionSubtitle": {
+    "description": "Subtitle for the philosophy/meta index page."
+  },
+
+  "philosophyEmpty": "No philosophy notes are published yet.",
+  "@philosophyEmpty": {
+    "description": "Message shown when there are no philosophy notes."
+  }
 }

@@ -5,7 +5,7 @@ type: "meta"
 visibility: "private"
 date: "2025-07-08"
 summary: "An analytical reading of my Eight Characters chart — balance, timing, and elemental design."
-tags: ["bazi", "chinese metaphysics", "timing", "self-understanding"]
+tags: ["philosophy:archetypes", "bazi", "chinese metaphysics", "timing", "self-understanding"]
 thumbnail: "/assets/images/covers/bazi.webp"
 ---
 

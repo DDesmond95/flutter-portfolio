@@ -5,7 +5,7 @@ type: "meta"
 visibility: "public"
 date: "2025-06-11"
 summary: "The guiding principles behind my engineering and lifestyle philosophy — work that creates calm, not chaos."
-tags: ["philosophy", "work", "ethics", "systems"]
+tags: ["philosophy:ethics", "philosophy", "work", "ethics", "systems"]
 thumbnail: "/assets/images/covers/philosophy.webp"
 ---
 

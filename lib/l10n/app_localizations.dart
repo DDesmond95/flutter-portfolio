@@ -100,437 +100,437 @@ abstract class AppLocalizations {
     Locale('zh'),
   ];
 
-  /// No description provided for @appTitle.
+  /// Application title shown in window title / browser tab.
   ///
   /// In en, this message translates to:
   /// **'Desmond Liew — Portfolio'**
   String get appTitle;
 
-  /// No description provided for @navHome.
+  /// Top navigation: link to the home page.
   ///
   /// In en, this message translates to:
   /// **'Home'**
   String get navHome;
 
-  /// No description provided for @navProjects.
+  /// Top navigation: link to the projects listing.
   ///
   /// In en, this message translates to:
   /// **'Projects'**
   String get navProjects;
 
-  /// No description provided for @navBlog.
+  /// Top navigation: link to the blog index.
   ///
   /// In en, this message translates to:
   /// **'Blog'**
   String get navBlog;
 
-  /// No description provided for @navLabs.
+  /// Top navigation: link to the labs index.
   ///
   /// In en, this message translates to:
   /// **'Labs'**
   String get navLabs;
 
-  /// No description provided for @navLibrary.
+  /// Top navigation: link to the library / learning archive.
   ///
   /// In en, this message translates to:
   /// **'Library'**
   String get navLibrary;
 
-  /// No description provided for @navDiscover.
+  /// Top navigation: label for the Discover menu (blog, library, people).
   ///
   /// In en, this message translates to:
   /// **'Discover'**
   String get navDiscover;
 
-  /// No description provided for @navPhilosophy.
+  /// Top navigation: link to the philosophy/meta realm.
   ///
   /// In en, this message translates to:
   /// **'Philosophy'**
   String get navPhilosophy;
 
-  /// No description provided for @navFoundation.
+  /// Top navigation: link to the foundation section.
   ///
   /// In en, this message translates to:
   /// **'Foundation'**
   String get navFoundation;
 
-  /// No description provided for @navTimeline.
+  /// Top navigation: link to the timeline page.
   ///
   /// In en, this message translates to:
   /// **'Timeline'**
   String get navTimeline;
 
-  /// No description provided for @navServices.
+  /// Top navigation: link to the services page.
   ///
   /// In en, this message translates to:
   /// **'Services'**
   String get navServices;
 
-  /// No description provided for @navContact.
+  /// Top navigation: link to the contact page.
   ///
   /// In en, this message translates to:
   /// **'Contact'**
   String get navContact;
 
-  /// No description provided for @navResume.
+  /// Top navigation: link to the resume/CV page.
   ///
   /// In en, this message translates to:
   /// **'Résumé'**
   String get navResume;
 
-  /// No description provided for @navLogin.
+  /// Top navigation: link to the login/unlock page.
   ///
   /// In en, this message translates to:
   /// **'Login'**
   String get navLogin;
 
-  /// No description provided for @menuTheme.
-  ///
-  /// In en, this message translates to:
-  /// **'Theme'**
-  String get menuTheme;
-
-  /// No description provided for @menuThemeMode.
-  ///
-  /// In en, this message translates to:
-  /// **'Theme Mode'**
-  String get menuThemeMode;
-
-  /// No description provided for @themeSystem.
-  ///
-  /// In en, this message translates to:
-  /// **'System'**
-  String get themeSystem;
-
-  /// No description provided for @themeLight.
-  ///
-  /// In en, this message translates to:
-  /// **'Light'**
-  String get themeLight;
-
-  /// No description provided for @themeDark.
-  ///
-  /// In en, this message translates to:
-  /// **'Dark'**
-  String get themeDark;
-
-  /// No description provided for @menuPalette.
-  ///
-  /// In en, this message translates to:
-  /// **'Palette'**
-  String get menuPalette;
-
-  /// No description provided for @paletteMetal.
-  ///
-  /// In en, this message translates to:
-  /// **'Metal'**
-  String get paletteMetal;
-
-  /// No description provided for @paletteEarth.
-  ///
-  /// In en, this message translates to:
-  /// **'Earth'**
-  String get paletteEarth;
-
-  /// No description provided for @paletteWood.
-  ///
-  /// In en, this message translates to:
-  /// **'Wood'**
-  String get paletteWood;
-
-  /// No description provided for @paletteFire.
-  ///
-  /// In en, this message translates to:
-  /// **'Fire'**
-  String get paletteFire;
-
-  /// No description provided for @paletteWater.
-  ///
-  /// In en, this message translates to:
-  /// **'Water'**
-  String get paletteWater;
-
-  /// No description provided for @menuLanguage.
-  ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get menuLanguage;
-
-  /// No description provided for @langEnglish.
-  ///
-  /// In en, this message translates to:
-  /// **'English'**
-  String get langEnglish;
-
-  /// No description provided for @langChinese.
-  ///
-  /// In en, this message translates to:
-  /// **'中文'**
-  String get langChinese;
-
-  /// No description provided for @langMalay.
-  ///
-  /// In en, this message translates to:
-  /// **'Bahasa Melayu'**
-  String get langMalay;
-
-  /// No description provided for @homeTagline.
-  ///
-  /// In en, this message translates to:
-  /// **'Applied AI Engineer · System Architect'**
-  String get homeTagline;
-
-  /// No description provided for @navWork.
+  /// Top navigation: label for the Work menu (projects, labs, products).
   ///
   /// In en, this message translates to:
   /// **'Work'**
   String get navWork;
 
-  /// No description provided for @navAbout.
+  /// Top navigation: label for the About menu.
   ///
   /// In en, this message translates to:
   /// **'About'**
   String get navAbout;
 
-  /// No description provided for @navPeople.
+  /// Top navigation: link to the people index.
   ///
   /// In en, this message translates to:
   /// **'People'**
   String get navPeople;
 
-  /// No description provided for @navCredits.
+  /// Top navigation: link to the credits/thanks page.
   ///
   /// In en, this message translates to:
   /// **'Credits'**
   String get navCredits;
 
-  /// No description provided for @navLogout.
+  /// Top navigation or drawer: button to log out / clear passphrase.
   ///
   /// In en, this message translates to:
   /// **'Logout'**
   String get navLogout;
 
-  /// No description provided for @authUnlockTitle.
+  /// Tooltip/title for the theme popup menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get menuTheme;
+
+  /// Label inside theme popup for choosing light/dark/system.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme Mode'**
+  String get menuThemeMode;
+
+  /// Theme mode: follow the device/system setting.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get themeSystem;
+
+  /// Theme mode: light theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get themeLight;
+
+  /// Theme mode: dark theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get themeDark;
+
+  /// Label for choosing a color palette.
+  ///
+  /// In en, this message translates to:
+  /// **'Palette'**
+  String get menuPalette;
+
+  /// Name of the 'metal' color palette.
+  ///
+  /// In en, this message translates to:
+  /// **'Metal'**
+  String get paletteMetal;
+
+  /// Name of the 'earth' color palette.
+  ///
+  /// In en, this message translates to:
+  /// **'Earth'**
+  String get paletteEarth;
+
+  /// Name of the 'wood' color palette.
+  ///
+  /// In en, this message translates to:
+  /// **'Wood'**
+  String get paletteWood;
+
+  /// Name of the 'fire' color palette.
+  ///
+  /// In en, this message translates to:
+  /// **'Fire'**
+  String get paletteFire;
+
+  /// Name of the 'water' color palette.
+  ///
+  /// In en, this message translates to:
+  /// **'Water'**
+  String get paletteWater;
+
+  /// Tooltip/title for the language selection popup.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get menuLanguage;
+
+  /// Language choice: English.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get langEnglish;
+
+  /// Language choice: Chinese.
+  ///
+  /// In en, this message translates to:
+  /// **'中文'**
+  String get langChinese;
+
+  /// Language choice: Malay.
+  ///
+  /// In en, this message translates to:
+  /// **'Bahasa Melayu'**
+  String get langMalay;
+
+  /// Tagline shown on the home page hero.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied AI Engineer · System Architect'**
+  String get homeTagline;
+
+  /// Headline on the login/unlock page.
   ///
   /// In en, this message translates to:
   /// **'Enter passphrase to unlock private content'**
   String get authUnlockTitle;
 
-  /// No description provided for @authPassphraseLabel.
+  /// Label for the passphrase text field.
   ///
   /// In en, this message translates to:
   /// **'Passphrase'**
   String get authPassphraseLabel;
 
-  /// No description provided for @authUnlockButton.
+  /// Button label to unlock private content.
   ///
   /// In en, this message translates to:
   /// **'Unlock'**
   String get authUnlockButton;
 
-  /// No description provided for @authAlreadyLoggedInTitle.
+  /// Title shown when the user is already authenticated.
   ///
   /// In en, this message translates to:
   /// **'You are logged in.'**
   String get authAlreadyLoggedInTitle;
 
-  /// No description provided for @authAlreadyLoggedInBody.
+  /// Body text explaining that private items are visible and passphrase is stored locally.
   ///
   /// In en, this message translates to:
   /// **'Private items are visible.\nThis passphrase is stored locally until you log out.'**
   String get authAlreadyLoggedInBody;
 
-  /// No description provided for @authWrongPassphrase.
+  /// Snackbar message when passphrase validation fails.
   ///
   /// In en, this message translates to:
   /// **'Wrong passphrase'**
   String get authWrongPassphrase;
 
-  /// No description provided for @authUnlockSuccess.
+  /// Snackbar message when unlocking succeeds.
   ///
   /// In en, this message translates to:
   /// **'Unlocked — private content will be shown.'**
   String get authUnlockSuccess;
 
-  /// No description provided for @authCanaryTip.
+  /// Small helper text on the login page explaining the canary mechanism.
   ///
   /// In en, this message translates to:
   /// **'Tip: You can add an optional canary in .env to validate the passphrase immediately.'**
   String get authCanaryTip;
 
-  /// No description provided for @lockPrivateTitle.
+  /// Title on the lock banner when content is private.
   ///
   /// In en, this message translates to:
   /// **'This content is private.'**
   String get lockPrivateTitle;
 
-  /// No description provided for @lockPrivateSubtitle.
+  /// Subtitle on the lock banner explaining the need to log in.
   ///
   /// In en, this message translates to:
   /// **'Log in with passphrase to view the content.'**
   String get lockPrivateSubtitle;
 
-  /// No description provided for @lockGoToLogin.
+  /// Button label on lock banner to navigate to the login page.
   ///
   /// In en, this message translates to:
   /// **'Go to Login'**
   String get lockGoToLogin;
 
-  /// No description provided for @visibilityPrivate.
+  /// Badge label indicating content is private.
   ///
   /// In en, this message translates to:
   /// **'Private'**
   String get visibilityPrivate;
 
-  /// No description provided for @visibilityPublic.
+  /// Badge label indicating content is public.
   ///
   /// In en, this message translates to:
   /// **'Public'**
   String get visibilityPublic;
 
-  /// No description provided for @notFound404.
+  /// Main text for generic 404 page.
   ///
   /// In en, this message translates to:
   /// **'404 — Not Found'**
   String get notFound404;
 
-  /// No description provided for @notFoundGeneric.
+  /// Generic 'not found' message for various detail pages.
   ///
   /// In en, this message translates to:
   /// **'Not found'**
   String get notFoundGeneric;
 
-  /// No description provided for @notFoundPage.
+  /// Message when a page slug is not found.
   ///
   /// In en, this message translates to:
   /// **'Page not found'**
   String get notFoundPage;
 
-  /// No description provided for @metaDisabled.
+  /// Message shown when the meta realm/section has been disabled in config.
   ///
   /// In en, this message translates to:
   /// **'Meta realm is disabled.'**
   String get metaDisabled;
 
-  /// No description provided for @timelineSubtitle.
+  /// Subtitle for the timeline page header.
   ///
   /// In en, this message translates to:
   /// **'Milestones & significant updates'**
   String get timelineSubtitle;
 
-  /// No description provided for @timelineEmpty.
+  /// Message shown when there are no timeline entries.
   ///
   /// In en, this message translates to:
   /// **'No timeline entries yet.'**
   String get timelineEmpty;
 
-  /// No description provided for @workSectionTitle.
+  /// Main title for the Work index page.
   ///
   /// In en, this message translates to:
   /// **'Work'**
   String get workSectionTitle;
 
-  /// No description provided for @workSectionSubtitle.
+  /// Subtitle for the Work index page.
   ///
   /// In en, this message translates to:
   /// **'Projects and Lab Experiments'**
   String get workSectionSubtitle;
 
-  /// No description provided for @workFilterAll.
+  /// Work filter label: show all work items.
   ///
   /// In en, this message translates to:
   /// **'All'**
   String get workFilterAll;
 
-  /// No description provided for @workFilterProjects.
+  /// Work filter label: show projects only.
   ///
   /// In en, this message translates to:
   /// **'Projects'**
   String get workFilterProjects;
 
-  /// No description provided for @workFilterLabs.
+  /// Work filter label: show lab items only.
   ///
   /// In en, this message translates to:
   /// **'Labs'**
   String get workFilterLabs;
 
-  /// No description provided for @workEmpty.
-  ///
-  /// In en, this message translates to:
-  /// **'No items yet.'**
-  String get workEmpty;
-
-  /// No description provided for @workFilterProducts.
+  /// Work filter label: show product/template items only.
   ///
   /// In en, this message translates to:
   /// **'Products'**
   String get workFilterProducts;
 
-  /// No description provided for @workProductsSectionTitle.
+  /// Message shown when there are no work items.
   ///
   /// In en, this message translates to:
-  /// **'Products & Templates'**
-  String get workProductsSectionTitle;
+  /// **'No items yet.'**
+  String get workEmpty;
 
-  /// No description provided for @workProductsSectionSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Reusable tools, starter kits, and templates you can adopt in your own systems.'**
-  String get workProductsSectionSubtitle;
-
-  /// No description provided for @blogSectionSubtitle.
+  /// Subtitle for the Blog index page.
   ///
   /// In en, this message translates to:
   /// **'Applied notes on engineering, evaluation, and calm systems.'**
   String get blogSectionSubtitle;
 
-  /// No description provided for @blogEmpty.
+  /// Message shown when there are no blog posts.
   ///
   /// In en, this message translates to:
   /// **'No blog posts yet.'**
   String get blogEmpty;
 
-  /// No description provided for @blogFilterAll.
+  /// Blog filter label: show all posts.
   ///
   /// In en, this message translates to:
   /// **'All posts'**
   String get blogFilterAll;
 
-  /// No description provided for @librarySectionSubtitle.
+  /// Subtitle for the Library index page.
   ///
   /// In en, this message translates to:
   /// **'Inputs to my thinking: readings, tools, press, and research notes.'**
   String get librarySectionSubtitle;
 
-  /// No description provided for @libraryEmpty.
+  /// Message shown when there are no library items.
   ///
   /// In en, this message translates to:
   /// **'No library entries yet.'**
   String get libraryEmpty;
 
-  /// No description provided for @libraryFilterAll.
+  /// Library filter label: show all entries.
   ///
   /// In en, this message translates to:
   /// **'All entries'**
   String get libraryFilterAll;
 
-  /// No description provided for @peopleSectionSubtitle.
+  /// Subtitle for the People index page.
   ///
   /// In en, this message translates to:
   /// **'The thinkers, mentors, and influences behind my work.'**
   String get peopleSectionSubtitle;
 
-  /// No description provided for @peopleEmpty.
+  /// Message shown when there are no people profiles.
   ///
   /// In en, this message translates to:
   /// **'No people profiles yet.'**
   String get peopleEmpty;
 
-  /// No description provided for @peopleFilterAll.
+  /// People filter label: show all profiles.
   ///
   /// In en, this message translates to:
   /// **'All people'**
   String get peopleFilterAll;
+
+  /// Subtitle for the philosophy/meta index page.
+  ///
+  /// In en, this message translates to:
+  /// **'Inner operating system: mind, body, ethics, archetypes, practice.'**
+  String get philosophySectionSubtitle;
+
+  /// Message shown when there are no philosophy notes.
+  ///
+  /// In en, this message translates to:
+  /// **'No philosophy notes are published yet.'**
+  String get philosophyEmpty;
 }
 
 class _AppLocalizationsDelegate

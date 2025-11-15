@@ -5,7 +5,7 @@ type: "meta"
 visibility: "public"
 date: "2025-02-19"
 summary: "Integrating ancient systems theory from TCM into modern AI engineering thinking."
-tags: ["tcm", "systems", "balance", "holism"]
+tags: ["philosophy:body", "tcm", "systems", "balance", "holism"]
 thumbnail: "/assets/images/covers/tcm.webp"
 ---
 

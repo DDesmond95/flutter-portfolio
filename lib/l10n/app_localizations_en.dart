@@ -51,6 +51,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navLogin => 'Login';
 
   @override
+  String get navWork => 'Work';
+
+  @override
+  String get navAbout => 'About';
+
+  @override
+  String get navPeople => 'People';
+
+  @override
+  String get navCredits => 'Credits';
+
+  @override
+  String get navLogout => 'Logout';
+
+  @override
   String get menuTheme => 'Theme';
 
   @override
@@ -97,21 +112,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeTagline => 'Applied AI Engineer · System Architect';
-
-  @override
-  String get navWork => 'Work';
-
-  @override
-  String get navAbout => 'About';
-
-  @override
-  String get navPeople => 'People';
-
-  @override
-  String get navCredits => 'Credits';
-
-  @override
-  String get navLogout => 'Logout';
 
   @override
   String get authUnlockTitle => 'Enter passphrase to unlock private content';
@@ -189,17 +189,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get workFilterLabs => 'Labs';
 
   @override
-  String get workEmpty => 'No items yet.';
-
-  @override
   String get workFilterProducts => 'Products';
 
   @override
-  String get workProductsSectionTitle => 'Products & Templates';
-
-  @override
-  String get workProductsSectionSubtitle =>
-      'Reusable tools, starter kits, and templates you can adopt in your own systems.';
+  String get workEmpty => 'No items yet.';
 
   @override
   String get blogSectionSubtitle =>
@@ -230,4 +223,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get peopleFilterAll => 'All people';
+
+  @override
+  String get philosophySectionSubtitle =>
+      'Inner operating system: mind, body, ethics, archetypes, practice.';
+
+  @override
+  String get philosophyEmpty => 'No philosophy notes are published yet.';
 }

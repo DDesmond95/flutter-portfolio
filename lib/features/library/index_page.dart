@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/services/content_service.dart';
 import '../../core/services/auth_service.dart';
@@ -10,7 +11,8 @@ import '../../core/utils/responsive.dart';
 import '../../core/utils/l10n.dart';
 
 class LibraryIndexPage extends StatefulWidget {
-  const LibraryIndexPage({super.key});
+  final String? initialFilter;
+  const LibraryIndexPage({super.key, this.initialFilter});
 
   @override
   State<LibraryIndexPage> createState() => _LibraryIndexPageState();
@@ -53,8 +55,11 @@ class _LibraryIndexPageState extends State<LibraryIndexPage> {
     setState(() {
       _all = items;
       _categoryTags = listCats;
-      _selectedCategoryTag = null;
-      _filtered = _applyFilter(items, null);
+      final cat = widget.initialFilter;
+
+      _selectedCategoryTag = cat;
+      _filtered = _applyFilter(items, cat);
+
       _loading = false;
     });
   }
@@ -75,6 +80,12 @@ class _LibraryIndexPageState extends State<LibraryIndexPage> {
       _selectedCategoryTag = tag;
       _filtered = _applyFilter(_all, tag);
     });
+
+    if (tag == null) {
+      context.go('/library');
+    } else {
+      context.go('/library?cat=$tag');
+    }
   }
 
   String _labelForCategoryTag(String tag) {

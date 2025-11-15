@@ -53,8 +53,12 @@ GoRouter buildRouter(ContentService content) {
 
           GoRoute(
             path: '/blog',
-            builder: (context, state) => const BlogIndexPage(),
+            builder: (context, state) {
+              final f = state.uri.queryParameters['cat'];
+              return BlogIndexPage(initialFilter: f);
+            },
           ),
+
           GoRoute(
             path: '/blog/:slug',
             builder: (context, state) =>
@@ -111,8 +115,12 @@ GoRouter buildRouter(ContentService content) {
 
           GoRoute(
             path: '/library',
-            builder: (context, state) => const LibraryIndexPage(),
+            builder: (context, state) {
+              final f = state.uri.queryParameters['cat'];
+              return LibraryIndexPage(initialFilter: f);
+            },
           ),
+
           GoRoute(
             path: '/library/:slug',
             builder: (context, state) =>
@@ -121,8 +129,12 @@ GoRouter buildRouter(ContentService content) {
 
           GoRoute(
             path: '/meta',
-            builder: (context, state) => const MetaIndexPage(),
+            builder: (context, state) {
+              final f = state.uri.queryParameters['f'];
+              return MetaIndexPage(initialCategory: f);
+            },
           ),
+
           GoRoute(
             path: '/meta/:slug',
             builder: (context, state) =>
@@ -152,7 +164,10 @@ GoRouter buildRouter(ContentService content) {
 
           GoRoute(
             path: '/people',
-            builder: (context, state) => const PeopleIndexPage(),
+            builder: (context, state) {
+              final f = state.uri.queryParameters['cat'];
+              return PeopleIndexPage(initialFilter: f);
+            },
           ),
 
           GoRoute(

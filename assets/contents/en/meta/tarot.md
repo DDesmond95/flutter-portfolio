@@ -5,7 +5,7 @@ type: "meta"
 visibility: "public"
 date: "2025-03-28"
 summary: "Using archetypes from the Tarot to model personal and system dynamics."
-tags: ["tarot", "symbolism", "archetypes", "psychology"]
+tags: ["philosophy:archetypes", "tarot", "symbolism", "archetypes", "psychology"]
 thumbnail: "/assets/images/covers/tarot.webp"
 ---
 

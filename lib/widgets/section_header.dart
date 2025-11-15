@@ -1,4 +1,3 @@
-// lib/widgets/section_header.dart
 import 'package:flutter/material.dart';
 
 class SectionHeader extends StatelessWidget {
@@ -21,34 +20,40 @@ class SectionHeader extends StatelessWidget {
     this.trailing,
     this.center = false,
     this.showDivider = true,
-    this.padding = const EdgeInsets.symmetric(vertical: 24.0),
-    this.spacing = 8.0,
-    this.dividerWidth = 72.0,
+    this.padding = const EdgeInsets.symmetric(vertical: 24),
+    this.spacing = 8,
+    this.dividerWidth = 72,
     this.dividerColor,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final titleStyle =
-        theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700) ??
-        const TextStyle(fontSize: 20, fontWeight: FontWeight.w700);
-    final subtitleStyle =
-        theme.textTheme.bodyMedium?.copyWith(
-          color: theme.textTheme.bodySmall?.color,
-        ) ??
-        const TextStyle(fontSize: 14, color: Colors.black54);
+    final text = theme.textTheme;
 
-    final children = <Widget>[];
+    // Title: same hierarchy level used in Meta / Foundation
+    final TextStyle titleStyle = text.headlineMedium!.copyWith(
+      fontWeight: FontWeight.w700,
+      height: 1.15,
+    );
 
-    // Title row (with optional leading)
+    // Subtitle: softer tone, consistent with global body typography
+    final Color? softColor = text.bodySmall?.color?.withValues(alpha: 0.85);
+
+    final TextStyle subtitleStyle = text.bodyLarge!.copyWith(
+      color: softColor,
+      height: 1.45,
+    );
+
+    final List<Widget> children = [];
+
+    // Title row
     children.add(
       Row(
-        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: center
             ? MainAxisAlignment.center
             : MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if (leading != null) ...[leading!, const SizedBox(width: 8)],
           Expanded(

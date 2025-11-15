@@ -1,86 +1,364 @@
 {
   "@@locale": "zh",
+  "@@last_modified": "Chinese localization with full metadata",
+
   "appTitle": "Desmond Liew — 作品集",
+  "@appTitle": {
+    "description": "Application title shown in window title / browser tab."
+  },
+
   "navHome": "首页",
+  "@navHome": {
+    "description": "Top navigation: link to the home page."
+  },
+
   "navProjects": "项目",
+  "@navProjects": {
+    "description": "Top navigation: link to the projects listing."
+  },
+
   "navBlog": "博客",
+  "@navBlog": {
+    "description": "Top navigation: link to the blog index."
+  },
+
   "navLabs": "实验室",
-  "navLibrary": "资料库",
-  "navDiscover": "发现",
-  "navPhilosophy": "理念",
+  "@navLabs": {
+    "description": "Top navigation: link to the labs index."
+  },
+
+  "navLibrary": "文库",
+  "@navLibrary": {
+    "description": "Top navigation: link to the library / learning archive."
+  },
+
+  "navDiscover": "探索",
+  "@navDiscover": {
+    "description": "Top navigation: label for the Discover menu (blog, library, people)."
+  },
+
+  "navPhilosophy": "哲学",
+  "@navPhilosophy": {
+    "description": "Top navigation: link to the philosophy/meta realm."
+  },
+
   "navFoundation": "基础",
+  "@navFoundation": {
+    "description": "Top navigation: link to the foundation section."
+  },
+
   "navTimeline": "时间线",
+  "@navTimeline": {
+    "description": "Top navigation: link to the timeline page."
+  },
+
   "navServices": "服务",
+  "@navServices": {
+    "description": "Top navigation: link to the services page."
+  },
+
   "navContact": "联系",
-  "navResume": "履历",
+  "@navContact": {
+    "description": "Top navigation: link to the contact page."
+  },
+
+  "navResume": "简历",
+  "@navResume": {
+    "description": "Top navigation: link to the resume/CV page."
+  },
+
   "navLogin": "登录",
-  "menuTheme": "主题",
-  "menuThemeMode": "主题模式",
-  "themeSystem": "跟随系统",
-  "themeLight": "浅色",
-  "themeDark": "深色",
-  "menuPalette": "配色",
-  "paletteMetal": "金",
-  "paletteEarth": "土",
-  "paletteWood": "木",
-  "paletteFire": "火",
-  "paletteWater": "水",
-  "menuLanguage": "语言",
-  "langEnglish": "English",
-  "langChinese": "中文",
-  "langMalay": "Bahasa Melayu",
-  "homeTagline": "应用型 AI 工程师 · 系统架构师",
-  "navWork": "作品",
+  "@navLogin": {
+    "description": "Top navigation: link to the login/unlock page."
+  },
+
+  "navWork": "工作",
+  "@navWork": {
+    "description": "Top navigation: label for the Work menu (projects, labs, products)."
+  },
+
   "navAbout": "关于",
+  "@navAbout": {
+    "description": "Top navigation: label for the About menu."
+  },
+
   "navPeople": "人物",
+  "@navPeople": {
+    "description": "Top navigation: link to the people index."
+  },
+
   "navCredits": "致谢",
+  "@navCredits": {
+    "description": "Top navigation: link to the credits/thanks page."
+  },
+
   "navLogout": "退出登录",
+  "@navLogout": {
+    "description": "Top navigation or drawer: button to log out / clear passphrase."
+  },
 
-  "authUnlockTitle": "输入通行短语以解锁私密内容",
-  "authPassphraseLabel": "通行短语",
+  "menuTheme": "主题",
+  "@menuTheme": {
+    "description": "Tooltip/title for the theme popup menu."
+  },
+
+  "menuThemeMode": "主题模式",
+  "@menuThemeMode": {
+    "description": "Label inside theme popup for choosing light/dark/system."
+  },
+
+  "themeSystem": "系统",
+  "@themeSystem": {
+    "description": "Theme mode: follow the device/system setting."
+  },
+
+  "themeLight": "浅色",
+  "@themeLight": {
+    "description": "Theme mode: light theme."
+  },
+
+  "themeDark": "深色",
+  "@themeDark": {
+    "description": "Theme mode: dark theme."
+  },
+
+  "menuPalette": "配色",
+  "@menuPalette": {
+    "description": "Label for choosing a color palette."
+  },
+
+  "paletteMetal": "金",
+  "@paletteMetal": {
+    "description": "Name of the 'metal' color palette."
+  },
+
+  "paletteEarth": "土",
+  "@paletteEarth": {
+    "description": "Name of the 'earth' color palette."
+  },
+
+  "paletteWood": "木",
+  "@paletteWood": {
+    "description": "Name of the 'wood' color palette."
+  },
+
+  "paletteFire": "火",
+  "@paletteFire": {
+    "description": "Name of the 'fire' color palette."
+  },
+
+  "paletteWater": "水",
+  "@paletteWater": {
+    "description": "Name of the 'water' color palette."
+  },
+
+  "menuLanguage": "语言",
+  "@menuLanguage": {
+    "description": "Tooltip/title for the language selection popup."
+  },
+
+  "langEnglish": "English",
+  "@langEnglish": {
+    "description": "Language choice: English."
+  },
+
+  "langChinese": "中文",
+  "@langChinese": {
+    "description": "Language choice: Chinese."
+  },
+
+  "langMalay": "Bahasa Melayu",
+  "@langMalay": {
+    "description": "Language choice: Malay."
+  },
+
+  "homeTagline": "应用型 AI 工程师 · 系统架构师",
+  "@homeTagline": {
+    "description": "Tagline shown on the home page hero."
+  },
+
+  "authUnlockTitle": "输入口令以解锁私密内容",
+  "@authUnlockTitle": {
+    "description": "Headline on the login/unlock page."
+  },
+
+  "authPassphraseLabel": "口令",
+  "@authPassphraseLabel": {
+    "description": "Label for the passphrase text field."
+  },
+
   "authUnlockButton": "解锁",
-  "authAlreadyLoggedInTitle": "你已登录。",
-  "authAlreadyLoggedInBody": "私密条目现在可见。\n通行短语会本地保存，直到你登出为止。",
-  "authWrongPassphrase": "通行短语错误",
-  "authUnlockSuccess": "已解锁 —— 私密内容将会显示。",
-  "authCanaryTip": "提示：你可以在 .env 中添加可选的 canary 来立即验证通行短语。",
+  "@authUnlockButton": {
+    "description": "Button label to unlock private content."
+  },
 
-  "lockPrivateTitle": "此内容为私密。",
-  "lockPrivateSubtitle": "请登录并输入通行短语以查看内容。",
+  "authAlreadyLoggedInTitle": "已登录。",
+  "@authAlreadyLoggedInTitle": {
+    "description": "Title shown when the user is already authenticated."
+  },
+
+  "authAlreadyLoggedInBody": "私密内容已可见。\n口令只保存在本地，直到你退出登录。",
+  "@authAlreadyLoggedInBody": {
+    "description": "Body text explaining that private items are visible and passphrase is stored locally."
+  },
+
+  "authWrongPassphrase": "口令错误",
+  "@authWrongPassphrase": {
+    "description": "Snackbar message when passphrase validation fails."
+  },
+
+  "authUnlockSuccess": "解锁成功——私密内容将会显示。",
+  "@authUnlockSuccess": {
+    "description": "Snackbar message when unlocking succeeds."
+  },
+
+  "authCanaryTip": "提示：你可以在 .env 中配置可选 canary，用来立即校验口令。",
+  "@authCanaryTip": {
+    "description": "Small helper text on the login page explaining the canary mechanism."
+  },
+
+  "lockPrivateTitle": "此内容为私密内容。",
+  "@lockPrivateTitle": {
+    "description": "Title on the lock banner when content is private."
+  },
+
+  "lockPrivateSubtitle": "请登录并输入口令以查看。",
+  "@lockPrivateSubtitle": {
+    "description": "Subtitle on the lock banner explaining the need to log in."
+  },
+
   "lockGoToLogin": "前往登录",
+  "@lockGoToLogin": {
+    "description": "Button label on lock banner to navigate to the login page."
+  },
 
   "visibilityPrivate": "私密",
+  "@visibilityPrivate": {
+    "description": "Badge label indicating content is private."
+  },
+
   "visibilityPublic": "公开",
+  "@visibilityPublic": {
+    "description": "Badge label indicating content is public."
+  },
 
   "notFound404": "404 — 未找到",
+  "@notFound404": {
+    "description": "Main text for generic 404 page."
+  },
+
   "notFoundGeneric": "未找到",
-  "notFoundPage": "页面未找到",
-  "metaDisabled": "「Meta」区域已关闭。",
+  "@notFoundGeneric": {
+    "description": "Generic 'not found' message for various detail pages."
+  },
 
-  "timelineSubtitle": "重要里程碑与更新",
-  "timelineEmpty": "还没有时间线条目。",
+  "notFoundPage": "页面不存在",
+  "@notFoundPage": {
+    "description": "Message when a page slug is not found."
+  },
 
-  "workSectionTitle": "作品",
-  "workSectionSubtitle": "项目和实验室作品",
+  "metaDisabled": "Meta 领域已关闭。",
+  "@metaDisabled": {
+    "description": "Message shown when the meta realm/section has been disabled in config."
+  },
+
+  "timelineSubtitle": "里程碑与重要更新",
+  "@timelineSubtitle": {
+    "description": "Subtitle for the timeline page header."
+  },
+
+  "timelineEmpty": "暂时还没有时间线条目。",
+  "@timelineEmpty": {
+    "description": "Message shown when there are no timeline entries."
+  },
+
+  "workSectionTitle": "工作",
+  "@workSectionTitle": {
+    "description": "Main title for the Work index page."
+  },
+
+  "workSectionSubtitle": "项目与实验室探索",
+  "@workSectionSubtitle": {
+    "description": "Subtitle for the Work index page."
+  },
+
   "workFilterAll": "全部",
+  "@workFilterAll": {
+    "description": "Work filter label: show all work items."
+  },
+
   "workFilterProjects": "项目",
-  "workFilterLabs": "实验室",
-  "workEmpty": "目前还没有条目。",
+  "@workFilterProjects": {
+    "description": "Work filter label: show projects only."
+  },
+
+  "workFilterLabs": "实验",
+  "@workFilterLabs": {
+    "description": "Work filter label: show lab items only."
+  },
 
   "workFilterProducts": "产品",
-  "workProductsSectionTitle": "产品与模板",
-  "workProductsSectionSubtitle": "可复用的工具、起步套件和模板，方便你在自己的系统中采用。",
+  "@workFilterProducts": {
+    "description": "Work filter label: show product/template items only."
+  },
 
-  "blogSectionSubtitle": "关于工程、评估与安静系统的应用笔记。",
-  "blogEmpty": "目前还没有博客文章。",
+  "workEmpty": "暂时还没有条目。",
+  "@workEmpty": {
+    "description": "Message shown when there are no work items."
+  },
+
+  "blogSectionSubtitle": "关于工程、评估与静谧系统的应用型笔记。",
+  "@blogSectionSubtitle": {
+    "description": "Subtitle for the Blog index page."
+  },
+
+  "blogEmpty": "暂时还没有博客文章。",
+  "@blogEmpty": {
+    "description": "Message shown when there are no blog posts."
+  },
+
   "blogFilterAll": "全部文章",
+  "@blogFilterAll": {
+    "description": "Blog filter label: show all posts."
+  },
 
-  "librarySectionSubtitle": "构成我思考的输入：书单、工具、媒体与研究笔记。",
-  "libraryEmpty": "目前还没有资料条目。",
+  "librarySectionSubtitle": "支撑我思考的输入：阅读、工具、媒体报道与研究笔记。",
+  "@librarySectionSubtitle": {
+    "description": "Subtitle for the Library index page."
+  },
+
+  "libraryEmpty": "暂时还没有文库条目。",
+  "@libraryEmpty": {
+    "description": "Message shown when there are no library items."
+  },
+
   "libraryFilterAll": "全部条目",
+  "@libraryFilterAll": {
+    "description": "Library filter label: show all entries."
+  },
 
-  "peopleSectionSubtitle": "那些影响我思考与工作的思想家、导师与同行。",
-  "peopleEmpty": "目前还没有人物档案。",
-  "peopleFilterAll": "全部人物"
+  "peopleSectionSubtitle": "构成我知识谱系的思想家、导师与影响者。",
+  "@peopleSectionSubtitle": {
+    "description": "Subtitle for the People index page."
+  },
+
+  "peopleEmpty": "暂时还没有人物档案。",
+  "@peopleEmpty": {
+    "description": "Message shown when there are no people profiles."
+  },
+
+  "peopleFilterAll": "所有人物",
+  "@peopleFilterAll": {
+    "description": "People filter label: show all profiles."
+  },
+
+  "philosophySectionSubtitle": "内在操作系统：心智、身体、伦理、原型、实践。",
+  "@philosophySectionSubtitle": {
+    "description": "Subtitle for the philosophy/meta index page."
+  },
+
+  "philosophyEmpty": "暂时还没有发布哲学笔记。",
+  "@philosophyEmpty": {
+    "description": "Message shown when there are no philosophy notes."
+  }
 }
-

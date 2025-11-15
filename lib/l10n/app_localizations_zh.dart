@@ -24,13 +24,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get navLabs => '实验室';
 
   @override
-  String get navLibrary => '资料库';
+  String get navLibrary => '文库';
 
   @override
-  String get navDiscover => '发现';
+  String get navDiscover => '探索';
 
   @override
-  String get navPhilosophy => '理念';
+  String get navPhilosophy => '哲学';
 
   @override
   String get navFoundation => '基础';
@@ -45,10 +45,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get navContact => '联系';
 
   @override
-  String get navResume => '履历';
+  String get navResume => '简历';
 
   @override
   String get navLogin => '登录';
+
+  @override
+  String get navWork => '工作';
+
+  @override
+  String get navAbout => '关于';
+
+  @override
+  String get navPeople => '人物';
+
+  @override
+  String get navCredits => '致谢';
+
+  @override
+  String get navLogout => '退出登录';
 
   @override
   String get menuTheme => '主题';
@@ -57,7 +72,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get menuThemeMode => '主题模式';
 
   @override
-  String get themeSystem => '跟随系统';
+  String get themeSystem => '系统';
 
   @override
   String get themeLight => '浅色';
@@ -99,49 +114,34 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeTagline => '应用型 AI 工程师 · 系统架构师';
 
   @override
-  String get navWork => '作品';
+  String get authUnlockTitle => '输入口令以解锁私密内容';
 
   @override
-  String get navAbout => '关于';
-
-  @override
-  String get navPeople => '人物';
-
-  @override
-  String get navCredits => '致谢';
-
-  @override
-  String get navLogout => '退出登录';
-
-  @override
-  String get authUnlockTitle => '输入通行短语以解锁私密内容';
-
-  @override
-  String get authPassphraseLabel => '通行短语';
+  String get authPassphraseLabel => '口令';
 
   @override
   String get authUnlockButton => '解锁';
 
   @override
-  String get authAlreadyLoggedInTitle => '你已登录。';
+  String get authAlreadyLoggedInTitle => '已登录。';
 
   @override
-  String get authAlreadyLoggedInBody => '私密条目现在可见。\n通行短语会本地保存，直到你登出为止。';
+  String get authAlreadyLoggedInBody => '私密内容已可见。\n口令只保存在本地，直到你退出登录。';
 
   @override
-  String get authWrongPassphrase => '通行短语错误';
+  String get authWrongPassphrase => '口令错误';
 
   @override
-  String get authUnlockSuccess => '已解锁 —— 私密内容将会显示。';
+  String get authUnlockSuccess => '解锁成功——私密内容将会显示。';
 
   @override
-  String get authCanaryTip => '提示：你可以在 .env 中添加可选的 canary 来立即验证通行短语。';
+  String get authCanaryTip => '提示：你可以在 .env 中配置可选 canary，用来立即校验口令。';
 
   @override
-  String get lockPrivateTitle => '此内容为私密。';
+  String get lockPrivateTitle => '此内容为私密内容。';
 
   @override
-  String get lockPrivateSubtitle => '请登录并输入通行短语以查看内容。';
+  String get lockPrivateSubtitle => '请登录并输入口令以查看。';
 
   @override
   String get lockGoToLogin => '前往登录';
@@ -159,22 +159,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get notFoundGeneric => '未找到';
 
   @override
-  String get notFoundPage => '页面未找到';
+  String get notFoundPage => '页面不存在';
 
   @override
-  String get metaDisabled => '「Meta」区域已关闭。';
+  String get metaDisabled => 'Meta 领域已关闭。';
 
   @override
-  String get timelineSubtitle => '重要里程碑与更新';
+  String get timelineSubtitle => '里程碑与重要更新';
 
   @override
-  String get timelineEmpty => '还没有时间线条目。';
+  String get timelineEmpty => '暂时还没有时间线条目。';
 
   @override
-  String get workSectionTitle => '作品';
+  String get workSectionTitle => '工作';
 
   @override
-  String get workSectionSubtitle => '项目和实验室作品';
+  String get workSectionSubtitle => '项目与实验室探索';
 
   @override
   String get workFilterAll => '全部';
@@ -183,44 +183,44 @@ class AppLocalizationsZh extends AppLocalizations {
   String get workFilterProjects => '项目';
 
   @override
-  String get workFilterLabs => '实验室';
-
-  @override
-  String get workEmpty => '目前还没有条目。';
+  String get workFilterLabs => '实验';
 
   @override
   String get workFilterProducts => '产品';
 
   @override
-  String get workProductsSectionTitle => '产品与模板';
+  String get workEmpty => '暂时还没有条目。';
 
   @override
-  String get workProductsSectionSubtitle => '可复用的工具、起步套件和模板，方便你在自己的系统中采用。';
+  String get blogSectionSubtitle => '关于工程、评估与静谧系统的应用型笔记。';
 
   @override
-  String get blogSectionSubtitle => '关于工程、评估与安静系统的应用笔记。';
-
-  @override
-  String get blogEmpty => '目前还没有博客文章。';
+  String get blogEmpty => '暂时还没有博客文章。';
 
   @override
   String get blogFilterAll => '全部文章';
 
   @override
-  String get librarySectionSubtitle => '构成我思考的输入：书单、工具、媒体与研究笔记。';
+  String get librarySectionSubtitle => '支撑我思考的输入：阅读、工具、媒体报道与研究笔记。';
 
   @override
-  String get libraryEmpty => '目前还没有资料条目。';
+  String get libraryEmpty => '暂时还没有文库条目。';
 
   @override
   String get libraryFilterAll => '全部条目';
 
   @override
-  String get peopleSectionSubtitle => '那些影响我思考与工作的思想家、导师与同行。';
+  String get peopleSectionSubtitle => '构成我知识谱系的思想家、导师与影响者。';
 
   @override
-  String get peopleEmpty => '目前还没有人物档案。';
+  String get peopleEmpty => '暂时还没有人物档案。';
 
   @override
-  String get peopleFilterAll => '全部人物';
+  String get peopleFilterAll => '所有人物';
+
+  @override
+  String get philosophySectionSubtitle => '内在操作系统：心智、身体、伦理、原型、实践。';
+
+  @override
+  String get philosophyEmpty => '暂时还没有发布哲学笔记。';
 }

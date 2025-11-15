@@ -4,16 +4,14 @@ import 'theme_controller.dart';
 ThemeBundle buildTheme(AppPalette palette) {
   final seed = _seedFor(palette);
 
-  final light = ColorScheme.fromSeed(
-    seedColor: seed,
-    brightness: Brightness.light,
+  return ThemeBundle(
+    light: _themeFrom(
+      ColorScheme.fromSeed(seedColor: seed, brightness: Brightness.light),
+    ),
+    dark: _themeFrom(
+      ColorScheme.fromSeed(seedColor: seed, brightness: Brightness.dark),
+    ),
   );
-  final dark = ColorScheme.fromSeed(
-    seedColor: seed,
-    brightness: Brightness.dark,
-  );
-
-  return ThemeBundle(light: _themeFrom(light), dark: _themeFrom(dark));
 }
 
 Color _seedFor(AppPalette p) => switch (p) {
@@ -25,8 +23,8 @@ Color _seedFor(AppPalette p) => switch (p) {
 };
 
 ThemeData _themeFrom(ColorScheme scheme) {
-  // Primary UI font + explicit fallback stack (all bundled in assets/)
-  const primaryFamily = 'NotoSans';
+  // Font families
+  const primary = 'NotoSans';
   const serifCjk = 'NotoSerifSC';
   const hanSans = 'NotoSansSC';
   const symbols2 = 'NotoSansSymbols2';
@@ -36,71 +34,91 @@ ThemeData _themeFrom(ColorScheme scheme) {
   final base = ThemeData(
     useMaterial3: true,
     colorScheme: scheme,
-    fontFamily: primaryFamily,
+    fontFamily: primary,
     fontFamilyFallback: const [hanSans, serifCjk, symbols2, emoji],
+    visualDensity: VisualDensity.standard,
+    splashFactory: NoSplash.splashFactory,
   );
 
   final text = _textTheme(base.textTheme, serifCjk, mono);
 
   return base.copyWith(
     textTheme: text,
+
+    // ---------------------------
+    // AppBar
+    // ---------------------------
     appBarTheme: AppBarTheme(
       backgroundColor: scheme.surface,
       foregroundColor: scheme.onSurface,
-      elevation: 0,
       centerTitle: false,
-      toolbarHeight: 64, // <-- give the bigger title space
+      elevation: 0,
+      toolbarHeight: 64,
       titleTextStyle: text.titleLarge?.copyWith(
-        fontSize: (text.titleLarge?.fontSize ?? 20) + 3, // visibly bigger
+        fontSize: (text.titleLarge?.fontSize ?? 20) + 2,
         fontWeight: FontWeight.w700,
       ),
     ),
 
-    // Make all top-bar / nav buttons a size up
+    // ---------------------------
+    // Navigation Buttons
+    // ---------------------------
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
-        // use titleMedium instead of labelLarge
         textStyle: WidgetStateProperty.all(
-          text.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+          text.titleMedium?.copyWith(fontWeight: FontWeight.w600, height: 1.25),
         ),
         foregroundColor: WidgetStateProperty.all(scheme.onSurface),
         overlayColor: WidgetStateProperty.all(Colors.transparent),
-        splashFactory: NoSplash.splashFactory,
         padding: WidgetStateProperty.all(
           const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         ),
       ),
     ),
 
-    // Popup menus (Explore / Work)
+    // ---------------------------
+    // Popup Menus
+    // ---------------------------
     popupMenuTheme: PopupMenuThemeData(
-      textStyle: text.titleMedium,
-      elevation: 6,
+      textStyle: text.bodyMedium,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      elevation: 6,
     ),
 
-    // Drawer list tiles
+    // ---------------------------
+    // Drawer
+    // ---------------------------
     listTileTheme: ListTileThemeData(
-      titleTextStyle: text.titleMedium, // bigger labels in the drawer
+      titleTextStyle: text.titleMedium,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     ),
 
+    // ---------------------------
+    // Cards
+    // ---------------------------
     cardTheme: CardTheme(
-      // CardThemeData also works; CardTheme is fine
       elevation: 0,
-      color: scheme.surfaceContainerLow,
+      color: scheme.surfaceContainerLowest,
       margin: const EdgeInsets.symmetric(vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ).data,
 
+    // ---------------------------
+    // Dividers
+    // ---------------------------
     dividerTheme: DividerThemeData(
       color: scheme.outlineVariant,
       thickness: 1,
       space: 24,
     ),
+
+    // ---------------------------
+    // Inputs
+    // ---------------------------
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: scheme.surfaceContainerLowest,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(color: scheme.outlineVariant),
@@ -109,12 +127,21 @@ ThemeData _themeFrom(ColorScheme scheme) {
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(color: scheme.primary, width: 1.6),
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
     ),
+
+    // ---------------------------
+    // Chips
+    // ---------------------------
     chipTheme: ChipThemeData(
+      labelStyle: text.bodyMedium,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
       side: BorderSide(color: scheme.outlineVariant),
+      selectedColor: scheme.primary.withValues(alpha: 0.14),
     ),
+
+    // ---------------------------
+    // Tooltip
+    // ---------------------------
     tooltipTheme: TooltipThemeData(
       decoration: BoxDecoration(
         color: scheme.inverseSurface,
@@ -125,12 +152,17 @@ ThemeData _themeFrom(ColorScheme scheme) {
   );
 }
 
-TextTheme _textTheme(TextTheme base, String displaySerif, String mono) {
+//
+// ---------------------------
+//  TEXT SYSTEM 2.0 (Replaces Flutter Defaults)
+// ---------------------------
+//
+TextTheme _textTheme(TextTheme base, String serif, String mono) {
   TextStyle tune(
     TextStyle? s, {
     double? size,
     double? height,
-    FontWeight? w,
+    FontWeight? weight,
     String? family,
   }) {
     s ??= const TextStyle();
@@ -138,68 +170,71 @@ TextTheme _textTheme(TextTheme base, String displaySerif, String mono) {
       fontFamily: family ?? s.fontFamily,
       fontSize: size ?? s.fontSize,
       height: height ?? s.height ?? 1.2,
-      fontWeight: w ?? s.fontWeight,
+      fontWeight: weight ?? s.fontWeight,
       letterSpacing: 0,
     );
   }
 
-  // Display/Headlines use Serif SC (gives that classical feel for Chinese headings)
   final t = base;
+
   return t
       .copyWith(
+        // High-level display
         displayLarge: tune(
           t.displayLarge,
-          height: 1.12,
-          family: displaySerif,
-          w: FontWeight.w600,
+          family: serif,
+          height: 1.10,
+          weight: FontWeight.w600,
         ),
         displayMedium: tune(
           t.displayMedium,
-          height: 1.14,
-          family: displaySerif,
-          w: FontWeight.w600,
+          family: serif,
+          height: 1.12,
+          weight: FontWeight.w600,
         ),
         displaySmall: tune(
           t.displaySmall,
-          height: 1.14,
-          family: displaySerif,
-          w: FontWeight.w600,
+          family: serif,
+          height: 1.12,
+          weight: FontWeight.w600,
         ),
+
+        // Page section headings
         headlineLarge: tune(
           t.headlineLarge,
-          height: 1.16,
-          family: displaySerif,
-          w: FontWeight.w600,
+          family: serif,
+          height: 1.15,
+          weight: FontWeight.w600,
         ),
         headlineMedium: tune(
           t.headlineMedium,
+          family: serif,
           height: 1.18,
-          family: displaySerif,
-          w: FontWeight.w600,
+          weight: FontWeight.w600,
         ),
         headlineSmall: tune(
           t.headlineSmall,
+          family: serif,
           height: 1.20,
-          family: displaySerif,
-          w: FontWeight.w600,
+          weight: FontWeight.w600,
         ),
 
-        titleLarge: tune(t.titleLarge, height: 1.24, w: FontWeight.w700),
-        titleMedium: tune(t.titleMedium, height: 1.28, w: FontWeight.w600),
-        titleSmall: tune(t.titleSmall, height: 1.30, w: FontWeight.w600),
+        // Titles (navigation + cards)
+        titleLarge: tune(t.titleLarge, weight: FontWeight.w700, height: 1.24),
+        titleMedium: tune(t.titleMedium, weight: FontWeight.w600, height: 1.28),
+        titleSmall: tune(t.titleSmall, weight: FontWeight.w600, height: 1.30),
 
+        // Body text
         bodyLarge: tune(t.bodyLarge, height: 1.50),
         bodyMedium: tune(t.bodyMedium, height: 1.52),
         bodySmall: tune(t.bodySmall, height: 1.48),
 
-        labelLarge: tune(t.labelLarge, height: 1.20, w: FontWeight.w600),
-        labelMedium: tune(t.labelMedium, height: 1.20, w: FontWeight.w600),
-        labelSmall: tune(t.labelSmall, height: 1.20, w: FontWeight.w600),
+        // Labels (buttons, chips)
+        labelLarge: tune(t.labelLarge, weight: FontWeight.w600, height: 1.20),
+        labelMedium: tune(t.labelMedium, weight: FontWeight.w600, height: 1.20),
+        labelSmall: tune(t.labelSmall, weight: FontWeight.w600, height: 1.20),
       )
-      .apply(
-        // monospace for code automatically via markdown later; keeping here for completeness
-        fontFamilyFallback: [mono],
-      );
+      .apply(fontFamilyFallback: [mono]);
 }
 
 class ThemeBundle {

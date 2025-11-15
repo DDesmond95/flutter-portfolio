@@ -5,7 +5,7 @@ type: "meta"
 visibility: "private"
 date: "2025-07-09"
 summary: "Numerological synthesis reflecting vibration, purpose, and name resonance."
-tags: ["numerology", "chaldean", "vibration", "identity"]
+tags: ["philosophy:archetypes", "numerology", "chaldean", "vibration", "identity"]
 thumbnail: "/assets/images/covers/numerology.webp"
 ---
 
