@@ -5,7 +5,7 @@ type: "library"
 visibility: "public"
 date: "2025-01-10"
 summary: "Selected works that inform my engineering, ethics, and calm technology philosophy."
-tags: ["library", "reading", "books", "learning"]
+tags: ["library:reading-list", "library", "reading", "books", "learning"]
 thumbnail: "/assets/images/covers/books.webp"
 ---
 

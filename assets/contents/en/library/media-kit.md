@@ -5,7 +5,7 @@ type: "library"
 visibility: "public"
 date: "2025-01-20"
 summary: "Bio, headshot, and brand assets for professional use."
-tags: ["media", "assets", "press"]
+tags: ["library:media-kit", "media", "assets", "press"]
 thumbnail: "/assets/images/brand/logo.svg"
 ---
 

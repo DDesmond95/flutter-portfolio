@@ -6,7 +6,7 @@ visibility: "public"
 date: "1912-06-23"
 summary: "Mathematician whose ideas shaped modern computing."
 lang: "en"
-tags: ["computing", "logic", "history"]
+tags: ["people:foundational-thinker", "computing", "logic", "history"]
 thumbnail: "/assets/images/headshots/turing.webp"
 ---
 

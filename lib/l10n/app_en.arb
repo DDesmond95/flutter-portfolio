@@ -70,6 +70,18 @@
 
   "workFilterProducts": "Products",
   "workProductsSectionTitle": "Products & Templates",
-  "workProductsSectionSubtitle": "Reusable tools, starter kits, and templates you can adopt in your own systems."
+  "workProductsSectionSubtitle": "Reusable tools, starter kits, and templates you can adopt in your own systems.",
+
+  "blogSectionSubtitle": "Applied notes on engineering, evaluation, and calm systems.",
+  "blogEmpty": "No blog posts yet.",
+  "blogFilterAll": "All posts",
+
+  "librarySectionSubtitle": "Inputs to my thinking: readings, tools, press, and research notes.",
+  "libraryEmpty": "No library entries yet.",
+  "libraryFilterAll": "All entries",
+
+  "peopleSectionSubtitle": "The thinkers, mentors, and influences behind my work.",
+  "peopleEmpty": "No people profiles yet.",
+  "peopleFilterAll": "All people"
 
 }

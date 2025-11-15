@@ -200,4 +200,34 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get workProductsSectionSubtitle =>
       'Reusable tools, starter kits, and templates you can adopt in your own systems.';
+
+  @override
+  String get blogSectionSubtitle =>
+      'Applied notes on engineering, evaluation, and calm systems.';
+
+  @override
+  String get blogEmpty => 'No blog posts yet.';
+
+  @override
+  String get blogFilterAll => 'All posts';
+
+  @override
+  String get librarySectionSubtitle =>
+      'Inputs to my thinking: readings, tools, press, and research notes.';
+
+  @override
+  String get libraryEmpty => 'No library entries yet.';
+
+  @override
+  String get libraryFilterAll => 'All entries';
+
+  @override
+  String get peopleSectionSubtitle =>
+      'The thinkers, mentors, and influences behind my work.';
+
+  @override
+  String get peopleEmpty => 'No people profiles yet.';
+
+  @override
+  String get peopleFilterAll => 'All people';
 }

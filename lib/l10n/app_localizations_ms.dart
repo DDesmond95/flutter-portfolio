@@ -202,4 +202,34 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get workProductsSectionSubtitle =>
       'Alat boleh guna semula, kit permulaan dan templat untuk sistem anda.';
+
+  @override
+  String get blogSectionSubtitle =>
+      'Catatan terapan tentang kejuruteraan, penilaian dan sistem yang tenang.';
+
+  @override
+  String get blogEmpty => 'Tiada entri blog lagi.';
+
+  @override
+  String get blogFilterAll => 'Semua entri';
+
+  @override
+  String get librarySectionSubtitle =>
+      'Sumber yang membentuk pemikiran saya: bacaan, alat, press dan nota penyelidikan.';
+
+  @override
+  String get libraryEmpty => 'Tiada entri perpustakaan lagi.';
+
+  @override
+  String get libraryFilterAll => 'Semua entri';
+
+  @override
+  String get peopleSectionSubtitle =>
+      'Pemikir, mentor dan pengaruh di sebalik kerja saya.';
+
+  @override
+  String get peopleEmpty => 'Tiada profil orang lagi.';
+
+  @override
+  String get peopleFilterAll => 'Semua profil';
 }

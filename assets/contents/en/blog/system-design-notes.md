@@ -5,7 +5,7 @@ type: "blog"
 visibility: "public"
 date: "2025-07-15"
 summary: "Notes and reflections on building modular, observable, and calm AI systems."
-tags: ["system design", "architecture", "AI", "infrastructure"]
+tags: ["blog:engineering-infrastructure", "system design", "architecture", "AI", "infrastructure"]
 thumbnail: "/assets/images/covers/system.webp"
 reading_time: "8 min"
 ---

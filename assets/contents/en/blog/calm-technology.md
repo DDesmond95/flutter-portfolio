@@ -5,7 +5,7 @@ type: "blog"
 visibility: "public"
 date: "2024-12-20"
 summary: "Exploring the design principles of calm technology — where good systems disappear into the background."
-tags: ["philosophy", "UX", "calm technology", "attention"]
+tags: ["blog:calm-ux", "philosophy", "UX", "calm technology", "attention"]
 thumbnail: "/assets/images/covers/calm.webp"
 reading_time: "7 min"
 ---

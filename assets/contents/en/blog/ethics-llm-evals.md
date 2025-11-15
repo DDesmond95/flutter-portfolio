@@ -5,7 +5,7 @@ type: "blog"
 visibility: "public"
 date: "2025-05-10"
 summary: "Reflections on fairness, bias, and the psychological impact of LLM evaluation work."
-tags: ["AI", "ethics", "evaluation", "LLM", "fairness"]
+tags: ["blog:engineering-infrastructure", "AI", "ethics", "evaluation", "LLM", "fairness"]
 thumbnail: "/assets/images/covers/ethics.webp"
 reading_time: "9 min"
 ---

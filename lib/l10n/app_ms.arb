@@ -69,7 +69,18 @@
 
   "workFilterProducts": "Produk",
   "workProductsSectionTitle": "Produk & Templat",
-  "workProductsSectionSubtitle": "Alat boleh guna semula, kit permulaan dan templat untuk sistem anda."
+  "workProductsSectionSubtitle": "Alat boleh guna semula, kit permulaan dan templat untuk sistem anda.",
 
+  "blogSectionSubtitle": "Catatan terapan tentang kejuruteraan, penilaian dan sistem yang tenang.",
+  "blogEmpty": "Tiada entri blog lagi.",
+  "blogFilterAll": "Semua entri",
+
+  "librarySectionSubtitle": "Sumber yang membentuk pemikiran saya: bacaan, alat, press dan nota penyelidikan.",
+  "libraryEmpty": "Tiada entri perpustakaan lagi.",
+  "libraryFilterAll": "Semua entri",
+
+  "peopleSectionSubtitle": "Pemikir, mentor dan pengaruh di sebalik kerja saya.",
+  "peopleEmpty": "Tiada profil orang lagi.",
+  "peopleFilterAll": "Semua profil"
 
 }

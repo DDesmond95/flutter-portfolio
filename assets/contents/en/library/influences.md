@@ -5,7 +5,7 @@ type: "library"
 visibility: "public"
 date: "2024-08-18"
 summary: "Individuals and philosophies that shaped my technical and ethical perspective."
-tags: ["influences", "philosophy", "learning"]
+tags: ["library:reading-list", "influences", "philosophy", "learning"]
 thumbnail: "/assets/images/covers/influences.webp"
 ---
 

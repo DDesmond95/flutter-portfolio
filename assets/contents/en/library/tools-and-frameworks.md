@@ -1,4 +1,3 @@
-
 ---
 title: "Tools & Frameworks — My Current Stack"
 slug: "library-tools"
@@ -6,7 +5,7 @@ type: "library"
 visibility: "public"
 date: "2025-04-05"
 summary: "A living inventory of technologies I use across projects."
-tags: ["tools","frameworks","stack"]
+tags: ["library:tools-frameworks", "tools","frameworks","stack"]
 thumbnail: "/assets/images/covers/tools.webp"
 ---
 

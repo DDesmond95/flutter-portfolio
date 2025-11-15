@@ -5,7 +5,7 @@ type: "library"
 visibility: "public"
 date: "2025-07-05"
 summary: "Appearances, talks, and interviews."
-tags: ["press", "talks", "media"]
+tags: ["library:press-talks", "press", "talks", "media"]
 thumbnail: "/assets/images/covers/press.webp"
 ---
 

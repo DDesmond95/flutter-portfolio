@@ -5,7 +5,7 @@ type: "library"
 visibility: "private"
 date: "2025-06-05"
 summary: "Draft analyses and ongoing thought experiments kept as living notes."
-tags: ["research", "notes", "AI", "system"]
+tags: ["library:research-notes", "research", "notes", "AI", "system"]
 thumbnail: "/assets/images/covers/research.webp"
 ---
 

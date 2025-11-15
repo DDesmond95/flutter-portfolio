@@ -196,4 +196,31 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get workProductsSectionSubtitle => '可复用的工具、起步套件和模板，方便你在自己的系统中采用。';
+
+  @override
+  String get blogSectionSubtitle => '关于工程、评估与安静系统的应用笔记。';
+
+  @override
+  String get blogEmpty => '目前还没有博客文章。';
+
+  @override
+  String get blogFilterAll => '全部文章';
+
+  @override
+  String get librarySectionSubtitle => '构成我思考的输入：书单、工具、媒体与研究笔记。';
+
+  @override
+  String get libraryEmpty => '目前还没有资料条目。';
+
+  @override
+  String get libraryFilterAll => '全部条目';
+
+  @override
+  String get peopleSectionSubtitle => '那些影响我思考与工作的思想家、导师与同行。';
+
+  @override
+  String get peopleEmpty => '目前还没有人物档案。';
+
+  @override
+  String get peopleFilterAll => '全部人物';
 }

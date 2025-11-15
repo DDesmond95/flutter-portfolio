@@ -69,7 +69,18 @@
 
   "workFilterProducts": "产品",
   "workProductsSectionTitle": "产品与模板",
-  "workProductsSectionSubtitle": "可复用的工具、起步套件和模板，方便你在自己的系统中采用。"
+  "workProductsSectionSubtitle": "可复用的工具、起步套件和模板，方便你在自己的系统中采用。",
 
+  "blogSectionSubtitle": "关于工程、评估与安静系统的应用笔记。",
+  "blogEmpty": "目前还没有博客文章。",
+  "blogFilterAll": "全部文章",
+
+  "librarySectionSubtitle": "构成我思考的输入：书单、工具、媒体与研究笔记。",
+  "libraryEmpty": "目前还没有资料条目。",
+  "libraryFilterAll": "全部条目",
+
+  "peopleSectionSubtitle": "那些影响我思考与工作的思想家、导师与同行。",
+  "peopleEmpty": "目前还没有人物档案。",
+  "peopleFilterAll": "全部人物"
 }
 

@@ -5,7 +5,7 @@ type: "blog"
 visibility: "public"
 date: "2024-10-02"
 summary: "A practical framework for creating AI evaluation systems that are accurate, reproducible, and ethical."
-tags: ["evaluation", "AI", "systems", "design"]
+tags: ["blog:engineering-infrastructure", "evaluation", "AI", "systems", "design"]
 thumbnail: "/assets/images/covers/eval.webp"
 reading_time: "10 min"
 ---

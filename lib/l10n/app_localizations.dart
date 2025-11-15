@@ -477,6 +477,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reusable tools, starter kits, and templates you can adopt in your own systems.'**
   String get workProductsSectionSubtitle;
+
+  /// No description provided for @blogSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied notes on engineering, evaluation, and calm systems.'**
+  String get blogSectionSubtitle;
+
+  /// No description provided for @blogEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No blog posts yet.'**
+  String get blogEmpty;
+
+  /// No description provided for @blogFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All posts'**
+  String get blogFilterAll;
+
+  /// No description provided for @librarySectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Inputs to my thinking: readings, tools, press, and research notes.'**
+  String get librarySectionSubtitle;
+
+  /// No description provided for @libraryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No library entries yet.'**
+  String get libraryEmpty;
+
+  /// No description provided for @libraryFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All entries'**
+  String get libraryFilterAll;
+
+  /// No description provided for @peopleSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The thinkers, mentors, and influences behind my work.'**
+  String get peopleSectionSubtitle;
+
+  /// No description provided for @peopleEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No people profiles yet.'**
+  String get peopleEmpty;
+
+  /// No description provided for @peopleFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All people'**
+  String get peopleFilterAll;
 }
 
 class _AppLocalizationsDelegate

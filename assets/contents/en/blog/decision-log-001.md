@@ -5,7 +5,7 @@ type: "blog"
 visibility: "public"
 date: "2025-03-15"
 summary: "A reasoning walkthrough on building a markdown-based portfolio system without external databases or paid hosting."
-tags: ["decision log", "architecture", "portfolio", "local-first"]
+tags: ["blog:process-log", "decision log", "architecture", "portfolio", "local-first"]
 thumbnail: "/assets/images/covers/default-blog.webp"
 reading_time: "8 min"
 ---
