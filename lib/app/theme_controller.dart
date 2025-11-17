@@ -22,7 +22,7 @@ class ThemeController extends ChangeNotifier {
   static const _kPaletteKey = 'theme.palette';
 
   ThemeMode _mode = ThemeMode.system;
-  AppPalette _palette = AppPalette.metal;
+  AppPalette _palette = AppPalette.wood;
 
   ThemeMode get mode => _mode;
   AppPalette get palette => _palette;
