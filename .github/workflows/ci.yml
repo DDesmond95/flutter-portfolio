@@ -2,9 +2,9 @@ name: CI — Format & Analyze
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -12,13 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true # pull your Portfolio-Contents repo
+          fetch-depth: 0 # full history (safer for tools that read git info)
+
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
+
       - name: Flutter pub get
         run: flutter pub get
+
       - name: Dart format check
         run: dart format --output=none --set-exit-if-changed .
+
       - name: Flutter analyze
         run: flutter analyze

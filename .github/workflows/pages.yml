@@ -18,6 +18,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+              with:
+                  submodules: true # pulls Portfolio-Contents into /assets
+                  fetch-depth: 0
 
             - name: Setup Flutter
               uses: subosito/flutter-action@v2
