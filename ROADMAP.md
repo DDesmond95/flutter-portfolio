@@ -1,238 +1,220 @@
 # 🧭 Roadmap
 
-> _“Refinement is the process of removing everything that does not serve truth.”_
+> _“Refinement is removing everything that does not serve truth.”_
 
-This roadmap defines the **strategic direction**, **technical milestones**, and **feature phases** of the portfolio project.  
-It serves as both a development plan and a philosophical guide — merging aesthetics, systems thinking, and privacy-first engineering.
+This roadmap defines the long-term direction of the portfolio system — balancing software engineering, aesthetics, privacy, and personal philosophy.
 
----
-
-## 🎯 Project Vision
-
-To create a **local-first, Markdown-driven, privacy-first publication framework**  
-— a living system for personal knowledge, work, and philosophy.
-
-No databases.  
-No backend dependencies.  
-No external analytics.  
-Just **clarity, control, and code**.
-
-This portfolio doubles as:
-
-- a static site deployed via **GitHub Pages**,
-- a self-contained **Flutter Web** app,
-- a personal documentation and publishing platform.
+The project is a **local-first, Markdown-driven, privacy-preserving publication system**, built entirely with **Flutter Web**, deployed through **GitHub Pages**, and powered by a **private content repository**.
 
 ---
 
-## 🧱 Phase 1 — Foundation (✅ Completed)
+# 🎯 Vision
 
-> Initial environment setup and core architecture.
+To maintain a **self-contained personal operating system for ideas**:
 
-| Goal                       | Status | Deliverable                                 |
-| -------------------------- | ------ | ------------------------------------------- |
-| Initialize Flutter project | ✅     | `flutter create portfolio`                  |
-| Configure `.env` handling  | ✅     | `flutter_dotenv` + `env.dart`               |
-| Core Markdown engine       | ✅     | `flutter_markdown_plus` integration         |
-| Front-matter parser        | ✅     | `front_matter.dart`                         |
-| GoRouter navigation        | ✅     | Declarative, deep-link aware routes         |
-| Provider state             | ✅     | Lightweight dependency management           |
-| Responsive UI setup        | ✅     | `responsive_framework` integrated           |
-| Theme system               | ✅     | Material 3 theme palette + dark/light modes |
-| Asset organization         | ✅     | `/assets/contents` with unified structure   |
-| Auth prototype             | ✅     | Local AES-GCM with canary validation        |
-| GitHub Actions             | ✅     | `deploy_pages.yml`, `releases.yml`          |
-| Dependabot + CODEOWNERS    | ✅     | Dependency tracking and code review rules   |
+- No backend
+- No databases
+- No analytics
+- Total ownership of content
+- Sustainable, minimal, elegant
 
-📦 **Deliverable:**  
-Functional site build, Markdown-based content loading, theming, authentication prototype, and GitHub Pages deploy pipeline.
+The system is:
+
+- A public portfolio
+- A private research archive
+- A publishing tool
+- A philosophical notebook
+- A technical playground
 
 ---
 
-## 💅 Phase 2 — UI, UX & Responsiveness (🔄 In Progress)
+# 🧱 Phase 1 — Foundation
 
-> Enhancing adaptability, visual balance, and cross-device layout.
+### _Status: ✅ Completed_
 
-| Goal                     | Description                                   | Status        |
-| ------------------------ | --------------------------------------------- | ------------- |
-| Responsive layout system | Unified padding/margin across pages           | ✅ Done       |
-| Adaptive typography      | Font scaling with `MediaQuery.textScaler`     | 🔄 Refining   |
-| Navigation bar refactor  | AppBar + Drawer for smaller breakpoints       | ✅ Done       |
-| Timeline page            | Chronological record of milestones & releases | ✅ Integrated |
-| Overflow handling        | Fix for horizontal flex overflows             | ✅ Done       |
-| App shell improvements   | Consistent padding + breakpoint awareness     | ✅ Done       |
-| Theme switching          | Palette + mode persistence                    | ✅ Done       |
-| Smooth transitions       | Animated page fades and route transitions     | 🧩 Planned    |
-| Accessibility checks     | Focus, ARIA, contrast, reduced motion         | 🔄 Partial    |
+Core structure, architecture, and essential tooling.
 
-🎨 **Deliverable:**  
-Visually consistent, accessible interface that feels intentional on every screen size — mobile, tablet, desktop.
+| Goal                    | Status      | Notes                                              |
+| ----------------------- | ----------- | -------------------------------------------------- |
+| Flutter project setup   | ✅          | App shell, modules, environment                    |
+| Markdown renderer       | ✅          | `flutter_markdown_plus`, front-matter              |
+| Routing                 | ✅          | `go_router` + deep linking                         |
+| State management        | ✅          | Provider                                           |
+| Asset system            | ⚠️ Updated  | Now a **private submodule** (`Portfolio-Contents`) |
+| Theme engine            | ✅          | Material 3 + palettes                              |
+| Auth prototype          | ✅          | Local AES + Argon2id                               |
+| CI setup                | ✅          | Lint, analyze                                      |
+| GitHub Pages deployment | ⚠️ Enhanced | PAT-authenticated submodule checkout               |
 
----
-
-## 🔐 Phase 3 — Auth, Privacy & Encryption (✅ Core Complete)
-
-> Strengthen security while maintaining simplicity.
-
-| Goal                      | Description                                | Status  |
-| ------------------------- | ------------------------------------------ | ------- |
-| AES-GCM local encryption  | Encrypt private markdown sections          | ✅ Done |
-| Argon2id key derivation   | Derive keys securely from passphrase       | ✅ Done |
-| Passphrase validation     | Canary-based verification before unlock    | ✅ Done |
-| Persistent session        | Auth state saved in `SharedPreferences`    | ✅ Done |
-| Login UX                  | Lock/unlock via dialog (LockGate)          | ✅ Done |
-| Private/public visibility | Correct badges and state reflection        | ✅ Done |
-| Logout workflow           | Manual & automatic expiration clear        | ✅ Done |
-| `.env` integration        | Canary salt, nonce, mac defined in secrets | ✅ Done |
-
-🔒 **Deliverable:**  
-Fully self-contained local auth that unlocks encrypted markdown using client-only cryptography — no external services.
+**Deliverable:**
+A stable, fully working foundation.
 
 ---
 
-## 🌍 Phase 4 — Localization (🔄 Expanding)
+# 💅 Phase 2 — UI, UX & Responsiveness
 
-> Make the portfolio accessible in English, Chinese, and Malay.
+### _Status: 🔄 Active_
 
-| Goal                       | Description                            | Status     |
-| -------------------------- | -------------------------------------- | ---------- |
-| Flutter localization setup | ARB + `flutter gen-l10n` integration   | ✅ Done    |
-| English localization       | `app_en.arb`                           | ✅ Done    |
-| Chinese (Simplified)       | `app_zh.arb`                           | ✅ Done    |
-| Malay                      | `app_ms.arb`                           | ✅ Done    |
-| Language selector UI       | Dropdown on header/footer              | ✅ Done    |
-| Persistent locale          | Saved and restored from preferences    | ✅ Done    |
-| Content localization       | `lang:` field in Markdown front-matter | 🔄 Partial |
-| Auto-detect locale         | Read browser/system locale             | 🧩 Planned |
+Refining ergonomics, consistency, and layout.
 
-🌐 **Deliverable:**  
-All UI and major pages available in three languages, with automatic detection and manual override.
+| Goal                   | Status | Notes                             |
+| ---------------------- | ------ | --------------------------------- |
+| Layout & spacing rules | ✅     | Unified responsive grid           |
+| Typography scaling     | 🔄     | Needs polishing on tablet classes |
+| Navigation redesign    | ✅     | Drawer, compact header            |
+| Timeline UI            | ✅     | Integrated, responsive            |
+| Overflow fixes         | ✅     | Flex + adaptive breakpoints       |
+| App shell refinement   | ✅     | Smoother transitions planned      |
+| Accessibility          | 🔄     | Contrast + keyboard traversal     |
 
----
-
-## 🔍 Phase 5 — Search, SEO & Metadata (🧩 Upcoming)
-
-> Introduce discoverability, internal search, and metadata automation.
-
-| Goal                    | Description                                 | Status     |
-| ----------------------- | ------------------------------------------- | ---------- |
-| Manifest builder        | JSON manifest via `build_manifest.dart`     | ✅ Done    |
-| Markdown indexer        | `search_index.dart` parses all front-matter | ✅ Done    |
-| Local search UI         | Live fuzzy search for titles/tags           | 🧩 Planned |
-| Dynamic metadata        | `<meta>` + OG/Twitter tags                  | 🔄 Partial |
-| Sitemap & RSS generator | `gen_sitemap.dart` + `gen_rss.dart`         | ✅ Done    |
-| Canonical routing       | Slug-based canonical URLs                   | ✅ Done    |
-| Timeline integration    | Display major releases in `/timeline`       | ✅ Done    |
-
-🔎 **Deliverable:**  
-A self-documenting site that is SEO-friendly while preserving local-first privacy (no Google Analytics).
+**Deliverable:**
+A balanced, smooth UI that works on every device.
 
 ---
 
-## 🧩 Phase 6 — Automation & Releases (🧩 Planned)
+# 🔐 Phase 3 — Auth, Privacy & Encryption
 
-> Automate build, deploy, and content validation.
+### _Status: 🛡️ Core Complete_
 
-| Goal                       | Description                            | Status     |
-| -------------------------- | -------------------------------------- | ---------- |
-| GitHub Actions deploy      | `deploy_pages.yml` → `gh-pages` branch | ✅ Done    |
-| GitHub Releases automation | Tagged builds with artifacts           | ✅ Done    |
-| Dependabot updates         | Weekly dependency review               | ✅ Done    |
-| Content validator          | YAML & markdown structure linter       | 🧩 Planned |
-| Pre-release preview        | Build to `staging` branch              | 🧩 Planned |
-| Release manifest           | JSON changelog generator               | 🧩 Planned |
-| Semantic versioning        | Tag + CI auto-bump                     | 🧩 Planned |
+Local-only cryptography.
 
-⚙️ **Deliverable:**  
-A self-maintaining CI/CD pipeline that verifies, builds, and publishes both the Flutter app and content automatically.
+| Goal                      | Status     | Notes                                                |
+| ------------------------- | ---------- | ---------------------------------------------------- |
+| AES-GCM encryption        | ✅         | Per-block encrypted Markdown                         |
+| Argon2id KDF              | ✅         | Strong local key derivation                          |
+| Passphrase canary         | ⚠️ Refined | Canary now stored via **GitHub Secrets**, not `.env` |
+| Unlock/Lock UX            | ✅         | LockGate + persistent session                        |
+| Private/public visibility | ✅         | Accurate conditional rendering                       |
 
----
-
-## 🧠 Phase 7 — Foundation & Philosophy (Ongoing)
-
-> Preserve and communicate the underlying worldview — “calm, ethical, systemic.”
-
-| Goal                        | Description                                            | Status  |
-| --------------------------- | ------------------------------------------------------ | ------- |
-| Foundation section          | `/foundation/` renders essays and systems notes        | ✅ Done |
-| Meta ethics                 | Includes `ethics-llm-evals`, `justice-manifesto`, etc. | ✅ Done |
-| Work philosophy             | Markdown-driven “why” behind each project              | ✅ Done |
-| Calm technology integration | `calm-technology.md` reference                         | ✅ Done |
-| Decision logs               | Chronicle via `decision-log-001.md`                    | ✅ Done |
-
-📘 **Deliverable:**  
-A readable foundation for Desmond’s principles, with permanent records of decisions and design values.
+**Deliverable:**
+Stable client-side encrypted content system.
 
 ---
 
-## 🕰️ Phase 8 — Timeline & Reflection (Ongoing)
+# 🌍 Phase 4 — Localization
 
-> Document evolution, iterations, and milestones visually and textually.
+### _Status: 🔄 Expanding_
 
-| Goal                            | Description                                | Status     |
-| ------------------------------- | ------------------------------------------ | ---------- |
-| `/timeline` route               | Dedicated route showing historical entries | ✅ Done    |
-| Auto-link to commits            | Link milestones to GitHub commits          | 🧩 Planned |
-| Styled event cards              | Reusable `TimelineEvent` widget            | ✅ Done    |
-| Scrollable chronological layout | Responsive list layout                     | ✅ Done    |
-| Integration with manifest       | Pull event metadata from front-matter      | ✅ Done    |
-| Reflect releases                | Show tagged versions automatically         | 🧩 Planned |
-
-🪶 **Deliverable:**  
-A living historical narrative that visually reflects how Desmond’s work evolves over time.
-
----
-
-## 🧾 Maintenance Plan
-
-| Task                     | Frequency        | Notes                      |
-| ------------------------ | ---------------- | -------------------------- |
-| Markdown content updates | Continuous       | via Git commits            |
-| Dependency upgrades      | Monthly          | Dependabot PRs             |
-| `.env` rotation          | Quarterly        | Manual                     |
-| Backup                   | Weekly           | Mirror to secondary host   |
-| Release tagging          | Per major change | Semantic versioning        |
-| Accessibility audit      | Semiannual       | Lighthouse & manual review |
+| Goal                 | Status     | Notes                           |
+| -------------------- | ---------- | ------------------------------- |
+| gen-l10n setup       | ✅         | Complete                        |
+| English              | ✅         |                                 |
+| Chinese (Simplified) | ✅         |                                 |
+| Malay                | ✅         |                                 |
+| Locale selector      | ✅         |                                 |
+| Locale persistence   | ✅         |                                 |
+| Localized Markdown   | 🔄         | Partial — some sections missing |
+| Auto-detect locale   | 🧩 Planned |                                 |
 
 ---
 
-## 🔮 Future Concepts (Phase 9+)
+# 🔍 Phase 5 — Search, SEO & Metadata
 
-> Experimental ideas and long-term refinements.
+### _Status: 🧩 Upcoming_
 
-- 🧩 **Offline-first PWA mode** via service worker
-- 🧩 **Local Markdown editor** for quick note creation
-- 🧩 **Encrypted “journal” mode** with on-device storage
-- 🧩 **AI-assisted indexing** for related reading suggestions
-- 🧩 **Color palette generator** for aesthetic personalization
-- 🧩 **Cross-sync with Obsidian vaults or local filesystem**
-
----
-
-## 🧾 Progress Summary
-
-| Phase | Title                   | Status           |
-| ----- | ----------------------- | ---------------- |
-| 1     | Foundation              | ✅ Done          |
-| 2     | UI & Responsiveness     | 🔄 In Progress   |
-| 3     | Auth & Privacy          | ✅ Core Complete |
-| 4     | Localization            | 🔄 Expanding     |
-| 5     | Search & SEO            | 🧩 Upcoming      |
-| 6     | Automation & Releases   | 🧩 Planned       |
-| 7     | Foundation & Philosophy | ✅ Done          |
-| 8     | Timeline & Reflection   | ✅ Active        |
-| 9     | Future Concepts         | 🧩 Research      |
+| Goal             | Status   | Notes                            |
+| ---------------- | -------- | -------------------------------- |
+| Content manifest | ✅       | `build_manifest.dart`            |
+| Search index     | ⚠️ Ready | Back-end logic complete; UI next |
+| Search UI        | 🧩       | Planned fuzzy-search modal       |
+| Metadata engine  | 🔄       | Partial OG/Twitter tags          |
+| Sitemap          | ✅       |                                  |
+| RSS feed         | ✅       |                                  |
+| Canonical routes | ✅       |                                  |
 
 ---
 
-## 💬 Closing Note
+# 🧩 Phase 6 — Automation, CI & Releases
 
-> “Build once. Publish forever.”
+### _Status: 🧩 Planned / Partial Complete_
 
-This is not just a website.  
-It’s a **living operating system for ideas**, a self-contained archive of Desmond’s life and work — built to evolve, ethically and technically.
+| Goal                  | Status      | Notes                       |
+| --------------------- | ----------- | --------------------------- |
+| Multi-platform builds | ✅          | Windows, Linux, Android     |
+| Release automation    | ✅          | Auto attach build artifacts |
+| Private submodule CI  | ⚠️ Complete | Using PAT-based checkout    |
+| Content validator     | 🧩 Planned  | YAML/MD structure linter    |
+| Semantic versioning   | 🧩 Planned  |                             |
+| Staging deployments   | 🧩 Planned  |                             |
 
 ---
 
-MIT License © Desmond Liew  
-All rights reserved where applicable.
+# 🧠 Phase 7 — Philosophy & Foundations
+
+### _Status: 📘 Mature_
+
+Documentation of thought, systems, ethics, and worldview.
+
+| Goal                 | Status     |
+| -------------------- | ---------- |
+| Foundation essays    | ✅         |
+| Ethics & philosophy  | ✅         |
+| Systems & frameworks | ✅         |
+| Decision logs        | 🔄 Growing |
+
+---
+
+# 🕰 Phase 8 — Timeline & Reflection
+
+### _Status: 🪶 Active_
+
+| Goal                    | Status     | Notes |
+| ----------------------- | ---------- | ----- |
+| Timeline route          | ✅         |       |
+| Event cards             | ✅         |       |
+| Markdown-driven entries | ✅         |       |
+| Release integration     | 🧩 Planned |       |
+| GitHub commit linkage   | 🧩 Planned |       |
+
+---
+
+# 🔮 Phase 9 — Future Concepts
+
+### _Status: Research_
+
+These are long-term ideas:
+
+- Offline-first PWA mode
+- Local Markdown editor
+- Encrypted journal mode
+- Local graph / backlinks
+- Related-content auto suggestion
+- Palette generator for theming
+- Interactive data visualizations
+- Obsidian vault sync (local filesystem)
+
+---
+
+# 🧾 Maintenance Plan
+
+| Task                | Frequency   | Notes               |
+| ------------------- | ----------- | ------------------- |
+| Content updates     | Continuous  | via submodule       |
+| Dependency updates  | Monthly     | Dependabot          |
+| Canary rotation     | Quarterly   | via GitHub Secrets  |
+| Backup mirroring    | Weekly      | Private remote      |
+| Release tagging     | Per feature | Manual or CI-driven |
+| Accessibility audit | Semiannual  | Lighthouse + manual |
+
+---
+
+# 📊 Progress Summary
+
+| Phase | Title           | Status           |
+| ----- | --------------- | ---------------- |
+| 1     | Foundation      | ✅ Complete      |
+| 2     | UX & UI         | 🔄 Active        |
+| 3     | Auth & Privacy  | 🛡️ Core Complete |
+| 4     | Localization    | 🔄 Expanding     |
+| 5     | Search & SEO    | 🧩 Upcoming      |
+| 6     | Automation      | 🧩 Planned       |
+| 7     | Philosophy      | 📘 Mature        |
+| 8     | Timeline        | 🪶 Active        |
+| 9     | Future Concepts | Research         |
+
+---
+
+# 💬 Final Note
+
+> _“Build once. Publish forever.”_
+> This roadmap is a living document — evolving as the system evolves.
