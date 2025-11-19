@@ -11,6 +11,10 @@ permissions:
 
 env:
   FLUTTER_VERSION: "stable"
+  # Reusable paths
+  ANDROID_APK_PATH: "build/app/outputs/flutter-apk/app-release.apk"
+  LINUX_BUNDLE_PATH: "build/linux/x64/release/bundle"
+  WINDOWS_BUNDLE_PATH: "build/windows/x64/runner/Release"
 
 jobs:
   # ---------- ANDROID (APK) ----------
@@ -28,23 +32,40 @@ jobs:
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
+          cache-key: "flutter-${{ env.FLUTTER_VERSION }}-android-${{ hashFiles('**/pubspec.lock') }}"
+
+      - name: Generate .env from secrets
+        run: |
+          echo "AUTH_CANARY_SALT=${{ secrets.AUTH_CANARY_SALT }}" > .env
+          echo "AUTH_CANARY_NONCE=${{ secrets.AUTH_CANARY_NONCE }}" >> .env
+          echo "AUTH_CANARY_DATA=${{ secrets.AUTH_CANARY_DATA }}" >> .env
+          echo "AUTH_CANARY_MAC=${{ secrets.AUTH_CANARY_MAC }}" >> .env
 
       - name: Flutter pub get
         run: flutter pub get
+        continue-on-error: false
 
       - name: Build Android APK (release)
-        env:
-          AUTH_CANARY_SALT: ${{ secrets.AUTH_CANARY_SALT }}
-          AUTH_CANARY_NONCE: ${{ secrets.AUTH_CANARY_NONCE }}
-          AUTH_CANARY_DATA: ${{ secrets.AUTH_CANARY_DATA }}
-          AUTH_CANARY_MAC: ${{ secrets.AUTH_CANARY_MAC }}
         run: flutter build apk --release
+
+      - name: Validate APK
+        run: |
+          if [ ! -f "${{ env.ANDROID_APK_PATH }}" ]; then
+            echo "Error: APK not found at ${{ env.ANDROID_APK_PATH }}"
+            exit 1
+          fi
+
+      - name: Rename APK with version
+        run: |
+          TAG=${{ github.ref_name }}
+          mv ${{ env.ANDROID_APK_PATH }} build/app/outputs/flutter-apk/portfolio-$TAG.apk
 
       - name: Archive APK
         uses: actions/upload-artifact@v4
         with:
           name: android-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/portfolio-*.apk
+          retention-days: 5
 
   # ---------- LINUX ----------
   linux:
@@ -61,34 +82,47 @@ jobs:
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
+          cache-key: "flutter-${{ env.FLUTTER_VERSION }}-linux-${{ hashFiles('**/pubspec.lock') }}"
 
-      - name: Install Linux build deps
+      - name: Install Linux build dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
 
+      - name: Generate .env from secrets
+        run: |
+          echo "AUTH_CANARY_SALT=${{ secrets.AUTH_CANARY_SALT }}" > .env
+          echo "AUTH_CANARY_NONCE=${{ secrets.AUTH_CANARY_NONCE }}" >> .env
+          echo "AUTH_CANARY_DATA=${{ secrets.AUTH_CANARY_DATA }}" >> .env
+          echo "AUTH_CANARY_MAC=${{ secrets.AUTH_CANARY_MAC }}" >> .env
+
       - name: Flutter pub get
         run: flutter pub get
+        continue-on-error: false
 
       - name: Build Linux (release)
-        env:
-          AUTH_CANARY_SALT: ${{ secrets.AUTH_CANARY_SALT }}
-          AUTH_CANARY_NONCE: ${{ secrets.AUTH_CANARY_NONCE }}
-          AUTH_CANARY_DATA: ${{ secrets.AUTH_CANARY_DATA }}
-          AUTH_CANARY_MAC: ${{ secrets.AUTH_CANARY_MAC }}
         run: flutter build linux --release
+
+      - name: Validate Linux build
+        run: |
+          if [ ! -d "${{ env.LINUX_BUNDLE_PATH }}" ]; then
+            echo "Error: Linux bundle not found at ${{ env.LINUX_BUNDLE_PATH }}"
+            exit 1
+          fi
 
       - name: Archive Linux bundle
         run: |
-          cd build/linux/x64/release
-          tar -czf linux-bundle.tar.gz bundle
-          mv linux-bundle.tar.gz $GITHUB_WORKSPACE/
+          TAG=${{ github.ref_name }}
+          cd ${{ env.LINUX_BUNDLE_PATH }}/../
+          tar -czf linux-portfolio-$TAG.tar.gz bundle
+          mv linux-portfolio-$TAG.tar.gz $GITHUB_WORKSPACE/
 
       - name: Upload Linux artifact
         uses: actions/upload-artifact@v4
         with:
           name: linux-bundle
-          path: linux-bundle.tar.gz
+          path: linux-portfolio-*.tar.gz
+          retention-days: 5
 
   # ---------- WINDOWS ----------
   windows:
@@ -105,64 +139,101 @@ jobs:
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
+          cache-key: "flutter-${{ env.FLUTTER_VERSION }}-windows-${{ hashFiles('**/pubspec.lock') }}"
+
+      - name: Generate .env from secrets
+        shell: bash
+        run: |
+          echo "AUTH_CANARY_SALT=${{ secrets.AUTH_CANARY_SALT }}" > .env
+          echo "AUTH_CANARY_NONCE=${{ secrets.AUTH_CANARY_NONCE }}" >> .env
+          echo "AUTH_CANARY_DATA=${{ secrets.AUTH_CANARY_DATA }}" >> .env
+          echo "AUTH_CANARY_MAC=${{ secrets.AUTH_CANARY_MAC }}" >> .env
 
       - name: Flutter pub get
         run: flutter pub get
+        continue-on-error: false
 
       - name: Build Windows (release)
-        shell: bash
-        env:
-          AUTH_CANARY_SALT: ${{ secrets.AUTH_CANARY_SALT }}
-          AUTH_CANARY_NONCE: ${{ secrets.AUTH_CANARY_NONCE }}
-          AUTH_CANARY_DATA: ${{ secrets.AUTH_CANARY_DATA }}
-          AUTH_CANARY_MAC: ${{ secrets.AUTH_CANARY_MAC }}
         run: flutter build windows --release
+
+      - name: Validate Windows build
+        shell: bash
+        run: |
+          if [ ! -d "${{ env.WINDOWS_BUNDLE_PATH }}" ]; then
+            echo "Error: Windows bundle not found at ${{ env.WINDOWS_BUNDLE_PATH }}"
+            exit 1
+          fi
 
       - name: Zip Windows bundle
         shell: bash
         run: |
-          cd build/windows/x64/runner/Release
-          7z a windows-bundle.zip *
-          mv windows-bundle.zip $GITHUB_WORKSPACE/
+          TAG=${{ github.ref_name }}
+          cd ${{ env.WINDOWS_BUNDLE_PATH }}
+          7z a windows-portfolio-$TAG.zip *
+          mv windows-portfolio-$TAG.zip $GITHUB_WORKSPACE/
 
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-bundle
-          path: windows-bundle.zip
+          path: windows-portfolio-*.zip
+          retention-days: 5
 
   # ---------- (Optional) macOS ----------
-  # macos:
-  #   runs-on: macos-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #        with:
-  #          token: ${{ secrets.CONTENT_REPO_TOKEN }}
-  #          submodules: recursive
-  #          fetch-depth: 0
-  #          persist-credentials: false
-  #     - uses: subosito/flutter-action@v2
-  #       with:
-  #         channel: ${{ env.FLUTTER_VERSION }}
-  #         cache: true
-  #     - name: Flutter pub get
-  #       run: flutter pub get
-  #     - name: Build macOS (release)
-  #       run: flutter build macos --release
-  #     - name: Zip macOS app
-  #       run: |
-  #         cd build/macos/Build/Products/Release
-  #         zip -r macos-app.zip *.app
-  #         mv macos-app.zip $GITHUB_WORKSPACE/
-  #     - name: Upload macOS artifact
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: macos-app
-  #         path: macos-app.zip
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.CONTENT_REPO_TOKEN }}
+          submodules: recursive
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.FLUTTER_VERSION }}
+          cache: true
+          cache-key: "flutter-${{ env.FLUTTER_VERSION }}-macos-${{ hashFiles('**/pubspec.lock') }}"
+
+      - name: Generate .env from secrets
+        run: |
+          echo "AUTH_CANARY_SALT=${{ secrets.AUTH_CANARY_SALT }}" > .env
+          echo "AUTH_CANARY_NONCE=${{ secrets.AUTH_CANARY_NONCE }}" >> .env
+          echo "AUTH_CANARY_DATA=${{ secrets.AUTH_CANARY_DATA }}" >> .env
+          echo "AUTH_CANARY_MAC=${{ secrets.AUTH_CANARY_MAC }}" >> .env
+
+      - name: Flutter pub get
+        run: flutter pub get
+        continue-on-error: false
+
+      - name: Build macOS (release)
+        run: flutter build macos --release
+
+      - name: Validate macOS build
+        run: |
+          if [ ! -d "build/macos/Build/Products/Release/Portfolio.app" ]; then
+            echo "Error: macOS app not found"
+            exit 1
+          fi
+
+      - name: Zip macOS app
+        run: |
+          TAG=${{ github.ref_name }}
+          cd build/macos/Build/Products/Release
+          zip -r macos-portfolio-$TAG.zip *.app
+          mv macos-portfolio-$TAG.zip $GITHUB_WORKSPACE/
+
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-app
+          path: macos-portfolio-*.zip
+          retention-days: 5
 
   # ---------- CREATE GITHUB RELEASE WITH ARTIFACTS ----------
   release:
-    needs: [android, linux, windows] # add 'macos' if enabling that job
+    needs: [android, linux, windows, macos]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -177,17 +248,22 @@ jobs:
         with:
           name: windows-bundle
           path: artifacts
-      # - uses: actions/download-artifact@v4
-      #   with:
-      #     name: macos-app
-      #     path: artifacts
+      - uses: actions/download-artifact@v4
+        with:
+          name: macos-app
+          path: artifacts
+
+      - name: List artifacts
+        run: ls -la artifacts/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           draft: false
+          prerelease: false
           files: |
-            artifacts/app-release.apk
-            artifacts/linux-bundle.tar.gz
-            artifacts/windows-bundle.zip
-            # artifacts/macos-app.zip
+            artifacts/portfolio-*.apk
+            artifacts/linux-portfolio-*.tar.gz
+            artifacts/windows-portfolio-*.zip
+            artifacts/macos-portfolio-*.zip
+          generate_release_notes: true

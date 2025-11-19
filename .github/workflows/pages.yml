@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.CONTENT_REPO_TOKEN }}
-          submodules: recursive # pulls Portfolio-Contents into /assets
+          submodules: recursive # Pulls Portfolio-Contents into /assets
           fetch-depth: 0
           persist-credentials: false
 
@@ -29,34 +29,56 @@ jobs:
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
+          # Improved cache key to avoid stale dependencies
+          cache-key: "flutter-${{ env.FLUTTER_VERSION }}-packages-${{ hashFiles('**/pubspec.lock') }}"
 
       - name: Install dependencies
         run: flutter pub get
+        # Fail fast on dependency errors
+        continue-on-error: false
 
-      - name: (Optional) Generate sitemap & RSS
+      - name: Generate .env from secrets (for build)
         run: |
-          dart run lib/tools/gen_sitemap.dart || true
-          dart run lib/tools/gen_rss.dart || true
+          echo "AUTH_CANARY_SALT=${{ secrets.AUTH_CANARY_SALT }}" > .env
+          echo "AUTH_CANARY_NONCE=${{ secrets.AUTH_CANARY_NONCE }}" >> .env
+          echo "AUTH_CANARY_DATA=${{ secrets.AUTH_CANARY_DATA }}" >> .env
+          echo "AUTH_CANARY_MAC=${{ secrets.AUTH_CANARY_MAC }}" >> .env
+
+      - name: Generate sitemap & RSS (with error handling)
+        run: |
+          dart run lib/tools/gen_sitemap.dart
+          dart run lib/tools/gen_rss.dart
+        # Only fail if critical (adjust based on your needs)
+        continue-on-error: true
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Build web (correct base path)
-        env:
-          AUTH_CANARY_SALT: ${{ secrets.AUTH_CANARY_SALT }}
-          AUTH_CANARY_NONCE: ${{ secrets.AUTH_CANARY_NONCE }}
-          AUTH_CANARY_DATA: ${{ secrets.AUTH_CANARY_DATA }}
-          AUTH_CANARY_MAC: ${{ secrets.AUTH_CANARY_MAC }}
+      - name: Build web (with correct base path)
         run: |
           flutter build web --release --base-href "${{ steps.pages.outputs.base_path }}/"
-          # 404 fallback for client-side routing
+          # 404 fallback for client-side routing (critical for GoRouter)
           cp build/web/index.html build/web/404.html
+
+      - name: Validate build output
+        run: |
+          # Check if critical files exist
+          if [ ! -f "build/web/index.html" ]; then
+            echo "Error: index.html not found in build output"
+            exit 1
+          fi
+          if [ ! -f "build/web/main.dart.js" ]; then
+            echo "Error: main.dart.js not found in build output"
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./build/web
+          # Ensure no unnecessary files are uploaded
+          retention-days: 1
 
   deploy:
     needs: build
@@ -68,5 +90,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-          
+        with:
+          # Enable debug logging for deployment issues
+          log-level: debug
