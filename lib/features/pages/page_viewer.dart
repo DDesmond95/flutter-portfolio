@@ -17,7 +17,9 @@ class PageViewer extends StatelessWidget {
     return FutureBuilder(
       future: svc.ensureLoaded(),
       builder: (context, snap) {
-        final meta = svc.findByTypeAndSlug('page', slug);
+        final meta =
+            svc.findByTypeAndSlug('page', slug) ??
+            svc.findByTypeAndSlug('pages', slug);
         if (meta == null) {
           return Center(child: Text(context.l10n.notFoundPage));
         }

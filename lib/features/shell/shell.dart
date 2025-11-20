@@ -147,8 +147,8 @@ class Shell extends StatelessWidget {
                         context.go('/foundation');
                         break;
                       case 'credits':
-                        // foundation/credits.md -> slug: foundation-credits
-                        context.go('/foundation/foundation-credits');
+                        // foundation/credits.md -> slug: credits
+                        context.go('/foundation/credits');
                         break;
                     }
                   },
@@ -324,7 +324,7 @@ class _MobileDrawer extends StatelessWidget {
             ),
             _tile(
               context,
-              '/foundation/foundation-credits',
+              '/foundation/credits',
               context.l10n.navCredits,
               Icons.star_outline,
             ),

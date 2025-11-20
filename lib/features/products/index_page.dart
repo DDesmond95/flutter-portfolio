@@ -17,7 +17,7 @@ class ProductsIndexPage extends StatelessWidget {
     return FutureBuilder(
       future: svc.ensureLoaded(),
       builder: (context, snapshot) {
-        final items = svc.listByType('product', publicOnly: !auth.isLoggedIn);
+        final items = svc.listByType('products', publicOnly: !auth.isLoggedIn);
         return ListView(
           padding: EdgeInsets.all(context.pagePadding),
           children: [for (final m in items) ContentCard(meta: m)],

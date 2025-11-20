@@ -68,7 +68,7 @@ class ContentService extends ChangeNotifier {
   /// Find ContentMeta by matching slug from a route path
   ContentMeta? findMetaByPath(String path) {
     // Extract last path section as slug
-    // e.g. /foundation/foundation-credits → slug: foundation-credits
+    // e.g. /foundation/credits → slug: credits
     final slug = path.split('/').last.trim();
     if (slug.isEmpty) return null;
 

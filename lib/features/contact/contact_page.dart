@@ -220,7 +220,7 @@ class _RightColumn extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               OutlinedButton.icon(
-                onPressed: () => context.push('/pages/testimonial'),
+                onPressed: () => context.go('/pages/testimonial'),
                 icon: const Icon(Icons.open_in_new),
                 label: Text(l10n.contactTestimonialButton),
               ),

@@ -192,7 +192,7 @@ body: |
 Encrypt plaintext:
 
 ```
-dart run tools/encrypt_markdown.dart
+dart run tools/encrypt_content.dart
 ```
 
 Canary generator:
@@ -273,7 +273,7 @@ Artifacts uploaded to GitHub Releases automatically.
 
 | Tool                    | Purpose                     |
 | ----------------------- | --------------------------- |
-| `encrypt_markdown.dart` | Encrypts private blocks     |
+| `encrypt_content.dart` | Encrypts private blocks     |
 | `gen_canary.dart`       | Generates passphrase canary |
 | `gen_sitemap.dart`      | Sitemap                     |
 | `gen_rss.dart`          | RSS feed                    |

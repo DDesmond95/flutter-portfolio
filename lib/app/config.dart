@@ -23,31 +23,8 @@ class AppConfig {
   static const String defaultThemeMode = "system";
 
   // --- 敏感配置（从环境变量读取）---
-  static String get authCanarySalt {
-    return dotenv.get(
-      'AUTH_CANARY_SALT',
-      fallback: throw Exception("AUTH_CANARY_SALT 未配置"),
-    );
-  }
-
-  static String get authCanaryNonce {
-    return dotenv.get(
-      'AUTH_CANARY_NONCE',
-      fallback: throw Exception("AUTH_CANARY_NONCE 未配置"),
-    );
-  }
-
-  static String get authCanaryData {
-    return dotenv.get(
-      'AUTH_CANARY_DATA',
-      fallback: throw Exception("AUTH_CANARY_DATA 未配置"),
-    );
-  }
-
-  static String get authCanaryMac {
-    return dotenv.get(
-      'AUTH_CANARY_MAC',
-      fallback: throw Exception("AUTH_CANARY_MAC 未配置"),
-    );
-  }
+  static String get authCanarySalt => dotenv.env['AUTH_CANARY_SALT']!;
+  static String get authCanaryNonce => dotenv.env['AUTH_CANARY_NONCE']!;
+  static String get authCanaryData => dotenv.env['AUTH_CANARY_DATA']!;
+  static String get authCanaryMac => dotenv.env['AUTH_CANARY_MAC']!;
 }

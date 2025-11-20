@@ -133,18 +133,29 @@ class ContentCard extends StatelessWidget {
         return '/timeline/$slug';
       case 'people':
         return '/people/$slug';
+
+      // ✅ projects
       case 'project':
+      case 'projects':
         return '/projects/$slug';
+
+      // ✅ labs
       case 'lab':
+      case 'labs':
         return '/labs/$slug';
+
+      // ✅ products
+      case 'product':
+      case 'products':
+        return '/products/$slug';
+
       case 'library':
         return '/library/$slug';
       case 'meta':
         return '/meta/$slug';
       case 'foundation':
         return '/foundation/$slug';
-      case 'product':
-        return '/products/$slug';
+
       case 'page':
       default:
         switch (slug) {

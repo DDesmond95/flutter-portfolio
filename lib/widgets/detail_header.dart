@@ -78,22 +78,28 @@ class DetailHeader extends StatelessWidget {
         return '/timeline';
       case 'people':
         return '/people';
+
       case 'project':
+      case 'projects':
         return '/projects';
+
       case 'lab':
+      case 'labs':
         return '/labs';
+
+      case 'product':
+      case 'products':
+        return '/products';
+
       case 'library':
         return '/library';
       case 'meta':
         return '/meta';
       case 'foundation':
         return '/foundation';
-      case 'product':
-        return '/products';
+
       case 'page':
       default:
-        // Pages don’t have a “section index”. For common pages, treat Home as the parent.
-        // If you introduce a pages index later, change this to '/pages'.
         return '/';
     }
   }

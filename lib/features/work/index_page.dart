@@ -40,16 +40,32 @@ class _WorkIndexPageState extends State<WorkIndexPage> {
     }
   }
 
-  List<ContentMeta> _sortByDate(List<ContentMeta> list) =>
-      [...list]..sort((a, b) => b.date!.compareTo(a.date!));
+  List<ContentMeta> _sortByDate(List<ContentMeta> list) {
+    final copy = [...list];
+    copy.sort((a, b) {
+      final da = a.date;
+      final db = b.date;
+
+      if (da == null && db == null) return 0;
+      if (da == null) return 1; // nulls go last
+      if (db == null) return -1; // nulls go last
+
+      // Newest first
+      return db.compareTo(da);
+    });
+    return copy;
+  }
 
   Future<void> _load() async {
     setState(() => _loading = true);
     final svc = context.read<ContentService>();
 
-    final projects = _sortByDate(svc.listByType('project'));
-    final labs = _sortByDate(svc.listByType('lab'));
-    final products = _sortByDate(svc.listByType('product'));
+    // 🔑 Make sure the encrypted index + contents are loaded first
+    await svc.ensureLoaded();
+
+    final projects = _sortByDate(svc.listByType('projects'));
+    final labs = _sortByDate(svc.listByType('labs'));
+    final products = _sortByDate(svc.listByType('products'));
     final all = _sortByDate([...projects, ...labs, ...products]);
 
     setState(() {
@@ -69,9 +85,9 @@ class _WorkIndexPageState extends State<WorkIndexPage> {
     // URL updates ...
 
     final svc = context.read<ContentService>();
-    final projects = _sortByDate(svc.listByType('project'));
-    final labs = _sortByDate(svc.listByType('lab'));
-    final products = _sortByDate(svc.listByType('product'));
+    final projects = _sortByDate(svc.listByType('projects'));
+    final labs = _sortByDate(svc.listByType('labs'));
+    final products = _sortByDate(svc.listByType('products'));
     final all = _sortByDate([...projects, ...labs, ...products]);
 
     setState(() {

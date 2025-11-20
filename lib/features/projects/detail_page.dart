@@ -23,7 +23,7 @@ class ProjectDetailPage extends StatelessWidget {
     return FutureBuilder(
       future: svc.ensureLoaded(),
       builder: (context, snap) {
-        final meta = svc.findByTypeAndSlug('project', slug);
+        final meta = svc.findByTypeAndSlug('projects', slug);
         if (meta == null) {
           return Center(child: Text(context.l10n.notFoundGeneric));
         }
@@ -38,7 +38,7 @@ class ProjectDetailPage extends StatelessWidget {
             }
             final body = snap.data!;
             if (crypto.isCiphertext(body) && (auth.passphrase == null)) {
-              return LockBanner(slug: slug, type: 'project');
+              return LockBanner(slug: slug, type: 'projects');
             }
             return FutureBuilder(
               future: crypto.isCiphertext(body) && auth.passphrase != null

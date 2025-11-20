@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
       future: svc.ensureLoaded(),
       builder: (context, snap) {
         final featured = [
-          ...svc.listByType('project').take(3),
+          ...svc.listByType('projects').take(3),
           ...svc.listByType('blog').take(3),
         ];
         return ListView(

@@ -15,7 +15,7 @@ class ResumePage extends StatelessWidget {
     return FutureBuilder(
       future: svc.ensureLoaded(),
       builder: (context, snap) {
-        final meta = svc.findByTypeAndSlug('page', 'resume');
+        final meta = svc.findByTypeAndSlug('pages', 'resume');
         if (meta == null) {
           return Center(child: Text(context.l10n.notFoundGeneric));
         }

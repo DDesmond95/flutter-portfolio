@@ -17,7 +17,7 @@ class LabDetailPage extends StatelessWidget {
     return FutureBuilder(
       future: svc.ensureLoaded(),
       builder: (context, snap) {
-        final meta = svc.findByTypeAndSlug('lab', slug);
+        final meta = svc.findByTypeAndSlug('labs', slug);
         if (meta == null) {
           return Center(child: Text(context.l10n.notFoundGeneric));
         }

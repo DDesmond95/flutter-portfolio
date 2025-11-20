@@ -18,7 +18,7 @@ class ProductDetailPage extends StatelessWidget {
     return FutureBuilder(
       future: svc.ensureLoaded(),
       builder: (context, snap) {
-        final meta = svc.findByTypeAndSlug('product', slug);
+        final meta = svc.findByTypeAndSlug('products', slug);
         if (meta == null) {
           return Center(child: Text(context.l10n.notFoundGeneric));
         }

@@ -15,7 +15,7 @@ class ProjectsIndexPage extends StatelessWidget {
     return FutureBuilder(
       future: svc.ensureLoaded(),
       builder: (context, snap) {
-        final items = svc.listByType('project', publicOnly: !auth.isLoggedIn);
+        final items = svc.listByType('projects', publicOnly: !auth.isLoggedIn);
         return ListView(
           padding: EdgeInsets.all(context.pagePadding),
           children: [for (final m in items) ContentCard(meta: m)],

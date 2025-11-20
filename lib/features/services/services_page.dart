@@ -16,7 +16,7 @@ class ServicesPage extends StatelessWidget {
 
     final future = () async {
       await svc.ensureLoaded();
-      final meta = svc.findByTypeAndSlug('page', 'services');
+      final meta = svc.findByTypeAndSlug('pages', 'services');
       if (meta == null) return (null, null);
       final body = await svc.loadBodyLocalized(meta.path, locale);
       return (meta, body);

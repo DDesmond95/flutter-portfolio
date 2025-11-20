@@ -16,7 +16,20 @@ class LabsIndexPage extends StatelessWidget {
     return FutureBuilder(
       future: svc.ensureLoaded(),
       builder: (context, snapshot) {
-        final items = svc.listByType('lab', publicOnly: !auth.isLoggedIn);
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        final items = svc.listByType('labs', publicOnly: !auth.isLoggedIn);
+        if (items.isEmpty) {
+          return Center(
+            child: Padding(
+              padding: EdgeInsets.all(context.pagePadding),
+              child: const Text('No lab entries yet.'),
+            ),
+          );
+        }
+
         return ListView(
           padding: EdgeInsets.all(context.pagePadding),
           children: [for (final m in items) ContentCard(meta: m)],
