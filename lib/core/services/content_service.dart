@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
+
 import '../markdown/front_matter.dart';
 import '../models/content_meta.dart';
 import 'asset_index.dart';
+import 'crypto_service.dart';
 
 class ContentService extends ChangeNotifier {
   bool _loaded = false;
@@ -11,51 +13,34 @@ class ContentService extends ChangeNotifier {
 
   Future<void> ensureLoaded() async {
     if (_loaded) return;
-    final paths = await listMarkdownAssets();
+
+    // 🔁 NEW: load prebuilt JSON index instead of scanning & parsing all .md
+    final metas = await loadContentIndex();
     if (kDebugMode) {
-      print('[ContentService] discovered ${paths.length} markdown assets');
-      for (final p in paths) {
-        print('[ContentService] asset: $p');
-      }
-    }
-    for (final path in paths) {
-      final raw = await rootBundle.loadString(path);
-      final fm = parseFrontMatter(raw);
-      if (fm.meta.isEmpty) continue;
-      final meta = _toMeta(fm.meta, path);
-      if (kDebugMode) {
+      print('[ContentService] loaded ${metas.length} content index entries');
+      for (final m in metas) {
         print(
-          '[ContentService] parsed: type=${meta.type} slug=${meta.slug} visibility=${meta.visibility} path=${meta.path}',
+          '[ContentService] meta: type=${m.type} slug=${m.slug} visibility=${m.visibility} path=${m.path}',
         );
       }
-      _all.add(meta);
     }
+
+    _all
+      ..clear()
+      ..addAll(metas);
+
     _loaded = true;
     notifyListeners();
   }
 
-  ContentMeta _toMeta(Map<String, dynamic> m, String path) {
-    DateTime? dt;
-    final ds = (m['date']?.toString() ?? '').trim();
-    if (ds.isNotEmpty) dt = DateTime.tryParse(ds);
-
-    return ContentMeta(
-      title: (m['title'] ?? '').toString(),
-      slug: (m['slug'] ?? '').toString(),
-      type: (m['type'] ?? 'page').toString(),
-      visibility: (m['visibility'] ?? 'public').toString(),
-      date: dt,
-      summary: (m['summary'] ?? '').toString(),
-      tags: (m['tags'] as List?)?.map((e) => e.toString()).toList() ?? const [],
-      thumbnail: m['thumbnail']?.toString(),
-      readingTime: m['reading_time']?.toString(),
-      path: path,
-    );
-  }
+  // ❌ _toMeta() is no longer needed and can be removed.
 
   Future<String> loadBodyByPath(String path) async {
-    final raw = await rootBundle.loadString(path);
-    return parseFrontMatter(raw).body;
+    // 🔐 NEW: load encrypted bytes, decrypt, then strip front-matter
+    final data = await rootBundle.load(path);
+    final bytes = data.buffer.asUint8List();
+    final markdown = await CryptoService.decryptBytesToMarkdown(bytes);
+    return parseFrontMatter(markdown).body;
   }
 
   ContentMeta? findByTypeAndSlug(String type, String slug) {
@@ -77,7 +62,7 @@ class ContentService extends ChangeNotifier {
   }
 
   // ----------------------------------------------------------------------
-  // 🔒 NEW — PRIVATE CONTENT DETECTION FOR ROUTER REDIRECT
+  // 🔒 PRIVATE CONTENT DETECTION FOR ROUTER REDIRECT (unchanged)
   // ----------------------------------------------------------------------
 
   /// Find ContentMeta by matching slug from a route path

@@ -40,6 +40,9 @@ jobs:
         # Only run if the app requires these variables at analysis time
         if: ${{ github.event_name != 'pull_request' }}
 
+      - name: Encrypt markdown content
+        run: dart run tools/encrypt_content.dart --src-dir=assets/contents-src --out-dir=assets/contents
+
       - name: Dart format check
         run: dart format --output=none --set-exit-if-changed .
         # Add timeout to prevent hanging

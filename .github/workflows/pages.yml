@@ -44,6 +44,9 @@ jobs:
           echo "AUTH_CANARY_DATA=${{ secrets.AUTH_CANARY_DATA }}" >> .env
           echo "AUTH_CANARY_MAC=${{ secrets.AUTH_CANARY_MAC }}" >> .env
 
+      - name: Encrypt markdown content
+        run: dart run tools/encrypt_content.dart --src-dir=assets/contents-src --out-dir=assets/contents
+
       - name: Generate sitemap & RSS (with error handling)
         run: |
           dart run lib/tools/gen_sitemap.dart
