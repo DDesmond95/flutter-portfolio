@@ -122,6 +122,12 @@ class Shell extends StatelessWidget {
                 _MenuButton(
                   label: context.l10n.navAbout,
                   entries: [
+                    if (auth.isLoggedIn)
+                      MenuEntry(
+                        value: 'template',
+                        icon: Icons.description_outlined,
+                        label: 'Markdown Template',
+                      ),
                     MenuEntry(
                       value: 'about',
                       icon: Icons.info_outline,
@@ -140,6 +146,9 @@ class Shell extends StatelessWidget {
                   ],
                   onSelected: (v) {
                     switch (v) {
+                      case 'template':
+                        context.go('/pages/template');
+                        break;
                       case 'about':
                         context.go('/pages/about');
                         break;
@@ -310,6 +319,13 @@ class _MobileDrawer extends StatelessWidget {
 
             // About
             _header(context, context.l10n.navAbout),
+            if (auth.isLoggedIn)
+              _tile(
+                context,
+                '/pages/template',
+                'Markdown Template',
+                Icons.description_outlined,
+              ),
             _tile(
               context,
               '/pages/about',
