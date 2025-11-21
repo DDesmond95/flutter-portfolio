@@ -3,9 +3,22 @@ import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../utils/responsive.dart';
 
-class MarkdownView extends StatelessWidget {
+class MarkdownView extends StatefulWidget {
   final String data;
   const MarkdownView({super.key, required this.data});
+
+  @override
+  State<MarkdownView> createState() => _MarkdownViewState();
+}
+
+class _MarkdownViewState extends State<MarkdownView> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +118,9 @@ class MarkdownView extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: maxW, minWidth: 1.0),
             child: Markdown(
+              controller: _scrollController,
               shrinkWrap: true,
-              data: data,
+              data: widget.data,
               selectable: true,
               softLineBreak: true,
               styleSheet: styleSheet,
