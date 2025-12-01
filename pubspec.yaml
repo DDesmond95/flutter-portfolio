@@ -81,7 +81,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
 
-  build_runner: ^2.10.3 # if you generate any code (e.g., JSON models)
+  build_runner: ^2.10.4 # if you generate any code (e.g., JSON models)
   json_serializable: ^6.11.1 # for any generated models used by tools/CI
 
 # flutter_launcher_icons:
