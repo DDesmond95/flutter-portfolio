@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.CONTENT_REPO_TOKEN }}
           submodules: recursive # Pulls Portfolio-Contents into /assets
@@ -74,7 +74,7 @@ jobs:
           fi
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./build/web
           # Ensure no unnecessary files are uploaded
