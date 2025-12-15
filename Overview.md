@@ -2,7 +2,7 @@
 
 **Personal Portfolio**
 
-> A local-first, Markdown-powered portfolio and publication system.  
+> A local-first, Markdown-powered portfolio and publication system.
 > Built entirely with Flutter, optimized for privacy, modularity, and longevity.
 
 ---
@@ -68,7 +68,7 @@ Unlike typical web apps, login here is **symbolic and local**:
 - Encryption uses AES-GCM with PBKDF2-derived keys.
 - No external API calls — pure client-side decryption.
 
-This aligns with the principle of _sovereign publishing_:  
+This aligns with the principle of _sovereign publishing_:
 your data never leaves your device, and privacy is intrinsic to the medium.
 
 ---
@@ -116,7 +116,7 @@ Example ARB snippet:
 ```json
 {
   "homeTitle": "Welcome",
-  "homeSubtitle": "Explore Desmond’s work and philosophy.",
+  "homeSubtitle": "Explore My work and philosophy.",
   "@homeTitle": {
     "description": "Title text for the homepage"
   }

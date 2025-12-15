@@ -1,7 +1,7 @@
 # Assets — My Portfolio
 
-This document defines the structure, conventions, and purpose of all files under `/assets/`.  
-These assets serve as the **data layer** for the entire portfolio — powering all pages, projects, and content in a *local-first* architecture.
+This document defines the structure, conventions, and purpose of all files under `/assets/`.
+These assets serve as the **data layer** for the entire portfolio — powering all pages, projects, and content in a _local-first_ architecture.
 
 ---
 
@@ -28,13 +28,13 @@ assets/
 ├─ diagrams/      → Visual systems and architecture maps
 └─ headshots/     → Portraits and personal photos
 
-````
+```
 
 ---
 
 ## 🧩 Content Model
 
-Each Markdown (`.md`) file uses **YAML front-matter** followed by body content in Markdown.  
+Each Markdown (`.md`) file uses **YAML front-matter** followed by body content in Markdown.
 Example template:
 
 ```yaml
@@ -51,19 +51,19 @@ lang: "en"
 ---
 ## Overview
 
-System Monitor is an experiment in self-hosted system visibility, designed to align with Desmond’s principles of ethical transparency.
-````
+System Monitor is an experiment in self-hosted system visibility, designed to align with My principles of ethical transparency.
+```
 
 ### Front-matter keys
 
 | Key           | Type   | Required | Description                                                       |
 | ------------- | ------ | -------- | ----------------------------------------------------------------- |
-| `title`       | String | ✅        | Human-readable title                                              |
-| `slug`        | String | ✅        | Unique identifier used in routing                                 |
-| `type`        | String | ✅        | One of: `page`, `blog`, `project`, `lab`, `foundation`, `library` |
-| `visibility`  | String | ✅        | `public` or `private`                                             |
-| `date`        | String | ✅        | ISO date (`YYYY-MM-DD`) for sorting                               |
-| `description` | String | ✅        | Short summary for previews and cards                              |
+| `title`       | String | ✅       | Human-readable title                                              |
+| `slug`        | String | ✅       | Unique identifier used in routing                                 |
+| `type`        | String | ✅       | One of: `page`, `blog`, `project`, `lab`, `foundation`, `library` |
+| `visibility`  | String | ✅       | `public` or `private`                                             |
+| `date`        | String | ✅       | ISO date (`YYYY-MM-DD`) for sorting                               |
+| `description` | String | ✅       | Short summary for previews and cards                              |
 | `tags`        | List   | optional | Keywords for filtering                                            |
 | `cover`       | String | optional | Relative path to image                                            |
 | `lang`        | String | optional | Content language (`en`, `zh`, `ms`)                               |
@@ -76,11 +76,11 @@ System Monitor is an experiment in self-hosted system visibility, designed to al
 
 Static pages rendered via routes:
 
-* `home.md` → `/`
-* `about.md` → `/about`
-* `contact.md` → `/contact`
-* `services.md` → `/services`
-* `resume.md` → `/resume`
+- `home.md` → `/`
+- `about.md` → `/about`
+- `contact.md` → `/contact`
+- `services.md` → `/services`
+- `resume.md` → `/resume`
 
 These pages define the main structure of your site.
 All use front-matter `type: "page"`.
@@ -120,10 +120,10 @@ Experimental ideas, prototypes, and “sandbox” works.
 
 Examples:
 
-* `creative-experiments.md`
-* `automation-tools.md`
-* `prototypes.md`
-* `code-snippets.md`
+- `creative-experiments.md`
+- `automation-tools.md`
+- `prototypes.md`
+- `code-snippets.md`
 
 These render in `/labs`, each tagged by domain (design, research, systems).
 
@@ -131,14 +131,14 @@ These render in `/labs`, each tagged by domain (design, research, systems).
 
 ### `/assets/contents/library/`
 
-Influences, reference texts, and frameworks used across Desmond’s work.
+Influences, reference texts, and frameworks used across My work.
 
 Example entries:
 
-* `influences.md`
-* `reading-list.md`
-* `tools-and-frameworks.md`
-* `research-notes.md`
+- `influences.md`
+- `reading-list.md`
+- `tools-and-frameworks.md`
+- `research-notes.md`
 
 ---
 
@@ -148,15 +148,15 @@ Conceptual and ethical underpinnings — the “why” behind the portfolio.
 
 Files include:
 
-* `philosophy-of-work.md`
-* `justice-manifesto.md`
-* `ethics-llm-evals.md`
-* `system-design-notes.md`
-* `decision-log-001.md`
-* `calm-technology.md`
-* `eval-principles.md`
+- `philosophy-of-work.md`
+- `justice-manifesto.md`
+- `ethics-llm-evals.md`
+- `system-design-notes.md`
+- `decision-log-001.md`
+- `calm-technology.md`
+- `eval-principles.md`
 
-These form `/foundation` — readable sections of Desmond’s worldview and practice.
+These form `/foundation` — readable sections of My worldview and practice.
 
 ---
 
@@ -166,12 +166,12 @@ Site meta content — rendered as standalone pages or linked from footer.
 
 Includes:
 
-* `privacy-policy.md`
-* `terms-of-service.md`
-* `cookie-policy.md`
-* `accessibility.md`
-* `credits.md`
-* `features.md`
+- `privacy-policy.md`
+- `terms-of-service.md`
+- `cookie-policy.md`
+- `accessibility.md`
+- `credits.md`
+- `features.md`
 
 Each file defines `type: meta` and is linked in the footer navigation.
 
@@ -217,11 +217,11 @@ cipher: <base64 text>
 
 ## 🧠 Conventions
 
-* Filenames use **kebab-case** (`philosophy-of-work.md`)
-* Front-matter always separated by `---` lines
-* Image paths use **relative URIs** (`assets/images/...`)
-* All timestamps use ISO 8601
-* Non-English content has `lang: zh` or `lang: ms`
+- Filenames use **kebab-case** (`philosophy-of-work.md`)
+- Front-matter always separated by `---` lines
+- Image paths use **relative URIs** (`assets/images/...`)
+- All timestamps use ISO 8601
+- Non-English content has `lang: zh` or `lang: ms`
 
 ---
 
@@ -238,11 +238,11 @@ cipher: <base64 text>
 
 ## 🚀 Future Plans
 
-* Generate an `index.json` manifest for faster client-side indexing.
-* Implement local fuzzy search across Markdown files.
-* Add thumbnail generation for covers.
-* Store pre-rendered excerpts for list pages.
-* Include auto-generated RSS/Atom feeds from `/blog`.
+- Generate an `index.json` manifest for faster client-side indexing.
+- Implement local fuzzy search across Markdown files.
+- Add thumbnail generation for covers.
+- Store pre-rendered excerpts for list pages.
+- Include auto-generated RSS/Atom feeds from `/blog`.
 
 ---
 
