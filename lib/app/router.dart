@@ -10,12 +10,8 @@ import '../features/blog/index_page.dart';
 import '../features/blog/detail_page.dart';
 import '../features/projects/detail_page.dart' as projects_detail;
 import '../features/labs/detail_page.dart' as labs_detail;
-import '../features/library/index_page.dart';
-import '../features/library/detail_page.dart';
-import '../features/meta/index_page.dart';
-import '../features/meta/detail_page.dart';
-import '../features/foundation/index_page.dart';
-import '../features/foundation/detail_page.dart';
+import '../features/common/generic_index_page.dart';
+import '../features/common/generic_detail_page.dart';
 import '../features/services/services_page.dart';
 import '../features/contact/contact_page.dart';
 import '../features/resume/resume_page.dart';
@@ -24,14 +20,18 @@ import '../features/not_found/not_found_page.dart';
 import '../features/work/index_page.dart';
 import '../features/timeline/index_page.dart';
 import '../features/timeline/detail_page.dart';
-import '../features/people/index_page.dart';
-import '../features/people/detail_page.dart';
 import '../features/products/detail_page.dart' as products_detail;
+import '../features/splash/splash_page.dart';
+import '../core/utils/l10n.dart'; // Needed for l10n strings in builders
 
 GoRouter buildRouter(ContentService content) {
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: '/splash',
     routes: [
+      GoRoute(
+        path: '/splash',
+        builder: (context, state) => const SplashPage(),
+      ),
       ShellRoute(
         builder: (context, state, child) => Shell(child: child),
         routes: [
@@ -53,20 +53,23 @@ GoRouter buildRouter(ContentService content) {
             builder: (context, state) => const LoginPage(),
           ),
 
+          // Blog Route with filtering
           GoRoute(
             path: '/blog',
             builder: (context, state) {
               final f = state.uri.queryParameters['cat'];
               return BlogIndexPage(initialFilter: f);
             },
+            routes: [
+              GoRoute(
+                path: ':slug',
+                builder: (context, state) =>
+                    BlogDetailPage(slug: state.pathParameters['slug']!),
+              ),
+            ],
           ),
 
-          GoRoute(
-            path: '/blog/:slug',
-            builder: (context, state) =>
-                BlogDetailPage(slug: state.pathParameters['slug']!),
-          ),
-
+          // Work (Projects, Labs, Products) - Custom logic required
           GoRoute(
             path: '/work',
             name: 'work',
@@ -80,103 +83,120 @@ GoRouter buildRouter(ContentService content) {
               return WorkIndexPage(initial: f);
             },
           ),
-
           GoRoute(
             path: '/projects',
             redirect: (context, state) => '/work?f=projects',
+            routes: [
+              GoRoute(
+                path: ':slug',
+                name: 'projectDetail',
+                builder: (context, state) => projects_detail.ProjectDetailPage(
+                  slug: state.pathParameters['slug']!,
+                ),
+              ),
+            ],
           ),
           GoRoute(
-            path: '/projects/:slug',
-            name: 'projectDetail',
-            builder: (context, state) => projects_detail.ProjectDetailPage(
-              slug: state.pathParameters['slug']!,
-            ),
+            path: '/labs',
+            redirect: (context, state) => '/work?f=labs',
+            routes: [
+              GoRoute(
+                path: ':slug',
+                name: 'labDetail',
+                builder: (context, state) =>
+                    labs_detail.LabDetailPage(slug: state.pathParameters['slug']!),
+              ),
+            ],
           ),
-
-          GoRoute(path: '/labs', redirect: (context, state) => '/work?f=labs'),
-          GoRoute(
-            path: '/labs/:slug',
-            name: 'labDetail',
-            builder: (context, state) =>
-                labs_detail.LabDetailPage(slug: state.pathParameters['slug']!),
-          ),
-
           GoRoute(
             path: '/products',
             redirect: (context, state) => '/work?f=products',
+            routes: [
+              GoRoute(
+                path: ':slug',
+                name: 'productDetail',
+                builder: (context, state) => products_detail.ProductDetailPage(
+                  slug: state.pathParameters['slug']!,
+                ),
+              ),
+            ],
           ),
-          GoRoute(
-            path: '/products/:slug',
-            name: 'productDetail',
-            builder: (context, state) => products_detail.ProductDetailPage(
-              slug: state.pathParameters['slug']!,
+
+          // --- Generic Features (Consolidated) ---
+
+          _buildSimpleRoute(
+            path: '/library',
+            indexBuilder: (c, s) => GenericIndexPage(
+              contentType: 'library',
+              title: c.l10n.navLibrary,
+              subtitle: c.l10n.librarySectionSubtitle,
+              filterPrefix: 'library:',
+              initialFilterTag: s.uri.queryParameters['f'], // Consistent query param
+              emptyMessage: c.l10n.libraryEmpty,
+            ),
+            detailBuilder: (c, s) => GenericDetailPage(
+              slug: s.pathParameters['slug']!,
+              contentType: 'library',
             ),
           ),
 
-          GoRoute(
-            path: '/library',
-            builder: (context, state) {
-              final f = state.uri.queryParameters['cat'];
-              return LibraryIndexPage(initialFilter: f);
-            },
-          ),
-
-          GoRoute(
-            path: '/library/:slug',
-            builder: (context, state) =>
-                LibraryDetailPage(slug: state.pathParameters['slug']!),
-          ),
-
-          GoRoute(
+          _buildSimpleRoute(
             path: '/meta',
-            builder: (context, state) {
-              final f = state.uri.queryParameters['f'];
-              return MetaIndexPage(initialCategory: f);
-            },
+            indexBuilder: (c, s) => GenericIndexPage(
+              contentType: 'meta',
+              title: c.l10n.navPhilosophy,
+              subtitle: c.l10n.philosophySectionSubtitle,
+              filterPrefix: 'philosophy:',
+              initialFilterTag: s.uri.queryParameters['f'],
+              emptyMessage: c.l10n.philosophyEmpty,
+            ),
+            detailBuilder: (c, s) => GenericDetailPage(
+              slug: s.pathParameters['slug']!,
+              contentType: 'meta',
+            ),
           ),
 
-          GoRoute(
-            path: '/meta/:slug',
-            builder: (context, state) =>
-                MetaDetailPage(slug: state.pathParameters['slug']!),
-          ),
-
-          GoRoute(
+          _buildSimpleRoute(
             path: '/foundation',
-            builder: (context, state) => const FoundationIndexPage(),
-          ),
-          GoRoute(
-            path: '/foundation/:slug',
-            builder: (context, state) =>
-                FoundationDetailPage(slug: state.pathParameters['slug']!),
-          ),
-
-          // Timeline routes must be declared before the generic pages route
-          GoRoute(
-            path: '/timeline',
-            builder: (context, state) => const TimelineIndexPage(),
-          ),
-          GoRoute(
-            path: '/timeline/:slug',
-            builder: (context, state) =>
-                TimelineDetailPage(slug: state.pathParameters['slug']!),
+            indexBuilder: (c, s) => GenericIndexPage(
+              contentType: 'foundation',
+              title: 'Foundation', // Or l10n
+              subtitle: 'About the site and author.',
+              filterPrefix: 'foundation:',
+              initialFilterTag: s.uri.queryParameters['f'],
+            ),
+            detailBuilder: (c, s) => GenericDetailPage(
+              slug: s.pathParameters['slug']!,
+              contentType: 'foundation',
+            ),
           ),
 
-          GoRoute(
+          _buildSimpleRoute(
             path: '/people',
-            builder: (context, state) {
-              final f = state.uri.queryParameters['cat'];
-              return PeopleIndexPage(initialFilter: f);
-            },
+            indexBuilder: (c, s) => GenericIndexPage(
+              contentType: 'people',
+              title: c.l10n.navPeople,
+              subtitle: c.l10n.peopleSectionSubtitle,
+              filterPrefix: 'people:',
+              initialFilterTag: s.uri.queryParameters['f'],
+              emptyMessage: c.l10n.peopleEmpty,
+            ),
+            detailBuilder: (c, s) => GenericDetailPage(
+              slug: s.pathParameters['slug']!,
+              contentType: 'people',
+            ),
           ),
 
-          GoRoute(
-            path: '/people/:slug',
-            builder: (context, state) =>
-                PersonDetailPage(slug: state.pathParameters['slug']!),
+          // Timeline (Special Animation)
+          _buildSimpleRoute(
+            path: '/timeline',
+            indexBuilder: (c, s) => const TimelineIndexPage(),
+            detailBuilder: (c, s) => TimelineDetailPage(
+              slug: s.pathParameters['slug']!,
+            ),
           ),
 
-          // Generic “page” content if you add more slugs later
+          // Generic Page Viewer
           GoRoute(
             path: '/pages/:slug',
             builder: (context, state) =>
@@ -188,21 +208,35 @@ GoRouter buildRouter(ContentService content) {
     errorBuilder: (context, state) => const NotFoundPage(),
     redirect: (context, state) async {
       final auth = context.read<AuthService>();
-
-      // ensure content is indexed
-      await content.ensureLoaded();
+      // ⚡ REMOVED: await content.ensureLoaded();
+      // This blocked the UI. Now SplashPage handles loading gracefully.
 
       final path = state.uri.toString();
+      if (path.startsWith('/login') || path.startsWith('/splash')) return null;
 
-      // allow login page
-      if (path.startsWith('/login')) return null;
-
-      // if private page && not logged in → block
       if (!auth.isLoggedIn && content.isPrivatePath(path)) {
         return '/';
       }
 
       return null;
     },
+  );
+}
+
+/// Helper to build standard index+detail routes to reduce duplication.
+GoRoute _buildSimpleRoute({
+  required String path,
+  required GoRouterWidgetBuilder indexBuilder,
+  required GoRouterWidgetBuilder detailBuilder,
+}) {
+  return GoRoute(
+    path: path,
+    builder: indexBuilder,
+    routes: [
+      GoRoute(
+        path: ':slug',
+        builder: detailBuilder,
+      ),
+    ],
   );
 }

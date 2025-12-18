@@ -10,9 +10,15 @@ import '../../widgets/detail_header.dart';
 import '../../core/utils/l10n.dart';
 import '../../core/services/content_localized.dart';
 
-class MetaDetailPage extends StatelessWidget {
+class GenericDetailPage extends StatelessWidget {
   final String slug;
-  const MetaDetailPage({super.key, required this.slug});
+  final String contentType;
+
+  const GenericDetailPage({
+    super.key,
+    required this.slug,
+    required this.contentType,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class MetaDetailPage extends StatelessWidget {
     return FutureBuilder(
       future: svc.ensureLoaded(),
       builder: (context, snap) {
-        final meta = svc.findByTypeAndSlug('meta', slug);
+        final meta = svc.findByTypeAndSlug(contentType, slug);
         if (meta == null) {
           return Center(child: Text(context.l10n.notFoundGeneric));
         }
@@ -37,9 +43,15 @@ class MetaDetailPage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
             final body = snap.data!;
+
+            // Encryption check
             if (crypto.isCiphertext(body) && (auth.passphrase == null)) {
-              return LockBanner(slug: slug, type: 'meta');
+              return Padding(
+                padding: EdgeInsets.all(context.pagePadding),
+                child: LockBanner(slug: slug, type: contentType),
+              );
             }
+
             return FutureBuilder(
               future: crypto.isCiphertext(body) && auth.passphrase != null
                   ? crypto.decryptMarkdown(body, auth.passphrase!)

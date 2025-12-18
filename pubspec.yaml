@@ -69,6 +69,7 @@ dependencies:
 
   # --- Client-side encryption for private markdown ---
   cryptography: ^2.9.0 # AES-GCM, HKDF, etc.
+  cryptography_flutter: ^2.3.2 # Native bindings for speed
 
   # needed to use url strategy on web
   flutter_web_plugins:

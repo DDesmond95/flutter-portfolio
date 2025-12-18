@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cryptography_flutter/cryptography_flutter.dart'; // Speed
 import 'src/url_strategy_stub.dart'
     if (dart.library.html) 'src/url_strategy_web.dart';
 import 'app/app.dart';
@@ -8,6 +9,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Enable native/web-crypto acceleration
+  await FlutterCryptography.enable();
 
   // 新增：加载环境变量（从.env文件）
   await dotenv.load(fileName: ".env");

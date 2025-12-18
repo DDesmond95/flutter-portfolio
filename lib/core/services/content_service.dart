@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
@@ -33,14 +34,37 @@ class ContentService extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ❌ _toMeta() is no longer needed and can be removed.
+
+
+  // Simple in-memory cache for decrypted content
+  final Map<String, String> _bodyCache = {};
 
   Future<String> loadBodyByPath(String path) async {
-    // 🔐 NEW: load encrypted bytes, decrypt, then strip front-matter
+    // 1. Check cache
+    if (_bodyCache.containsKey(path)) {
+      return _bodyCache[path]!;
+    }
+
+    // 2. Load bytes
     final data = await rootBundle.load(path);
     final bytes = data.buffer.asUint8List();
-    final markdown = await CryptoService.decryptBytesToMarkdown(bytes);
-    return parseFrontMatter(markdown).body;
+
+    // 3. Decrypt or Decode
+    String markdown;
+    if (path.endsWith('.enc')) {
+      markdown = await CryptoService.decryptBytesToMarkdown(bytes);
+    } else {
+      // Fallback for plain .md (mostly for debug/local testing)
+      markdown = utf8.decode(bytes);
+    }
+
+    // 4. Parse front-matter
+    final body = parseFrontMatter(markdown).body;
+
+    // 5. Store in cache
+    _bodyCache[path] = body;
+
+    return body;
   }
 
   ContentMeta? findByTypeAndSlug(String type, String slug) {
