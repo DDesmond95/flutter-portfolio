@@ -64,7 +64,7 @@ jobs:
           mv ${{ env.ANDROID_APK_PATH }} build/app/outputs/flutter-apk/portfolio-$TAG.apk
 
       - name: Archive APK
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: android-apk
           path: build/app/outputs/flutter-apk/portfolio-*.apk
@@ -124,7 +124,7 @@ jobs:
           mv linux-portfolio-$TAG.tar.gz $GITHUB_WORKSPACE/
 
       - name: Upload Linux artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: linux-bundle
           path: linux-portfolio-*.tar.gz
@@ -182,7 +182,7 @@ jobs:
           mv windows-portfolio-$TAG.zip $GITHUB_WORKSPACE/
 
       - name: Upload Windows artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: windows-bundle
           path: windows-portfolio-*.zip
@@ -237,7 +237,7 @@ jobs:
           mv macos-portfolio-$TAG.zip $GITHUB_WORKSPACE/
 
       - name: Upload macOS artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: macos-app
           path: macos-portfolio-*.zip
