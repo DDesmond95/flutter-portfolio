@@ -75,7 +75,7 @@ jobs:
 
       - name: Upload artifact
         # Github Action v3 is required because of .env file
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./build/web
           # Ensure no unnecessary files are uploaded
