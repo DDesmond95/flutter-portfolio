@@ -37,7 +37,7 @@ dependencies:
   go_router: ^17.0.1 # modern router w/ deep links + wev
 
   # --- UI / UX ---
-  google_fonts: ^6.3.3 # typography from fonts.google.com (official)
+  google_fonts: ^8.0.0 # typography from fonts.google.com (official)
   responsive_framework: ^1.5.1 # responsive breakpoints and layout helpers
   url_launcher: ^6.3.2 # open mailto:, https, etc. across platforms
   animations: ^2.1.1 # subtle page/element transitions
