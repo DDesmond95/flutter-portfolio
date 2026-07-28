@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.0.0"
+  animate_do:
+    dependency: "direct main"
+    description:
+      name: animate_do
+      sha256: b6ff08dc6cf3cb5586a86d7f32a3b5f45502d2e08e3fb4f5a484c8421c9b3fc0
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.9"
   animations:
     dependency: "direct main"
     description:
@@ -201,6 +209,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.9.0"
+  cryptography_flutter:
+    dependency: "direct main"
+    description:
+      name: cryptography_flutter
+      sha256: d1c7e7a31a072d63b27ce0537b89868f9bda9188f2b1651ae728a295762921d4
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.4"
   csslib:
     dependency: transitive
     description:

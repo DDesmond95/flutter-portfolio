@@ -41,20 +41,21 @@ class _WorkIndexPageState extends State<WorkIndexPage> {
     }
   }
 
-  List<ContentMeta> _sortByDate(List<ContentMeta> list) {
-    final copy = [...list];
-    copy.sort((a, b) {
-      final da = a.date;
-      final db = b.date;
+  List<ContentMeta> _normalize(List<ContentMeta> list) {
+    // 1. Dedup by slug
+    final unique = <ContentMeta>[];
+    final seen = <String>{};
+    for (final item in list) {
+      if (seen.contains(item.slug)) continue;
+      seen.add(item.slug);
+      unique.add(item);
+    }
 
-      if (da == null && db == null) return 0;
-      if (da == null) return 1; // nulls go last
-      if (db == null) return -1; // nulls go last
-
-      // Newest first
-      return db.compareTo(da);
+    // 2. Sort (Newest first)
+    unique.sort((a, b) {
+      return (b.date ?? DateTime(1970)).compareTo(a.date ?? DateTime(1970));
     });
-    return copy;
+    return unique;
   }
 
   Future<void> _load() async {
@@ -65,16 +66,21 @@ class _WorkIndexPageState extends State<WorkIndexPage> {
     // 🔑 Make sure the encrypted index + contents are loaded first
     await svc.ensureLoaded();
 
-    final projects = _sortByDate(
-      svc.listByType('projects', publicOnly: !auth.isLoggedIn),
-    );
-    final labs = _sortByDate(
-      svc.listByType('labs', publicOnly: !auth.isLoggedIn),
-    );
-    final products = _sortByDate(
-      svc.listByType('products', publicOnly: !auth.isLoggedIn),
-    );
-    final all = _sortByDate([...projects, ...labs, ...products]);
+    final locale = Localizations.localeOf(context).languageCode;
+
+    final projects = _normalize([
+      ...svc.listByType('projects', publicOnly: !auth.isLoggedIn, lang: locale),
+      ...svc.listByType('project', publicOnly: !auth.isLoggedIn, lang: locale),
+    ]);
+    final labs = _normalize([
+      ...svc.listByType('labs', publicOnly: !auth.isLoggedIn, lang: locale),
+      ...svc.listByType('lab', publicOnly: !auth.isLoggedIn, lang: locale),
+    ]);
+    final products = _normalize([
+      ...svc.listByType('products', publicOnly: !auth.isLoggedIn, lang: locale),
+      ...svc.listByType('product', publicOnly: !auth.isLoggedIn, lang: locale),
+    ]);
+    final all = _normalize([...projects, ...labs, ...products]);
 
     setState(() {
       _applyFilter(
@@ -95,16 +101,21 @@ class _WorkIndexPageState extends State<WorkIndexPage> {
     final svc = context.read<ContentService>();
     final auth = context.read<AuthService>();
 
-    final projects = _sortByDate(
-      svc.listByType('projects', publicOnly: !auth.isLoggedIn),
-    );
-    final labs = _sortByDate(
-      svc.listByType('labs', publicOnly: !auth.isLoggedIn),
-    );
-    final products = _sortByDate(
-      svc.listByType('products', publicOnly: !auth.isLoggedIn),
-    );
-    final all = _sortByDate([...projects, ...labs, ...products]);
+    final locale = Localizations.localeOf(context).languageCode;
+
+    final projects = _normalize([
+      ...svc.listByType('projects', publicOnly: !auth.isLoggedIn, lang: locale),
+      ...svc.listByType('project', publicOnly: !auth.isLoggedIn, lang: locale),
+    ]);
+    final labs = _normalize([
+      ...svc.listByType('labs', publicOnly: !auth.isLoggedIn, lang: locale),
+      ...svc.listByType('lab', publicOnly: !auth.isLoggedIn, lang: locale),
+    ]);
+    final products = _normalize([
+      ...svc.listByType('products', publicOnly: !auth.isLoggedIn, lang: locale),
+      ...svc.listByType('product', publicOnly: !auth.isLoggedIn, lang: locale),
+    ]);
+    final all = _normalize([...projects, ...labs, ...products]);
     setState(() {
       _applyFilter(
         projects: projects,
@@ -133,19 +144,21 @@ class _WorkIndexPageState extends State<WorkIndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SectionHeader(
-          title: context.l10n.workSectionTitle,
-          subtitle: context.l10n.workSectionSubtitle,
-          trailing: _FilterDropdown(
-            value: _filter,
-            onChanged: (v) => _setFilter(v ?? WorkFilter.all),
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: SectionHeader(
+            title: context.l10n.workSectionTitle,
+            subtitle: context.l10n.workSectionSubtitle,
+            trailing: _FilterDropdown(
+              value: _filter,
+              onChanged: (v) => _setFilter(v ?? WorkFilter.all),
+            ),
           ),
         ),
-        const SizedBox(height: 16),
+        const SliverToBoxAdapter(child: SizedBox(height: 16)),
         if (_loading)
-          const Expanded(
+          const SliverFillRemaining(
             child: Center(
               child: Padding(
                 padding: EdgeInsets.all(24),
@@ -154,14 +167,17 @@ class _WorkIndexPageState extends State<WorkIndexPage> {
             ),
           )
         else if (_items.isEmpty)
-          Expanded(
+          SliverFillRemaining(
             child: Padding(
               padding: const EdgeInsets.all(24),
               child: Center(child: Text(context.l10n.workEmpty)),
             ),
           )
         else
-          Expanded(child: _WorkGrid(items: _items)),
+          _WorkGrid(items: _items),
+
+        // Add bottom padding
+        const SliverToBoxAdapter(child: SizedBox(height: 32)),
       ],
     );
   }
@@ -213,8 +229,7 @@ class _WorkGrid extends StatelessWidget {
         ? 2
         : 1;
 
-    return GridView.builder(
-      itemCount: items.length,
+    return SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: cross,
         crossAxisSpacing: 16,
@@ -225,7 +240,10 @@ class _WorkGrid extends StatelessWidget {
             ? 3.4
             : 2.7,
       ),
-      itemBuilder: (context, i) => ContentCard(meta: items[i]),
+      delegate: SliverChildBuilderDelegate(
+        (context, i) => ContentCard(meta: items[i]),
+        childCount: items.length,
+      ),
     );
   }
 }

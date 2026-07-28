@@ -57,6 +57,9 @@ class ContentCard extends StatelessWidget {
       if (summary != null && summary.isNotEmpty) summary,
     ];
 
+    final String? thumbPath = (meta.thumbnail as String?);
+    final bool hasThumbnail = thumbPath != null && thumbPath.isNotEmpty;
+
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8),
       clipBehavior: Clip.antiAlias,
@@ -77,8 +80,10 @@ class ContentCard extends StatelessWidget {
                 ? CrossAxisAlignment.center
                 : CrossAxisAlignment.start,
             children: [
-              _Thumb(meta: meta),
-              const SizedBox(width: 12),
+              if (hasThumbnail) ...[
+                _Thumb(meta: meta),
+                const SizedBox(width: 12),
+              ],
               // Texts
               Expanded(
                 child: SingleChildScrollView(
@@ -191,7 +196,7 @@ class _Thumb extends StatelessWidget {
     final double size = 56;
 
     if (t == null || t.isEmpty) {
-      return _placeholder(context, size);
+      return const SizedBox.shrink();
     }
 
     final path = t.startsWith('/assets/') ? t.substring(1) : t;
@@ -202,27 +207,8 @@ class _Thumb extends StatelessWidget {
         width: size,
         height: size,
         fit: BoxFit.cover,
-        errorBuilder: (context, error, stack) => _placeholder(context, size),
+        errorBuilder: (context, error, stack) => const SizedBox.shrink(),
       ),
-    );
-  }
-
-  Widget _placeholder(BuildContext context, double size) {
-    final palette = context.watch<ThemeController>().palette;
-    final bg = accentSoftFor(palette);
-
-    final bool isDarkBg = bg.computeLuminance() < 0.5;
-    final Color fg = isDarkBg ? Colors.white : accentStrongFor(palette);
-
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: fg.withValues(alpha: 0.5), width: 1),
-      ),
-      child: Icon(Icons.insert_drive_file_outlined, size: 20, color: fg),
     );
   }
 }

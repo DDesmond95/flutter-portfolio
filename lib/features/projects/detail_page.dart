@@ -23,7 +23,9 @@ class ProjectDetailPage extends StatelessWidget {
     return FutureBuilder(
       future: svc.ensureLoaded(),
       builder: (context, snap) {
-        final meta = svc.findByTypeAndSlug('projects', slug);
+        final locale = Localizations.localeOf(context).languageCode;
+        final meta = svc.findByTypeAndSlug('projects', slug, lang: locale) ??
+            svc.findByTypeAndSlug('project', slug, lang: locale);
         if (meta == null) {
           return Center(child: Text(context.l10n.notFoundGeneric));
         }

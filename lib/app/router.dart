@@ -85,7 +85,7 @@ GoRouter buildRouter(ContentService content) {
           ),
           GoRoute(
             path: '/projects',
-            redirect: (context, state) => '/work?f=projects',
+            builder: (context, state) => const WorkIndexPage(initial: WorkFilter.projects),
             routes: [
               GoRoute(
                 path: ':slug',
@@ -98,7 +98,7 @@ GoRouter buildRouter(ContentService content) {
           ),
           GoRoute(
             path: '/labs',
-            redirect: (context, state) => '/work?f=labs',
+            builder: (context, state) => const WorkIndexPage(initial: WorkFilter.labs),
             routes: [
               GoRoute(
                 path: ':slug',
@@ -110,7 +110,7 @@ GoRouter buildRouter(ContentService content) {
           ),
           GoRoute(
             path: '/products',
-            redirect: (context, state) => '/work?f=products',
+            builder: (context, state) => const WorkIndexPage(initial: WorkFilter.products),
             routes: [
               GoRoute(
                 path: ':slug',

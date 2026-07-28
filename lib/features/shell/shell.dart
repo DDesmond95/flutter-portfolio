@@ -150,7 +150,7 @@ class Shell extends StatelessWidget {
                         context.go('/pages/template');
                         break;
                       case 'about':
-                        context.go('/pages/about');
+                        context.push('/pages/about');
                         break;
                       case 'foundation':
                         context.go('/foundation');
@@ -409,6 +409,46 @@ class _ThemeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeCtrl = context.watch<ThemeController>();
+    final currentMode = themeCtrl.mode;
+    final currentPalette = themeCtrl.palette;
+    final colorScheme = Theme.of(context).colorScheme;
+
+    PopupMenuItem<String> buildItem(String label, String value, bool selected) {
+      final colorScheme = Theme.of(context).colorScheme;
+      return PopupMenuItem<String>(
+        value: value,
+        // When selected, use primaryContainer background
+        // Note: PopupMenuItem has internal padding. For full-width highlight,
+        // we might prefer wrapping the Child content,
+        // but removing internal padding is tricky without custom widget.
+        // We'll use a visual indication that looks like a highlighted row.
+        textStyle: TextStyle(
+             color: selected ? colorScheme.onPrimaryContainer : colorScheme.onSurface,
+             fontWeight: selected ? FontWeight.bold : FontWeight.normal,
+        ),
+        // This relies on the fact we can't easily change the ITEM background
+        // without custom PopupMenuEntry, but we can style the content to look "active".
+        // HOWEVER, user wants "highlight the whole thing".
+        // Safest approach: Use a hack with Container + negative margin?
+        // Or simpler: Just Container with color.
+        child: Container(
+           width: double.infinity,
+           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+           decoration: selected ? BoxDecoration(
+             color: colorScheme.primaryContainer,
+             borderRadius: BorderRadius.circular(8),
+           ) : null,
+           child: Text(
+             label,
+             style: TextStyle(
+               color: selected ? colorScheme.onPrimaryContainer : colorScheme.onSurface,
+               fontWeight: selected ? FontWeight.bold : FontWeight.normal,
+             ),
+           ),
+        ),
+      );
+    }
+
     return PopupMenuButton<String>(
       tooltip: context.l10n.menuTheme,
       icon: const Icon(Icons.palette_outlined),
@@ -447,68 +487,87 @@ class _ThemeButton extends StatelessWidget {
       },
       itemBuilder: (context) => [
         PopupMenuItem(enabled: false, child: Text(context.l10n.menuThemeMode)),
-        PopupMenuItem(
-          value: 'mode:system',
-          child: Text(context.l10n.themeSystem),
+        buildItem(
+          context.l10n.themeSystem,
+          'mode:system',
+          currentMode == ThemeMode.system,
         ),
-        PopupMenuItem(
-          value: 'mode:light',
-          child: Text(context.l10n.themeLight),
+        buildItem(
+          context.l10n.themeLight,
+          'mode:light',
+          currentMode == ThemeMode.light,
         ),
-        PopupMenuItem(value: 'mode:dark', child: Text(context.l10n.themeDark)),
+        buildItem(
+          context.l10n.themeDark,
+          'mode:dark',
+          currentMode == ThemeMode.dark,
+        ),
         const PopupMenuDivider(),
         PopupMenuItem(enabled: false, child: Text(context.l10n.menuPalette)),
-        PopupMenuItem(
-          value: 'palette:metal',
-          child: Text(context.l10n.paletteMetal),
+        buildItem(
+          context.l10n.paletteMetal,
+          'palette:metal',
+          currentPalette == AppPalette.metal,
         ),
-        PopupMenuItem(
-          value: 'palette:earth',
-          child: Text(context.l10n.paletteEarth),
+        buildItem(
+          context.l10n.paletteEarth,
+          'palette:earth',
+          currentPalette == AppPalette.earth,
         ),
-        PopupMenuItem(
-          value: 'palette:wood',
-          child: Text(context.l10n.paletteWood),
+        buildItem(
+          context.l10n.paletteWood,
+          'palette:wood',
+          currentPalette == AppPalette.wood,
         ),
-        PopupMenuItem(
-          value: 'palette:fire',
-          child: Text(context.l10n.paletteFire),
+        buildItem(
+          context.l10n.paletteFire,
+          'palette:fire',
+          currentPalette == AppPalette.fire,
         ),
-        PopupMenuItem(
-          value: 'palette:water',
-          child: Text(context.l10n.paletteWater),
+        buildItem(
+          context.l10n.paletteWater,
+          'palette:water',
+          currentPalette == AppPalette.water,
         ),
-        PopupMenuItem(
-          value: 'palette:yin',
-          child: Text(context.l10n.paletteYin),
+        buildItem(
+          context.l10n.paletteYin,
+          'palette:yin',
+          currentPalette == AppPalette.yin,
         ),
-        PopupMenuItem(
-          value: 'palette:yang',
-          child: Text(context.l10n.paletteYang),
+        buildItem(
+          context.l10n.paletteYang,
+          'palette:yang',
+          currentPalette == AppPalette.yang,
         ),
-        PopupMenuItem(
-          value: 'palette:abyss',
-          child: Text(context.l10n.paletteAbyss),
+        buildItem(
+          context.l10n.paletteAbyss,
+          'palette:abyss',
+          currentPalette == AppPalette.abyss,
         ),
-        PopupMenuItem(
-          value: 'palette:lunar',
-          child: Text(context.l10n.paletteLunar),
+        buildItem(
+          context.l10n.paletteLunar,
+          'palette:lunar',
+          currentPalette == AppPalette.lunar,
         ),
-        PopupMenuItem(
-          value: 'palette:storm',
-          child: Text(context.l10n.paletteStorm),
+        buildItem(
+          context.l10n.paletteStorm,
+          'palette:storm',
+          currentPalette == AppPalette.storm,
         ),
-        PopupMenuItem(
-          value: 'palette:natural',
-          child: Text(context.l10n.paletteNatural),
+        buildItem(
+          context.l10n.paletteNatural,
+          'palette:natural',
+          currentPalette == AppPalette.natural,
         ),
-        PopupMenuItem(
-          value: 'palette:minimal',
-          child: Text(context.l10n.paletteMinimal),
+        buildItem(
+          context.l10n.paletteMinimal,
+          'palette:minimal',
+          currentPalette == AppPalette.minimal,
         ),
-        PopupMenuItem(
-          value: 'palette:mono',
-          child: Text(context.l10n.paletteMono),
+        buildItem(
+          context.l10n.paletteMono,
+          'palette:mono',
+          currentPalette == AppPalette.mono,
         ),
       ],
     );

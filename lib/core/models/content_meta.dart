@@ -10,6 +10,7 @@ class ContentMeta {
   final String? thumbnail;
   final String path; // asset path, now pointing to .md.enc
   final String? readingTime;
+  final String lang;
 
   const ContentMeta({
     required this.title,
@@ -22,6 +23,7 @@ class ContentMeta {
     required this.thumbnail,
     required this.path,
     this.readingTime,
+    this.lang = 'en',
   });
 
   bool get isPrivate => visibility.toLowerCase() == 'private';
@@ -56,9 +58,10 @@ class ContentMeta {
       date: dt,
       summary: (json['summary'] ?? '').toString(),
       tags: tags,
-      thumbnail: json['thumbnail']?.toString(),
+      thumbnail: (json['thumbnail']?.toString() ?? '').replaceAll(RegExp(r'^/+'), ''),
       path: fullPath,
       readingTime: json['reading_time']?.toString(),
+      lang: (json['lang'] ?? 'en').toString(),
     );
   }
 }

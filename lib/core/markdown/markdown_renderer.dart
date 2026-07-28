@@ -133,9 +133,20 @@ class _MarkdownViewState extends State<MarkdownView> {
                 }
               },
               imageBuilder: (uri, title, alt) {
-                final p = uri.toString().startsWith('/assets/')
-                    ? uri.toString().substring(1)
-                    : uri.toString();
+                final url = uri.toString();
+                if (url.startsWith('http')) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Image.network(
+                      url,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const SizedBox.shrink(),
+                    ),
+                  );
+                }
+
+                final p = url.startsWith('/assets/') ? url.substring(1) : url;
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: ConstrainedBox(

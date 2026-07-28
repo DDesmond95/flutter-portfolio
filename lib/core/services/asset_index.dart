@@ -13,38 +13,47 @@ import 'crypto_service.dart';
 /// decrypts them on the fly to read FrontMatter, and rebuilds the index in-memory.
 /// This allows "Hot Restart" to pick up new files without running `tools/encrypt_content.dart`.
 Future<List<ContentMeta>> loadContentIndex() async {
-  // 1. Try to load the static index first (always good to have)
   List<ContentMeta> staticList = [];
-  try {
-    final jsonStr = await rootBundle.loadString(
-      'assets/build/content_index.json',
-    );
-    final decoded = jsonDecode(jsonStr) as List<dynamic>;
-    for (final item in decoded) {
-      final map = item as Map<String, dynamic>;
-      // Optional: only use English entries for now
-      final lang = map['lang']?.toString();
-      if (lang != null && lang != 'en') continue;
-      staticList.add(ContentMeta.fromJson(map));
+
+  void add(dynamic item) {
+    if (item is Map<String, dynamic>) {
+      if (item['slug'] is String) {
+        item['slug'] = (item['slug'] as String).replaceFirst(RegExp(r'^\d+[-_]?'), '');
+      }
+      staticList.add(ContentMeta.fromJson(item));
     }
-  } catch (e) {
-    debugPrint("⚠️ Could not load static content_index.json: $e");
   }
 
-  // 2. If in Debug mode, perform dynamic discovery to catch new/modified files
-  if (kDebugMode) {
+  // 1. Try static index from build tool
+  try {
+    final indexJson = await rootBundle.loadString('assets/build/content_index.json');
+    final List<dynamic> list = json.decode(indexJson);
+    list.forEach(add);
+  } catch (e) {
+    // Try legacy path
     try {
-      final dynamicList = await _discoverAssetsFromManifest();
-
-      // Merge: Use dynamic versions if available (they might be newer),
-      // but simplistic approach: Just use dynamic list if it found anything,
-      // as it represents the true state of the assets folder.
-      if (dynamicList.isNotEmpty) {
-        debugPrint("🚀 [Debug] Discovered ${dynamicList.length} items dynamically.");
-        staticList = dynamicList;
+      final indexJson = await rootBundle.loadString('assets/index.json');
+      final List<dynamic> list = json.decode(indexJson);
+      for (final item in list) {
+        staticList.add(ContentMeta.fromJson(item as Map<String, dynamic>));
       }
-    } catch (e) {
-      debugPrint("⚠️ Dynamic asset discovery failed: $e");
+    } catch (_) {
+      debugPrint('Static index not found.');
+    }
+  }
+
+  // 2. Discover dynamically (Debug mode OR if static index missing)
+  if (kDebugMode || staticList.isEmpty) {
+    // Only run if we actually need it
+    if (staticList.isEmpty) {
+      try {
+        final dynamicList = await _discoverAssetsFromManifest();
+        if (dynamicList.isNotEmpty) {
+          staticList = dynamicList;
+        }
+      } catch (e) {
+        debugPrint("⚠️ Dynamic asset discovery failed: $e");
+      }
     }
   }
 
@@ -93,7 +102,8 @@ Future<List<ContentMeta>> _discoverAssetsFromManifest() async {
       // segments: [assets, contents, en, blog, my-post.md.enc]
       final segments = path.split('/');
       final filename = segments.last;
-      final slug = filename.replaceAll('.md.enc', '').replaceAll('.md', '');
+      var slug = filename.replaceAll('.md.enc', '').replaceAll('.md', '');
+      slug = slug.replaceFirst(RegExp(r'^\d+[-_]?'), '');
 
       // type is the folder name before the file (e.g. 'blog')
       String type = 'page';
@@ -102,7 +112,7 @@ Future<List<ContentMeta>> _discoverAssetsFromManifest() async {
       }
 
       // If front-matter has no slug, use filename
-      var meta = parsed.attributes;
+      var meta = parsed.meta;
       if (!meta.containsKey('slug')) meta['slug'] = slug;
       if (!meta.containsKey('type')) meta['type'] = type;
       if (!meta.containsKey('path')) meta['path'] = path;

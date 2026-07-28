@@ -55,91 +55,101 @@ class _GenericIndexPageState extends State<GenericIndexPage> {
   Widget build(BuildContext context) {
     final svc = context.watch<ContentService>();
     final auth = context.watch<AuthService>();
+
+    if (!svc.isLoaded) {
+      return FutureBuilder(
+        future: svc.ensureLoaded(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return _buildContent(svc, auth);
+        },
+      );
+    }
+
+    return _buildContent(svc, auth);
+  }
+
+  Widget _buildContent(ContentService svc, AuthService auth) {
     final text = Theme.of(context).textTheme;
+    final locale = Localizations.localeOf(context).languageCode;
 
-    return FutureBuilder(
-      future: svc.ensureLoaded(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState != ConnectionState.done) {
-          return const Center(child: CircularProgressIndicator());
-        }
+    final allItems = svc.listByType(
+      widget.contentType,
+      publicOnly: !auth.isLoggedIn,
+      lang: locale,
+    );
 
-        final allItems = svc.listByType(
-          widget.contentType,
-          publicOnly: !auth.isLoggedIn,
-        );
+    if (allItems.isEmpty) {
+      return Center(child: Text(widget.emptyMessage));
+    }
 
-        if (allItems.isEmpty) {
-          return Center(child: Text(widget.emptyMessage));
-        }
+    // 1. Derive categories
+    final categories = _deriveCategories(allItems, widget.filterPrefix);
 
-        // 1. Derive categories
-        final categories = _deriveCategories(allItems, widget.filterPrefix);
+    // 2. Filter items
+    final filtered = _filterByCategory(allItems, _activeCategory);
 
-        // 2. Filter items
-        final filtered = _filterByCategory(allItems, _activeCategory);
-
-        return CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.all(context.pagePadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.title,
-                      style: text.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        height: 1.12,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      widget.subtitle,
-                      style: text.bodyLarge?.copyWith(
-                        color: text.bodySmall?.color?.withValues(alpha: 0.85),
-                        height: 1.45,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Chips
-                    if (categories.isNotEmpty)
-                      _CategoryChips(
-                        categories: categories,
-                        active: _activeCategory,
-                        prefix: widget.filterPrefix,
-                        onChanged: (v) {
-                          _updateRoute(v);
-                        },
-                      ),
-                  ],
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.all(context.pagePadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.title,
+                  style: text.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    height: 1.12,
+                  ),
                 ),
-              ),
+                const SizedBox(height: 6),
+                Text(
+                  widget.subtitle,
+                  style: text.bodyLarge?.copyWith(
+                    color: text.bodySmall?.color?.withValues(alpha: 0.85),
+                    height: 1.45,
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // Chips
+                if (categories.isNotEmpty)
+                  _CategoryChips(
+                    categories: categories,
+                    active: _activeCategory,
+                    prefix: widget.filterPrefix,
+                    onChanged: (v) {
+                      _updateRoute(v);
+                    },
+                  ),
+              ],
             ),
-            if (filtered.isEmpty)
-              SliverFillRemaining(
-                hasScrollBody: false,
-                child: Center(child: Text(widget.emptyMessage)),
-              )
-            else
-              SliverPadding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: context.pagePadding,
-                  vertical: 4,
-                ),
-                sliver: SliverList.separated(
-                  itemCount: filtered.length,
-                  separatorBuilder: (context, i) => const SizedBox(height: 12),
-                  itemBuilder: (context, i) => ContentCard(meta: filtered[i]),
-                ),
-              ),
+          ),
+        ),
+        if (filtered.isEmpty)
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(child: Text(widget.emptyMessage)),
+          )
+        else
+          SliverPadding(
+            padding: EdgeInsets.symmetric(
+              horizontal: context.pagePadding,
+              vertical: 4,
+            ),
+            sliver: SliverList.separated(
+              itemCount: filtered.length,
+              separatorBuilder: (context, i) => const SizedBox(height: 12),
+              itemBuilder: (context, i) => ContentCard(meta: filtered[i]),
+            ),
+          ),
 
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-          ],
-        );
-      },
+        const SliverToBoxAdapter(child: SizedBox(height: 24)),
+      ],
     );
   }
 

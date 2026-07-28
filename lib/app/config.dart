@@ -2,9 +2,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AppConfig {
   // --- 公开配置（硬编码，无需环境变量）---
-  static const String siteName = "My Portfolio";
+  static const String siteName = "Desmond Liew";
   static const String siteTagline = "Calm, privacy-first AI systems.";
-  static const String contactEmail = "hello@example.com";
+  static const String contactEmail = "hello@desmondliew.dev";
   static const String timezone = "Asia/Kuching";
 
   // 功能开关

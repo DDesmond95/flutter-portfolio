@@ -11,7 +11,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Enable native/web-crypto acceleration
-  await FlutterCryptography.enable();
+  FlutterCryptography.enable();
 
   // 新增：加载环境变量（从.env文件）
   await dotenv.load(fileName: ".env");
